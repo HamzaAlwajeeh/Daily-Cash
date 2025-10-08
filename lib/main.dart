@@ -27,7 +27,7 @@ class DailyCash extends StatelessWidget {
       title: 'Daily Cash',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-        textTheme: ThemeData.light().textTheme.apply(
+        textTheme: ThemeData.dark().textTheme.apply(
           fontFamily: 'NotoSansArabic',
         ),
       ),
