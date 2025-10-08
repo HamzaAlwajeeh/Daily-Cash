@@ -14,7 +14,11 @@ class DailyCash extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Daily Cash',
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        textTheme: ThemeData.light().textTheme.apply(
+          fontFamily: 'NotoSansArabic',
+        ),
+      ),
       onGenerateRoute: onGenerateRoute,
       initialRoute: SplashView.routeName,
     );
