@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/auth/views/sign_up_view.dart';
+import 'package:daily_cash/Features/auth/views/login_view.dart';
 import 'package:daily_cash/Features/auth/views/widgets/have_an_account.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -7,16 +7,17 @@ import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class LoginViewBody extends StatefulWidget {
-  const LoginViewBody({super.key});
+class SignUpViewBody extends StatefulWidget {
+  const SignUpViewBody({super.key});
 
   @override
-  State<LoginViewBody> createState() => _LoginViewBodyState();
+  State<SignUpViewBody> createState() => _LoginViewBodyState();
 }
 
-class _LoginViewBodyState extends State<LoginViewBody> {
+class _LoginViewBodyState extends State<SignUpViewBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String userName = '';
   String email = '';
   String password = '';
 
@@ -28,15 +29,23 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         child: Column(
           children: [
             const SizedBox(height: 70),
-            Text('تسجيل الدخول', style: TextStyles.bold18),
+            Text('إنشاء حساب جديد', style: TextStyles.bold18),
             const SizedBox(height: 70),
-            SvgPicture.asset(Assets.imagesLogin),
+            SvgPicture.asset(Assets.imagesSignup),
             Form(
               key: formKey,
               autovalidateMode: autovalidateMode,
               child: Column(
                 children: [
                   const SizedBox(height: 50),
+                  CustomTextFormFeild(
+                    hintText: 'اسم المستخدم',
+                    keyboardType: TextInputType.text,
+                    onChanged: (value) {
+                      userName = value;
+                    },
+                  ),
+                  const SizedBox(height: 20),
                   CustomTextFormFeild(
                     hintText: 'البريد الإلكتروني',
                     keyboardType: TextInputType.emailAddress,
@@ -62,15 +71,16 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   ),
                   const SizedBox(height: 20),
                   HaveAnAccount(
-                    subText: 'لا تمتلك حساب؟',
-                    primaryText: 'إنشاء حساب',
+                    subText: 'تمتلك حساب بالفعل؟',
+                    primaryText: 'تسجيل الدخول',
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        SignUpView.routeName,
+                        LoginView.routeName,
                       );
                     },
                   ),
+                  const SizedBox(height: 50),
                 ],
               ),
             ),
