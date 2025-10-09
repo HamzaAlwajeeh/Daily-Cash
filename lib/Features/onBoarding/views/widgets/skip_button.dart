@@ -1,4 +1,5 @@
 import 'package:daily_cash/Features/auth/views/login_view.dart';
+import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,8 @@ class SkipButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
+        Prefs.setBool('seenOnBoarding', true);
         Navigator.pushReplacementNamed(context, LoginView.routeName);
       },
       child: Container(
