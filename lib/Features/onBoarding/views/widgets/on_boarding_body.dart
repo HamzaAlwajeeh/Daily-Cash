@@ -1,6 +1,6 @@
 import 'package:daily_cash/Features/onBoarding/views/widgets/on_boarding_page_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
-import 'package:dots_indicator/dots_indicator.dart';
+import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingBody extends StatefulWidget {
@@ -13,7 +13,6 @@ class OnBoardingBody extends StatefulWidget {
 class _OnBoardingBodyState extends State<OnBoardingBody> {
   late PageController pageController;
   var currentPage = 0;
-
   @override
   void initState() {
     pageController = PageController();
@@ -37,16 +36,38 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
       child: Column(
         children: [
           Expanded(child: OnBoardingPageView(pageController: pageController)),
-          DotsIndicator(
-            dotsCount: 3,
-            position: 0,
-            decorator: DotsDecorator(
-              activeSize: const Size.square(12),
-              size: const Size.square(12),
-              activeColor: AppColors.primaryColor,
-              color: AppColors.textSecondaryColor,
+          const SizedBox(height: 50),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: List.generate(3, (index) {
+              final isActive = index <= currentPage;
+              return Container(
+                margin: const EdgeInsets.symmetric(horizontal: 4),
+                width: 12,
+                height: 12,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color:
+                      isActive
+                          ? AppColors.primaryColor
+                          : AppColors.textSecondaryColor,
+                ),
+              );
+            }),
+          ),
+
+          const SizedBox(height: 93),
+          Visibility(
+            visible: currentPage == 2,
+            maintainState: true,
+            maintainAnimation: true,
+            maintainSize: true,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 52 - 16),
+              child: PrimaryButton(text: 'إبدأ', onPressed: () {}),
             ),
           ),
+          const SizedBox(height: 40),
         ],
       ),
     );
