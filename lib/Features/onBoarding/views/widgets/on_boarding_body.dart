@@ -1,3 +1,4 @@
+import 'package:daily_cash/Features/auth/views/login_view.dart';
 import 'package:daily_cash/Features/onBoarding/views/widgets/on_boarding_page_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
@@ -55,7 +56,6 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               );
             }),
           ),
-
           const SizedBox(height: 93),
           Visibility(
             visible: currentPage == 2,
@@ -64,7 +64,12 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
             maintainSize: true,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 52 - 16),
-              child: PrimaryButton(text: 'إبدأ', onPressed: () {}),
+              child: PrimaryButton(
+                text: 'إبدأ',
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, LoginView.routeName);
+                },
+              ),
             ),
           ),
           const SizedBox(height: 40),

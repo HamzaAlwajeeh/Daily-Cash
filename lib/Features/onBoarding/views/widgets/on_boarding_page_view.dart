@@ -9,6 +9,7 @@ class OnBoardingPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PageView(
+      physics: const BouncingScrollPhysics(),
       controller: pageController,
       children: [
         PageViewItem(
