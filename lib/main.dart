@@ -30,9 +30,13 @@ class DailyCash extends StatelessWidget {
       title: 'Daily Cash',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-        textTheme: ThemeData.dark().textTheme.apply(
-          fontFamily: 'NotoSansArabic',
-        ),
+        textTheme: ThemeData.dark().textTheme
+            .apply(fontFamily: 'NotoSansArabic')
+            .copyWith(
+              bodyLarge: const TextStyle(color: AppColors.textSecondaryColor),
+              bodyMedium: const TextStyle(color: AppColors.textSecondaryColor),
+              bodySmall: const TextStyle(color: AppColors.textSecondaryColor),
+            ),
       ),
       onGenerateRoute: onGenerateRoute,
       initialRoute: SplashView.routeName,
