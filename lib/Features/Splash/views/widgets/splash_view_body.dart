@@ -1,7 +1,6 @@
 import 'package:daily_cash/Features/onBoarding/views/on_boarding_view.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -19,7 +18,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: SvgPicture.asset(Assets.imagesSplash));
+    return Center(child: Image.asset(Assets.imagesLogo, width: 264));
   }
 
   void navigatorToOnBoarding(BuildContext context) async {

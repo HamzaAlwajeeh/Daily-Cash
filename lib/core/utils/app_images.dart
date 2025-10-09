@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-
+  
   /// Assets for images3users
   /// assets/images/3users.svg
   static const String images3users = "assets/images/3users.svg";
@@ -18,14 +18,13 @@ class Assets {
   /// assets/images/call.svg
   static const String imagesCall = "assets/images/call.svg";
 
-  /// Assets for imagesDolar Sign
+  /// Assets for imagesDolarSign
   /// assets/images/DolarSign.svg
   static const String imagesDolarSign = "assets/images/DolarSign.svg";
 
   /// Assets for imagesDownloadSuccess
   /// assets/images/downloadSuccess.svg
-  static const String imagesDownloadSuccess =
-      "assets/images/downloadSuccess.svg";
+  static const String imagesDownloadSuccess = "assets/images/downloadSuccess.svg";
 
   /// Assets for imagesEmployee
   /// assets/images/employee.svg
@@ -37,8 +36,7 @@ class Assets {
 
   /// Assets for imagesExchangeWithBackground
   /// assets/images/exchangeWithBackground.svg
-  static const String imagesExchangeWithBackground =
-      "assets/images/exchangeWithBackground.svg";
+  static const String imagesExchangeWithBackground = "assets/images/exchangeWithBackground.svg";
 
   /// Assets for imagesGithub
   /// assets/images/github.svg
@@ -55,6 +53,10 @@ class Assets {
   /// Assets for imagesLogin
   /// assets/images/login.svg
   static const String imagesLogin = "assets/images/login.svg";
+
+  /// Assets for imagesLogo
+  /// assets/images/logo.png
+  static const String imagesLogo = "assets/images/logo.png";
 
   /// Assets for imagesLogout
   /// assets/images/logout.svg
@@ -76,6 +78,10 @@ class Assets {
   /// assets/images/onBoarding3.svg
   static const String imagesOnBoarding3 = "assets/images/onBoarding3.svg";
 
+  /// Assets for imagesOnBoardingLogo
+  /// assets/images/onBoardingLogo.png
+  static const String imagesOnBoardingLogo = "assets/images/onBoardingLogo.png";
+
   /// Assets for imagesOutcome
   /// assets/images/outcome.svg
   static const String imagesOutcome = "assets/images/outcome.svg";
@@ -96,6 +102,14 @@ class Assets {
   /// assets/images/splash.svg
   static const String imagesSplash = "assets/images/splash.svg";
 
+  /// Assets for imagesSplashLogo
+  /// assets/images/splashLogo.svg
+  static const String imagesSplashLogo = "assets/images/splashLogo.svg";
+
+  /// Assets for imagesSplashText
+  /// assets/images/splashText.svg
+  static const String imagesSplashText = "assets/images/splashText.svg";
+
   /// Assets for imagesTheme
   /// assets/images/theme.svg
   static const String imagesTheme = "assets/images/theme.svg";
@@ -104,3 +118,4 @@ class Assets {
   /// assets/images/user.svg
   static const String imagesUser = "assets/images/user.svg";
 }
+
