@@ -1,5 +1,6 @@
 import 'package:daily_cash/Features/auth/views/login_view.dart';
 import 'package:daily_cash/Features/onBoarding/views/widgets/on_boarding_page_view.dart';
+import 'package:daily_cash/core/constants/constants.dart';
 import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
@@ -68,7 +69,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
               child: PrimaryButton(
                 text: 'إبدأ',
                 onPressed: () {
-                  Prefs.setBool('seenOnBoarding', true);
+                  Prefs.setBool(kSeenOnBoarding, true);
                   Navigator.pushReplacementNamed(context, LoginView.routeName);
                 },
               ),
