@@ -39,7 +39,6 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
       child: Column(
         children: [
           Expanded(child: OnBoardingPageView(pageController: pageController)),
-          const SizedBox(height: 50),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(3, (index) {
