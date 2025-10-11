@@ -5,13 +5,17 @@ import 'package:dartz/dartz.dart';
 
 class AuthRepoImpl implements AuthRepo {
   @override
-  Future<Either<Failure, List<UserModel>>> login(String email, String password) {
+  Future<Either<Failure, UserModel>> login(String email, String password) {
     // TODO: implement login
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, List<UserModel>>> register(String userName, String email, String password) {
+  Future<Either<Failure, UserModel>> register(
+    String userName,
+    String email,
+    String password,
+  ) {
     // TODO: implement register
     throw UnimplementedError();
   }

@@ -3,8 +3,8 @@ import 'package:daily_cash/core/errors/failuar.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class AuthRepo {
-  Future<Either<Failure, List<UserModel>>> login(String email, String password);
-  Future<Either<Failure, List<UserModel>>> register(
+  Future<Either<Failure, UserModel>> login(String email, String password);
+  Future<Either<Failure, UserModel>> register(
     String userName,
     String email,
     String password,
