@@ -1,6 +1,7 @@
 import 'package:daily_cash/Features/Splash/views/splash_view.dart';
 import 'package:daily_cash/Features/auth/views/login_view.dart';
 import 'package:daily_cash/Features/auth/views/sign_up_view.dart';
+import 'package:daily_cash/Features/home/data/models/operation_model.dart';
 import 'package:daily_cash/Features/home/views/all_operations_view.dart';
 import 'package:daily_cash/Features/home/views/home_view.dart';
 import 'package:daily_cash/Features/home/views/income_operations_view.dart';
@@ -32,8 +33,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) => const OutcomeOperationsView(),
       );
     case OperationDetailsView.routeName:
+        final operation = settings.arguments as OperationModel;
       return MaterialPageRoute(
-        builder: (context) => const OperationDetailsView(),
+        builder: (context) => OperationDetailsView(operation: operation,),
       );
     default:
       return MaterialPageRoute(

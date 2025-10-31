@@ -1,3 +1,4 @@
+import 'package:daily_cash/Features/home/views/widgets/all_operations_view_body.dart';
 import 'package:flutter/material.dart';
 
 class AllOperationsView extends StatelessWidget {
@@ -5,6 +6,6 @@ class AllOperationsView extends StatelessWidget {
   static const String routeName = '/all-operations';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('All Operations View')));
+    return Scaffold(body: AllOperationsViewBody());
   }
 }

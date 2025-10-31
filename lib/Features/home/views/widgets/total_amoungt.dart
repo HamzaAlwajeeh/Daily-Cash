@@ -1,3 +1,4 @@
+import 'package:daily_cash/Features/home/views/all_operations_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -9,57 +10,62 @@ class TotalAmount extends StatelessWidget {
   final String totalAmount;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: const Text(
-              'المبلغ في الخزينة',
-              style: TextStyles.bold16,
-              textAlign: TextAlign.start,
-            ),
-          ),
-          const SizedBox(height: 12),
-          Container(
-            width: double.infinity,
-            height: 150,
-            decoration: BoxDecoration(
-              color: AppColors.textFeilSecondaryColor,
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                children: [
-                  SvgPicture.asset(Assets.imagesGreenMoney),
-                  const SizedBox(width: 20),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'المبلغ في الخزينه',
-                        style: TextStyles.bold22.copyWith(
-                          color: AppColors.primaryColor,
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Row(
-                        children: [
-                          Text(totalAmount, style: TextStyles.bold24),
-                          SvgPicture.asset(Assets.imagesReal),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.pushNamed(context, AllOperationsView.routeName);
+      },
+      child: SizedBox(
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              child: const Text(
+                'المبلغ في الخزينة',
+                style: TextStyles.bold16,
+                textAlign: TextAlign.start,
               ),
             ),
-          ),
-        ],
+            const SizedBox(height: 12),
+            Container(
+              width: double.infinity,
+              height: 150,
+              decoration: BoxDecoration(
+                color: AppColors.textFeilSecondaryColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(Assets.imagesGreenMoney),
+                    const SizedBox(width: 20),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'المبلغ في الخزينه',
+                          style: TextStyles.bold22.copyWith(
+                            color: AppColors.primaryColor,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Row(
+                          children: [
+                            Text(totalAmount, style: TextStyles.bold24),
+                            SvgPicture.asset(Assets.imagesReal),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
