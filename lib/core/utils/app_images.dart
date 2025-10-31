@@ -66,6 +66,10 @@ class Assets {
   /// assets/images/notFound.svg
   static const String imagesNotFound = "assets/images/notFound.svg";
 
+  /// Assets for imagesNotFountYet
+  /// assets/images/NotFountYet.png
+  static const String imagesNotFountYet = "assets/images/NotFountYet.png";
+
   /// Assets for imagesOnBoarding1
   /// assets/images/onBoarding1.svg
   static const String imagesOnBoarding1 = "assets/images/onBoarding1.svg";

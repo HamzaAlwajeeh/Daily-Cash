@@ -34,4 +34,8 @@ abstract class TextStyles {
     fontWeight: FontWeight.w600,
     fontSize: 14,
   );
+  static const TextStyle regular14 = TextStyle(
+    fontWeight: FontWeight.normal,
+    fontSize: 14,
+  );
 }

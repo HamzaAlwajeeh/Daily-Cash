@@ -1,3 +1,4 @@
+import 'package:daily_cash/Features/home/views/widgets/recent_operations.dart';
 import 'package:daily_cash/Features/home/views/widgets/today_summary.dart';
 import 'package:daily_cash/Features/home/views/widgets/total_amoungt.dart';
 import 'package:daily_cash/Features/home/views/widgets/welcome_message.dart';
@@ -16,6 +17,7 @@ class HomeViewBody extends StatelessWidget {
           WelcomMessage(name: 'حمزة الوجيه'),
           TotalAmount(totalAmount: '1,750,000'),
           TodaySummary(),
+          RecentOperations(),
         ],
       ),
     );
