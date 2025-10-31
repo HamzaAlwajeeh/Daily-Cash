@@ -86,9 +86,17 @@ class Assets {
   /// assets/images/outcome.svg
   static const String imagesOutcome = "assets/images/outcome.svg";
 
+  /// Assets for imagesProfile
+  /// assets/images/profile.png
+  static const String imagesProfile = "assets/images/profile.png";
+
   /// Assets for imagesProject
   /// assets/images/project.svg
   static const String imagesProject = "assets/images/project.svg";
+
+  /// Assets for imagesReal
+  /// assets/images/Real.svg
+  static const String imagesReal = "assets/images/Real.svg";
 
   /// Assets for imagesSearch
   /// assets/images/search.svg
