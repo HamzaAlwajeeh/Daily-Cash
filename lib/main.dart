@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/home/home_view.dart';
+import 'package:daily_cash/Features/home/views/home_view.dart';
 import 'package:daily_cash/core/routers/on_generate_route.dart';
 import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';

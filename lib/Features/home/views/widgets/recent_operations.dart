@@ -10,6 +10,11 @@ class RecentOperations extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<OperationModel> operations = operationsData();
+    final topTen =
+        operations.length > 10
+            ? operations.sublist(operations.length - 10)
+            : operations;
+
     return Expanded(
       child: SizedBox(
         width: double.infinity,
@@ -27,7 +32,7 @@ class RecentOperations extends StatelessWidget {
             const SizedBox(height: 12),
             operations.isEmpty
                 ? NoRecentOperatiosWidget()
-                : RecentOperationsListView(operations: operations),
+                : RecentOperationsListView(operations: topTen),
           ],
         ),
       ),
