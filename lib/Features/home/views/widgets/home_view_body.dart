@@ -1,7 +1,7 @@
 import 'package:daily_cash/Features/home/views/widgets/recent_operations.dart';
 import 'package:daily_cash/Features/home/views/widgets/today_summary.dart';
 import 'package:daily_cash/Features/home/views/widgets/total_amoungt.dart';
-import 'package:daily_cash/Features/home/views/widgets/welcome_message.dart';
+import 'package:daily_cash/Features/home/views/widgets/welcome_message_and_profile_info.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -14,7 +14,10 @@ class HomeViewBody extends StatelessWidget {
       child: Column(
         spacing: 16,
         children: [
-          WelcomMessage(name: 'حمزة الوجيه'),
+          WelcomeMessageAndProfileInfo(
+            title: 'حمزة الوجيه',
+            subTitle: 'كيف حالك اليوم؟',
+          ),
           TotalAmount(totalAmount: '1,750,000'),
           TodaySummary(),
           RecentOperations(),

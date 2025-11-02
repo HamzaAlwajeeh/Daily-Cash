@@ -38,6 +38,10 @@ class Assets {
   /// assets/images/exchangeWithBackground.svg
   static const String imagesExchangeWithBackground = "assets/images/exchangeWithBackground.svg";
 
+  /// Assets for imagesFilter
+  /// assets/images/filter.svg
+  static const String imagesFilter = "assets/images/filter.svg";
+
   /// Assets for imagesGithub
   /// assets/images/github.svg
   static const String imagesGithub = "assets/images/github.svg";

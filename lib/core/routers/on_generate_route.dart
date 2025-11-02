@@ -8,6 +8,7 @@ import 'package:daily_cash/Features/home/views/income_operations_view.dart';
 import 'package:daily_cash/Features/home/views/operation_details_view.dart';
 import 'package:daily_cash/Features/home/views/outcome_operations_view.dart';
 import 'package:daily_cash/Features/onBoarding/views/on_boarding_view.dart';
+import 'package:daily_cash/Features/profile/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -28,14 +29,14 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const IncomeOperationsView(),
       );
-    case OutcomeOperationsView.routeName:
-      return MaterialPageRoute(
-        builder: (context) => const OutcomeOperationsView(),
-      );
     case OperationDetailsView.routeName:
         final operation = settings.arguments as OperationModel;
       return MaterialPageRoute(
         builder: (context) => OperationDetailsView(operation: operation,),
+      );
+      case ProfileView.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const ProfileView(),
       );
     default:
       return MaterialPageRoute(
