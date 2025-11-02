@@ -21,7 +21,11 @@ class GeneralSection extends StatelessWidget {
           icon: Assets.imagesTheme,
           hasSwitch: true,
         ),
-        GeneralSectionItem(title: 'نبذه عنا', icon: Assets.imagesAboutUs),
+        GeneralSectionItem(
+          title: 'نبذه عنا',
+          icon: Assets.imagesAboutUs,
+          hasSwitch: false,
+        ),
       ],
     );
   }
