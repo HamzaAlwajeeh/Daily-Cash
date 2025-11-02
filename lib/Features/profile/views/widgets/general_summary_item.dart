@@ -19,7 +19,7 @@ class GeneralSummaryItem extends StatelessWidget {
         padding: EdgeInsets.all(5),
         // height: 115,
         decoration: BoxDecoration(
-          color: AppColors.textFeilSecondaryColor,
+          color: AppColors.textFeilColor,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(

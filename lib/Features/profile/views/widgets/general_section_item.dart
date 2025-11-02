@@ -1,3 +1,4 @@
+import 'package:daily_cash/Features/profile/views/widgets/switch_widget.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class GeneralSectionItem extends StatelessWidget {
       width: double.infinity,
       height: 60,
       decoration: BoxDecoration(
-        color: AppColors.textFeilSecondaryColor,
+        color: AppColors.textFeilColor,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Padding(
@@ -35,6 +36,7 @@ class GeneralSectionItem extends StatelessWidget {
               style: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
             ),
             Spacer(),
+            Visibility(visible: hasSwitch ?? false, child: SwhitchWidget()),
           ],
         ),
       ),
