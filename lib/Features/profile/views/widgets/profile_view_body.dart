@@ -17,7 +17,7 @@ class ProfileViewBody extends StatelessWidget {
         spacing: 30,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text('الحساب الشخصي', style: TextStyles.bold16),
+          Text('الحساب الشخصي', style: TextStyles.bold18),
           WelcomeMessageAndProfileInfo(
             title: 'حمزة الوجيه',
             subTitle: 'ha20mza60@gmail.com',
