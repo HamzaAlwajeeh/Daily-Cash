@@ -1,11 +1,16 @@
 import 'package:daily_cash/core/utils/app_colors.dart';
-import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-Future<void> showLogoutDialog({required BuildContext context , required VoidCallback onClickOk , required  String message , required Widget icon , required String okText , required String cancleText}) async {
+Future<void> showLogoutDialog({
+  required BuildContext context,
+  required VoidCallback onClickOk,
+  required String message,
+  required Widget icon,
+  required String okText,
+  required String cancleText,
+}) async {
   return showDialog(
     context: context,
     barrierDismissible: false, // ما يختفي عند الضغط خارج النافذة
@@ -15,7 +20,7 @@ Future<void> showLogoutDialog({required BuildContext context , required VoidCall
         backgroundColor: AppColors.textFeilColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         icon: icon,
-        content:  Text(
+        content: Text(
           message,
           textAlign: TextAlign.center,
           style: TextStyles.bold16,
