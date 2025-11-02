@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:daily_cash/Features/home/views/widgets/welcome_message_and_profile_info.dart';
 import 'package:daily_cash/Features/profile/views/widgets/dialog_message.dart';
 import 'package:daily_cash/Features/profile/views/widgets/general_section.dart';
@@ -39,7 +41,9 @@ class ProfileViewBody extends StatelessWidget {
                 cancleText: 'إلغاء',
                 message: 'هل ترغب في تسجيل الخروج ؟',
                 icon: SvgPicture.asset(Assets.imagesLogout),
-                onClickOk: () {},
+                onClickOk: () {
+                  exit(0);
+                },
               );
             },
             color: AppColors.customRed.withOpacity(0.7),
