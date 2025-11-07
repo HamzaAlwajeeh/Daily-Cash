@@ -11,15 +11,21 @@ class CustomTextFeild extends StatelessWidget {
     this.prefixIcon,
     this.prefixIconOnPressed,
     this.sufixIconOnPressed,
+    this.onChanged,
+    this.fillColor,
   });
   final String? hintText;
   final String? suffixIcon;
   final IconData? prefixIcon;
   final void Function()? prefixIconOnPressed;
   final void Function()? sufixIconOnPressed;
+  final void Function(String)? onChanged;
+  final Color? fillColor;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       style: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(
@@ -54,7 +60,7 @@ class CustomTextFeild extends StatelessWidget {
         filled: true,
         hintText: hintText,
         hintStyle: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
-        fillColor: AppColors.textFeilSecondaryColor,
+        fillColor: fillColor ?? AppColors.textFeilSecondaryColor,
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(),

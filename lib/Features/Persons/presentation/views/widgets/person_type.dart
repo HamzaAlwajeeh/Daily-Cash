@@ -1,4 +1,3 @@
-import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
 import 'package:daily_cash/Features/profile/views/widgets/switch_widget.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
@@ -6,14 +5,15 @@ import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PersonItem extends StatelessWidget {
-  const PersonItem({super.key, this.hasSwitch, required this.person});
-  final PersonModel person;
-  final bool? hasSwitch;
+class PersonType extends StatelessWidget {
+  const PersonType({super.key, required this.title, required this.type});
+
+  final String title;
+  final String type;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         
       },
       child: Container(
@@ -33,17 +33,19 @@ class PersonItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: SvgPicture.asset(
-                  person.type == 'employee'
+                  type == 'employee'
                       ? Assets.imagesEmployee
                       : Assets.imagesProject,
                 ),
               ),
               Text(
-                person.name,
-                style: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
+                title,
+                style: TextStyles.bold16.copyWith(
+                  color: AppColors.primaryColor,
+                ),
               ),
               Spacer(),
-              Visibility(visible: hasSwitch ?? false, child: SwhitchWidget()),
+              SwhitchWidget(),
             ],
           ),
         ),
