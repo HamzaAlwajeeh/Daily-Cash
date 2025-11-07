@@ -1,29 +1,36 @@
 import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/persons_home_view.dart';
-import 'package:daily_cash/Features/Splash/views/splash_view.dart';
-import 'package:daily_cash/Features/auth/views/login_view.dart';
-import 'package:daily_cash/Features/auth/views/sign_up_view.dart';
+import 'package:daily_cash/Features/Splash/presentation/views/splash_view.dart';
+import 'package:daily_cash/Features/auth/presentation/views/login_view.dart';
+import 'package:daily_cash/Features/auth/presentation/views/sign_up_view.dart';
 import 'package:daily_cash/Features/home/data/models/operation_model.dart';
-import 'package:daily_cash/Features/home/views/all_operations_view.dart';
-import 'package:daily_cash/Features/home/views/home_view.dart';
-import 'package:daily_cash/Features/home/views/income_operations_view.dart';
-import 'package:daily_cash/Features/home/views/operation_details_view.dart';
-import 'package:daily_cash/Features/onBoarding/views/on_boarding_view.dart';
-import 'package:daily_cash/Features/profile/views/about_us_view.dart';
-import 'package:daily_cash/Features/profile/views/profile_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/add_operation_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/all_operations_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/edit_operation_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/home_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/income_operations_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/operation_details_view.dart';
+import 'package:daily_cash/Features/onBoarding/presentation/views/on_boarding_view.dart';
+import 'package:daily_cash/Features/profile/presentation/views/about_us_view.dart';
+import 'package:daily_cash/Features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
+    // splash and onBoarding routes
     case SplashView.routeName:
       return MaterialPageRoute(builder: (context) => const SplashView());
     case OnBoardingView.routeName:
       return MaterialPageRoute(builder: (context) => const OnBoardingView());
+
+    // Auth routes
     case LoginView.routeName:
       return MaterialPageRoute(builder: (context) => const LoginView());
     case SignUpView.routeName:
       return MaterialPageRoute(builder: (context) => const SignUpView());
+
+    // home routes
     case HomeView.routeName:
       return MaterialPageRoute(builder: (context) => const HomeView());
     case AllOperationsView.routeName:
@@ -37,10 +44,21 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => OperationDetailsView(operation: operation),
       );
+    case AddOperationView.routeName:
+      return MaterialPageRoute(builder: (context) => AddOperationView());
+    case EditOperationView.routeName:
+      final operation = settings.arguments as OperationModel;
+      return MaterialPageRoute(
+        builder: (context) => EditOperationView(operation: operation),
+      );
+
+    //profile routes
     case ProfileView.routeName:
       return MaterialPageRoute(builder: (context) => const ProfileView());
     case AboutUsView.routeName:
       return MaterialPageRoute(builder: (context) => const AboutUsView());
+
+    //persons routes
     case PersonsHomeView.routeName:
       return MaterialPageRoute(builder: (context) => const PersonsHomeView());
     case PersonDetailsView.routeName:
@@ -48,6 +66,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => PersonDetailsView(person: person),
       );
+
+    //default route
     default:
       return MaterialPageRoute(
         builder:

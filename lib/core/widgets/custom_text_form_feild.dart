@@ -9,11 +9,14 @@ class CustomTextFormFeild extends StatefulWidget {
     required this.keyboardType,
     this.isPassword,
     this.onChanged,
+    this.onSaved, this.initialValue,
   });
   final String hintText;
   final TextInputType keyboardType;
   final bool? isPassword;
   final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
+  final String? initialValue;
 
   @override
   State<CustomTextFormFeild> createState() => _CustomTextFormFeildState();
@@ -24,6 +27,8 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: widget.initialValue,
+      onSaved: widget.onSaved,
       onChanged: widget.onChanged,
       validator: (value) {
         if (value == null || value.isEmpty) {

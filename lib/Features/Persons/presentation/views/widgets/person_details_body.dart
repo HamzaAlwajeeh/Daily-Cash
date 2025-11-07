@@ -3,7 +3,7 @@ import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_de
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_details_summary.dart';
 import 'package:daily_cash/Features/home/data/models/operation_model.dart';
 import 'package:daily_cash/Features/home/data/test_data.dart';
-import 'package:daily_cash/Features/home/views/widgets/custom_app_bar.dart';
+import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/widgets/dialog_message.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';

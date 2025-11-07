@@ -1,22 +1,31 @@
+import 'package:daily_cash/Features/profile/presentation/views/about_us_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
-import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:daily_cash/core/widgets/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PersonType extends StatelessWidget {
-  const PersonType({super.key, required this.title, required this.type});
-
+class GeneralSectionItem extends StatelessWidget {
+  const GeneralSectionItem({
+    super.key,
+    required this.icon,
+    required this.title,
+    required this.hasSwitch,
+    this.onChanged,
+  });
+  final String icon;
   final String title;
-  final String type;
+  final bool hasSwitch;
+  final ValueChanged<bool>? onChanged;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        hasSwitch ? null : Navigator.pushNamed(context, AboutUsView.routeName);
+      },
       child: Container(
         width: double.infinity,
-        height: 80,
+        height: 60,
         decoration: BoxDecoration(
           color: AppColors.textFeilColor,
           borderRadius: BorderRadius.circular(16),
@@ -28,14 +37,7 @@ class PersonType extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: SvgPicture.asset(
-                  type == 'employee'
-                      ? Assets.imagesEmployee
-                      : Assets.imagesProject,
-                ),
-              ),
+              SvgPicture.asset(icon),
               Text(
                 title,
                 style: TextStyles.bold16.copyWith(
@@ -43,7 +45,14 @@ class PersonType extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              SwhitchWidget(onChanged: (state) {}),
+              Visibility(
+                visible: hasSwitch,
+                child: SwhitchWidget(
+                  onChanged: (state) {
+                    onChanged!(state);
+                  },
+                ),
+              ),
             ],
           ),
         ),

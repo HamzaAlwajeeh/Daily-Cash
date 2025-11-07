@@ -1,5 +1,5 @@
 import 'package:daily_cash/Features/home/data/models/operation_model.dart';
-import 'package:daily_cash/Features/home/views/widgets/operation_item.dart';
+import 'package:daily_cash/Features/home/presentation/views/widgets/operation_item.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
