@@ -2,10 +2,7 @@ import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class SwhitchWidget extends StatefulWidget {
-  const SwhitchWidget({
-    super.key,
-    required this.onChanged,
-  });
+  const SwhitchWidget({super.key, required this.onChanged});
 
   final ValueChanged<bool> onChanged;
 
@@ -22,9 +19,9 @@ class _SwhitchWidgetState extends State<SwhitchWidget> {
       child: Switch(
         value: isChecked,
         onChanged: (state) {
-          widget.onChanged(state);
           isChecked = state;
           setState(() {});
+          widget.onChanged(state);
         },
         activeTrackColor: AppColors.primaryColor,
         activeColor: AppColors.buttonsThirdColor,

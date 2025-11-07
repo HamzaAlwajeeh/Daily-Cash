@@ -1,5 +1,6 @@
 import 'package:daily_cash/Features/Restrictions/presentation/views/add_restriction_view.dart';
 import 'package:daily_cash/Features/Restrictions/presentation/views/widgets/restrictions_view_body.dart';
+import 'package:daily_cash/core/widgets/custom_bottom_nav_bar.dart';
 import 'package:daily_cash/core/widgets/custom_floating_action_buttomn.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class RestrictionsView extends StatelessWidget {
           Navigator.pushNamed(context, AddRestrictionView.routeName);
         },
       ),
+      bottomNavigationBar: const CustomBottomNavBar(currentIndex1: 2),
     );
   }
 }

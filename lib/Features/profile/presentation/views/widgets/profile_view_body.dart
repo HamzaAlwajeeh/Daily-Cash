@@ -1,12 +1,12 @@
 import 'dart:io';
 
 import 'package:daily_cash/Features/home/presentation/views/widgets/welcome_message_and_profile_info.dart';
-import 'package:daily_cash/core/widgets/dialog_message.dart';
 import 'package:daily_cash/Features/profile/presentation/views/widgets/general_section.dart';
 import 'package:daily_cash/Features/profile/presentation/views/widgets/general_summary.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
+import 'package:daily_cash/core/widgets/dialog_message.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -17,9 +17,9 @@ class ProfileViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16, right: 16, top: 70, bottom: 70),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 70, bottom: 20),
       child: Column(
-        spacing: 30,
+        spacing: 20,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text('الحساب الشخصي', style: TextStyles.bold18),

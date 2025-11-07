@@ -1,6 +1,6 @@
-import 'package:daily_cash/core/widgets/general_section_item.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
+import 'package:daily_cash/core/widgets/general_section_item.dart';
 import 'package:flutter/material.dart';
 
 class GeneralSection extends StatelessWidget {
