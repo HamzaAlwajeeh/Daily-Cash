@@ -1,5 +1,5 @@
 import 'package:daily_cash/Features/home/data/models/operation_model.dart';
-import 'package:daily_cash/Features/home/presentation/views/operation_details_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/edit_operation_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -20,7 +20,7 @@ class OperationItem extends StatelessWidget {
       onTap: () {
         Navigator.pushNamed(
           context,
-          OperationDetailsView.routeName,
+          EditOperationView.routeName,
           arguments: operation,
         );
       },

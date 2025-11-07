@@ -8,7 +8,7 @@ class CustomFloatingActionButtomn extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       backgroundColor: AppColors.primaryColor,
-      onPressed: () {},
+      onPressed: onPressed,
       child: const Icon(Icons.add, color: AppColors.textFeilColor),
     );
   }

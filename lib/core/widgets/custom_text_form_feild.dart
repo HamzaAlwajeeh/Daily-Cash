@@ -9,7 +9,12 @@ class CustomTextFormFeild extends StatefulWidget {
     required this.keyboardType,
     this.isPassword,
     this.onChanged,
-    this.onSaved, this.initialValue,
+    this.onSaved,
+    this.initialValue,
+    this.controller,
+    this.suffixIcon,
+    this.prefixIcon,
+    this.enabled,
   });
   final String hintText;
   final TextInputType keyboardType;
@@ -17,6 +22,10 @@ class CustomTextFormFeild extends StatefulWidget {
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
   final String? initialValue;
+  final TextEditingController? controller;
+  final Widget? suffixIcon;
+  final Widget? prefixIcon;
+  final bool? enabled;
 
   @override
   State<CustomTextFormFeild> createState() => _CustomTextFormFeildState();
@@ -24,9 +33,11 @@ class CustomTextFormFeild extends StatefulWidget {
 
 class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
   bool isVisible = false;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      enabled: widget.enabled ?? true,
       initialValue: widget.initialValue,
       onSaved: widget.onSaved,
       onChanged: widget.onChanged,
@@ -47,6 +58,8 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
       style: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
       keyboardType: widget.keyboardType,
       decoration: InputDecoration(
+        prefixIcon: widget.prefixIcon,
+
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 20,
           vertical: 16,
@@ -73,7 +86,10 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
                             ),
                   ),
                 )
-                : null,
+                : Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: widget.suffixIcon,
+                ),
         filled: true,
         hintText: widget.hintText,
         hintStyle: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
