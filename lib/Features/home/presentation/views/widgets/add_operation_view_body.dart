@@ -18,7 +18,6 @@ class AddOperationViewBody extends StatefulWidget {
 class _AddOperationViewBodyState extends State<AddOperationViewBody> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  TextEditingController opType = TextEditingController();
   String operationType = '';
   String date = '';
   String amount = '';
@@ -49,7 +48,7 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
               hasSwitch: true,
               onChanged: (value) {
                 setState(() {
-                  opType.text = 'outcome';
+                  operationType = 'outcome';
                 });
               },
             ),
@@ -59,13 +58,11 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
                 spacing: 30,
                 children: [
                   CustomTextFormFeild(
+                    initialValue: operationType,
                     enabled: false,
-                    controller: opType,
                     hintText: 'نوع العملية',
                     keyboardType: TextInputType.text,
-                    onSaved: (value) {
-                      operationType = opType.text;
-                    },
+                    onSaved: (value) {},
                   ),
                   CustomTextFormFeild(
                     enabled: false,
