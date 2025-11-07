@@ -1,6 +1,9 @@
 import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/persons_home_view.dart';
+import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
+import 'package:daily_cash/Features/Restrictions/presentation/views/add_restriction_view.dart';
+import 'package:daily_cash/Features/Restrictions/presentation/views/edit_restriction_view.dart';
 import 'package:daily_cash/Features/Restrictions/presentation/views/restrictions_view.dart';
 import 'package:daily_cash/Features/Splash/presentation/views/splash_view.dart';
 import 'package:daily_cash/Features/auth/presentation/views/login_view.dart';
@@ -67,10 +70,18 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
         builder: (context) => PersonDetailsView(person: person),
       );
 
-      //Restrictions routes
+    //Restrictions routes
     case RestrictionsView.routeName:
       return MaterialPageRoute(builder: (context) => const RestrictionsView());
-
+    case AddRestrictionView.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const AddRestrictionView(),
+      );
+    case EditRestrictionView.routeName:
+      final restriction = settings.arguments as RestrictionsModel;
+      return MaterialPageRoute(
+        builder: (context) => EditRestrictionView(restriction: restriction),
+      );
 
     //default route
     default:

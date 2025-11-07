@@ -1,4 +1,3 @@
-import 'package:daily_cash/Features/Persons/presentation/views/widgets/persons_list_view.dart';
 import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
 import 'package:daily_cash/Features/Restrictions/data/restrictions_data.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
@@ -14,15 +13,16 @@ class RestrictionsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 40),
+      padding: EdgeInsets.only(right: 16, left: 16, top: 50),
       child: Column(
+        spacing: 20,
         children: [
           Text('القيود المحاسبية', style: TextStyles.bold20),
           CustomTextFeild(
             hintText: 'البحث بالإسم...',
             suffixIcon: Assets.imagesFilter,
           ),
-          Expanded(child: PersonsListView()),
+          Expanded(child: RestrictionsListView()),
         ],
       ),
     );
@@ -79,7 +79,8 @@ class RestrictionsItem extends StatelessWidget {
             SvgPicture.asset(Assets.imagesExchangeWithBackground),
             const SizedBox(width: 10),
             Column(
-              spacing: 10,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              spacing: 5,
               children: [
                 Text.rich(
                   textAlign: TextAlign.center,
@@ -100,7 +101,7 @@ class RestrictionsItem extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyles.bold16,
                   TextSpan(
-                    text: 'إالى حساب ',
+                    text: 'الى حساب ',
                     children: [
                       TextSpan(
                         text: restrictions.toPerson,
@@ -111,7 +112,12 @@ class RestrictionsItem extends StatelessWidget {
                     ],
                   ),
                 ),
-                Text(restrictions.description, style: TextStyles.regular14),
+                Text(
+                  restrictions.description,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyles.regular14,
+                ),
                 Text(
                   restrictions.date,
                   style: TextStyles.bold14.copyWith(
@@ -130,8 +136,8 @@ class RestrictionsItem extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  restrictions.amount.toString(),
-                  style: TextStyles.bold16,
+                  restrictions.amount.round().toString(),
+                  style: TextStyles.bold18,
                 ),
               ),
             ),
