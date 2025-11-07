@@ -33,7 +33,11 @@ class CustomTextFeild extends StatelessWidget {
                   child:
                       suffixIcon == null
                           ? Container()
-                          : SvgPicture.asset(suffixIcon!),
+                          : SvgPicture.asset(
+                            suffixIcon!,
+                            width: 15,
+                            height: 15,
+                          ),
                 )
                 : null,
         prefixIcon:

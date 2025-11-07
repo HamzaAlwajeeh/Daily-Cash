@@ -1,3 +1,4 @@
+import 'package:daily_cash/Features/Persons/presentation/views/persons_home_view.dart';
 import 'package:daily_cash/Features/Splash/views/splash_view.dart';
 import 'package:daily_cash/Features/auth/views/login_view.dart';
 import 'package:daily_cash/Features/auth/views/sign_up_view.dart';
@@ -38,6 +39,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const ProfileView());
     case AboutUsView.routeName:
       return MaterialPageRoute(builder: (context) => const AboutUsView());
+    case PersonsHomeView.routeName:
+      return MaterialPageRoute(builder: (context) => const PersonsHomeView());
     default:
       return MaterialPageRoute(
         builder:
