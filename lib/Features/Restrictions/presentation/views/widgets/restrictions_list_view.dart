@@ -1,6 +1,6 @@
 import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
 import 'package:daily_cash/Features/Restrictions/data/restrictions_data.dart';
-import 'package:daily_cash/Features/Restrictions/presentation/views/widgets/restrictions_view_body.dart';
+import 'package:daily_cash/Features/Restrictions/presentation/views/widgets/restrictions_item.dart';
 import 'package:flutter/material.dart';
 
 class RestrictionsListView extends StatefulWidget {
