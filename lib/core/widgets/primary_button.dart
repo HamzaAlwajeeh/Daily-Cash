@@ -9,11 +9,13 @@ class PrimaryButton extends StatelessWidget {
     this.onPressed,
     this.color,
     this.textColor,
+    this.hasIcon = false,
   });
   final String text;
   final void Function()? onPressed;
   final Color? color;
   final Color? textColor;
+  final bool hasIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +26,26 @@ class PrimaryButton extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
         minimumSize: const Size(double.infinity, 56),
       ),
-      child: Text(
-        text,
-        style: TextStyles.bold18.copyWith(
-          color: textColor ?? AppColors.textPrimaryColor,
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          hasIcon
+              ? Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Icon(
+                  Icons.downloading_rounded,
+                  color: AppColors.textPrimaryColor,
+                  size: 30,
+                ),
+              )
+              : Container(),
+          Text(
+            text,
+            style: TextStyles.bold18.copyWith(
+              color: textColor ?? AppColors.textPrimaryColor,
+            ),
+          ),
+        ],
       ),
     );
   }

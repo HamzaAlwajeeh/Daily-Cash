@@ -1,4 +1,5 @@
 import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
+import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
 import 'package:daily_cash/Features/profile/views/widgets/switch_widget.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
@@ -13,8 +14,12 @@ class PersonItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        
+      onTap: () {
+        Navigator.pushNamed(
+          context,
+          PersonDetailsView.routeName,
+          arguments: person,
+        );
       },
       child: Container(
         width: double.infinity,
@@ -40,7 +45,9 @@ class PersonItem extends StatelessWidget {
               ),
               Text(
                 person.name,
-                style: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
+                style: TextStyles.bold16.copyWith(
+                  color: AppColors.primaryColor,
+                ),
               ),
               Spacer(),
               Visibility(visible: hasSwitch ?? false, child: SwhitchWidget()),

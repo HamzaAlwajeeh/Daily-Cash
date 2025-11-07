@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/profile/views/widgets/general_summary_item.dart';
+import 'package:daily_cash/core/widgets/general_summary_item.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 
@@ -17,17 +17,9 @@ class GeneralSummary extends StatelessWidget {
         ),
         Row(
           children: [
-            GeneralSummaryItem(
-              title: 'عدد العمال',
-              count: 300,
-              type: 'Employee',
-            ),
+            GeneralSummaryItem(title: 'عدد العمال', count: 300, type: 'green'),
             const SizedBox(width: 10),
-            GeneralSummaryItem(
-              title: 'عدد المشاريع',
-              count: 5,
-              type: 'Project',
-            ),
+            GeneralSummaryItem(title: 'عدد المشاريع', count: 5, type: 'red'),
           ],
         ),
       ],

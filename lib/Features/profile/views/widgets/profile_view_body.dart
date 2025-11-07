@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:daily_cash/Features/home/views/widgets/welcome_message_and_profile_info.dart';
-import 'package:daily_cash/Features/profile/views/widgets/dialog_message.dart';
+import 'package:daily_cash/core/widgets/dialog_message.dart';
 import 'package:daily_cash/Features/profile/views/widgets/general_section.dart';
 import 'package:daily_cash/Features/profile/views/widgets/general_summary.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
@@ -35,7 +35,7 @@ class ProfileViewBody extends StatelessWidget {
           PrimaryButton(
             text: 'تسجيل الخروج',
             onPressed: () {
-              showLogoutDialog(
+              dialogMessage(
                 context: context,
                 okText: 'خروج',
                 cancleText: 'إلغاء',

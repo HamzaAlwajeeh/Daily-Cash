@@ -32,7 +32,7 @@ class GeneralSummaryItem extends StatelessWidget {
               height: 48,
               decoration: BoxDecoration(
                 color:
-                    type == 'Employee'
+                    type == 'green'
                         ? AppColors.green.withOpacity(0.5)
                         : AppColors.customRed.withOpacity(0.5),
                 borderRadius: BorderRadius.circular(16),

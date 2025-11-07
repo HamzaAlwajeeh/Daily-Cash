@@ -7,8 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class OperationItem extends StatelessWidget {
-  const OperationItem({super.key, required this.operation});
+  const OperationItem({
+    super.key,
+    required this.operation,
+    this.backgroundColor,
+  });
   final OperationModel operation;
+  final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -22,7 +27,7 @@ class OperationItem extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: AppColors.textFeilSecondaryColor,
+          color: backgroundColor ?? AppColors.textFeilSecondaryColor,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Padding(
