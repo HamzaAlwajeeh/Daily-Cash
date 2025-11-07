@@ -27,7 +27,7 @@ class _RestrictionsListViewState extends State<RestrictionsListView> {
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 8),
-          child: RestrictionsItem(restrictions: restrictions[index]),
+          child: RestrictionsItem(restriction: restrictions[index]),
         );
       },
     );

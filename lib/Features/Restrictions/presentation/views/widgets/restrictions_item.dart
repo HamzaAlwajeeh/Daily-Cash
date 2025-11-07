@@ -7,13 +7,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class RestrictionsItem extends StatelessWidget {
-  const RestrictionsItem({super.key, required this.restrictions});
-  final RestrictionsModel restrictions;
+  const RestrictionsItem({super.key, required this.restriction});
+  final RestrictionsModel restriction;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, EditRestrictionView.routeName);
+        Navigator.pushNamed(
+          context,
+          EditRestrictionView.routeName,
+          arguments: restriction,
+        );
       },
       child: Container(
         width: double.infinity,
@@ -39,7 +43,7 @@ class RestrictionsItem extends StatelessWidget {
                       text: 'من حساب ',
                       children: [
                         TextSpan(
-                          text: restrictions.fromPerson,
+                          text: restriction.fromPerson,
                           style: TextStyles.bold16.copyWith(
                             color: AppColors.customRed,
                           ),
@@ -54,7 +58,7 @@ class RestrictionsItem extends StatelessWidget {
                       text: 'الى حساب ',
                       children: [
                         TextSpan(
-                          text: restrictions.toPerson,
+                          text: restriction.toPerson,
                           style: TextStyles.bold16.copyWith(
                             color: AppColors.green,
                           ),
@@ -63,13 +67,13 @@ class RestrictionsItem extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    restrictions.description,
+                    restriction.description,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyles.regular14,
                   ),
                   Text(
-                    restrictions.date,
+                    restriction.date,
                     style: TextStyles.bold14.copyWith(
                       color: AppColors.textSecondaryColor.withOpacity(0.5),
                     ),
@@ -86,7 +90,7 @@ class RestrictionsItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    restrictions.amount.round().toString(),
+                    restriction.amount.round().toString(),
                     style: TextStyles.bold18,
                   ),
                 ),
