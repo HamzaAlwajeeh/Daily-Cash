@@ -1,6 +1,7 @@
 import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/persons_home_view.dart';
+import 'package:daily_cash/Features/Restrictions/presentation/views/restrictions_view.dart';
 import 'package:daily_cash/Features/Splash/presentation/views/splash_view.dart';
 import 'package:daily_cash/Features/auth/presentation/views/login_view.dart';
 import 'package:daily_cash/Features/auth/presentation/views/sign_up_view.dart';
@@ -65,6 +66,11 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => PersonDetailsView(person: person),
       );
+
+      //Restrictions routes
+    case RestrictionsView.routeName:
+      return MaterialPageRoute(builder: (context) => const RestrictionsView());
+
 
     //default route
     default:

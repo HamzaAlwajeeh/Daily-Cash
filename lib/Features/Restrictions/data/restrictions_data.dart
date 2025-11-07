@@ -1,0 +1,86 @@
+import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
+
+List<RestrictionsModel> getRestrictions() {
+  return [
+    RestrictionsModel(
+      id: 1,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'بسام الوجيه',
+      amount: 500000,
+      date: '2024-06-01',
+      description: 'لكم مقابل عمل نجارة السطح',
+    ),
+    RestrictionsModel(
+      id: 2,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'سلمان الوجيه',
+      amount: 200000,
+      date: '2024-06-02',
+      description: 'لكم مقابل عمل كهرباء المنزل',
+    ),
+    RestrictionsModel(
+      id: 3,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'بسام الوجيه',
+      amount: 500000,
+      date: '2024-06-01',
+      description: 'لكم مقابل عمل نجارة السطح',
+    ),
+    RestrictionsModel(
+      id: 4,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'سلمان الوجيه',
+      amount: 200000,
+      date: '2024-06-02',
+      description: 'لكم مقابل عمل كهرباء المنزل',
+    ),
+    RestrictionsModel(
+      id: 5,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'بسام الوجيه',
+      amount: 500000,
+      date: '2024-06-01',
+      description: 'لكم مقابل عمل نجارة السطح',
+    ),
+    RestrictionsModel(
+      id: 6,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'سلمان الوجيه',
+      amount: 200000,
+      date: '2024-06-02',
+      description: 'لكم مقابل عمل كهرباء المنزل',
+    ),
+    RestrictionsModel(
+      id: 7,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'بسام الوجيه',
+      amount: 500000,
+      date: '2024-06-01',
+      description: 'لكم مقابل عمل نجارة السطح',
+    ),
+    RestrictionsModel(
+      id: 8,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'سلمان الوجيه',
+      amount: 200000,
+      date: '2024-06-02',
+      description: 'لكم مقابل عمل كهرباء المنزل',
+    ),
+    RestrictionsModel(
+      id: 9,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'بسام الوجيه',
+      amount: 500000,
+      date: '2024-06-01',
+      description: 'لكم مقابل عمل نجارة السطح',
+    ),
+    RestrictionsModel(
+      id: 10,
+      fromPerson: 'عمارة بن هلابي',
+      toPerson: 'سلمان الوجيه',
+      amount: 200000,
+      date: '2024-06-02',
+      description: 'لكم مقابل عمل كهرباء المنزل',
+    ),
+  ];
+}
