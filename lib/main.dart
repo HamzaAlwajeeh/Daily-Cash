@@ -1,7 +1,7 @@
-import 'package:daily_cash/Features/home/presentation/views/home_view.dart';
 import 'package:daily_cash/core/routers/on_generate_route.dart';
 import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
+import 'package:daily_cash/core/widgets/base_view.dart';
 import 'package:daily_cash/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -39,7 +39,7 @@ class DailyCash extends StatelessWidget {
             ),
       ),
       onGenerateRoute: onGenerateRoute,
-      initialRoute: HomeView.routeName,
+      initialRoute: BaseView.routeName,
     );
   }
 }

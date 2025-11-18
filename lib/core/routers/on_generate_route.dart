@@ -18,6 +18,7 @@ import 'package:daily_cash/Features/home/presentation/views/outcome_operations_v
 import 'package:daily_cash/Features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:daily_cash/Features/profile/presentation/views/about_us_view.dart';
 import 'package:daily_cash/Features/profile/presentation/views/profile_view.dart';
+import 'package:daily_cash/core/widgets/base_view.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -33,6 +34,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(builder: (context) => const LoginView());
     case SignUpView.routeName:
       return MaterialPageRoute(builder: (context) => const SignUpView());
+
+    //Base of all Screens
+    case BaseView.routeName:
+      return MaterialPageRoute(builder: (context) => const BaseView());
 
     // home routes
     case HomeView.routeName:

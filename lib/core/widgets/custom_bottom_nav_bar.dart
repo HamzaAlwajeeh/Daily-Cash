@@ -1,7 +1,3 @@
-import 'package:daily_cash/Features/Persons/presentation/views/persons_home_view.dart';
-import 'package:daily_cash/Features/Restrictions/presentation/views/restrictions_view.dart';
-import 'package:daily_cash/Features/home/presentation/views/home_view.dart';
-import 'package:daily_cash/Features/profile/presentation/views/profile_view.dart';
 import 'package:daily_cash/core/entities/bottom_nav_bar_entity.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -9,14 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CustomBottomNavBar extends StatefulWidget {
-  const CustomBottomNavBar({super.key, required this.currentIndex1});
-  final int currentIndex1;
+  const CustomBottomNavBar({super.key, required this.onPressed});
+  final Function(int) onPressed;
   @override
   State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
 }
 
 class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
-  // int currentIndex = 0;
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -48,37 +44,19 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
                 .map(
                   (e) => GestureDetector(
                     onTap: () {
-                      // currentIndex = e.key;
+                      currentIndex = e.key;
                       setState(() {});
-                      navigateToCurrentPage(context, widget.currentIndex1);
+                      widget.onPressed(e.key);
                     },
                     child: NavigationBarItem(
                       item: e.value,
-                      // isSlected: e.key == currentIndex,
-                      isSlected: e.key == widget.currentIndex1,
+                      isSlected: currentIndex == e.key,
                     ),
                   ),
                 )
                 .toList(),
       ),
     );
-  }
-
-  void navigateToCurrentPage(BuildContext context, int currentIndex) {
-    switch (currentIndex) {
-      case 0:
-        Navigator.pushReplacementNamed(context, HomeView.routeName);
-        break;
-      case 1:
-        Navigator.pushReplacementNamed(context, PersonsHomeView.routeName);
-        break;
-      case 2:
-        Navigator.pushReplacementNamed(context, RestrictionsView.routeName);
-        break;
-      case 3:
-        Navigator.pushReplacementNamed(context, ProfileView.routeName);
-        break;
-    }
   }
 }
 
