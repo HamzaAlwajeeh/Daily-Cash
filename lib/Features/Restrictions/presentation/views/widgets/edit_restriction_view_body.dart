@@ -10,11 +10,13 @@ class EditRestrictionViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 50),
-      child: Column(
-        children: [
-          CustomAppBar(title: 'تعديل قيد'),
-          EditRestrictionForm(restriction: restriction),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomAppBar(title: 'تعديل قيد'),
+            EditRestrictionForm(restriction: restriction),
+          ],
+        ),
       ),
     );
   }
