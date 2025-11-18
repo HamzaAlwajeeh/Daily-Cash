@@ -8,6 +8,6 @@ class EditRestrictionView extends StatelessWidget {
   final RestrictionsModel restriction;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: EditRestrictionViewBody());
+    return Scaffold(body: EditRestrictionViewBody(restriction: restriction));
   }
 }
