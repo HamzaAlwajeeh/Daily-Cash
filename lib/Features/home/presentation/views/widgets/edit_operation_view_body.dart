@@ -22,12 +22,30 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
   TextEditingController operationTypeController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController personController = TextEditingController();
-  String operationType = '';
-  String date = '';
-  String amount = '';
-  String person = '';
-  String details = '';
+  TextEditingController amountController = TextEditingController();
+  TextEditingController detailsController = TextEditingController();
   bool isIncome = false;
+  @override
+  void dispose() {
+    operationTypeController.dispose();
+    dateController.dispose();
+    personController.dispose();
+    amountController.dispose();
+    detailsController.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    operationTypeController.text = widget.operation.type;
+    dateController.text = widget.operation.date;
+    personController.text = widget.operation.title;
+    amountController.text = widget.operation.amount.toString();
+    detailsController.text = widget.operation.details;
+    isIncome = widget.operation.type == 'income';
+  }
+
   @override
   Widget build(BuildContext context) {
     operationTypeController.text = isIncome ? 'income' : 'outcome';
@@ -85,33 +103,31 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                     suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
                     hintText: 'التاريخ',
                     keyboardType: TextInputType.text,
-                    onSaved: (value) {
-                      date = value ?? '';
-                    },
+                    onSaved: (value) {},
                   ),
                   CustomTextFormFeild(
-                    initialValue: widget.operation.amount.toString(),
+                    controller: amountController,
                     suffixIcon: SvgPicture.asset(Assets.imagesDolarSign),
                     hintText: 'المبلغ',
                     keyboardType: TextInputType.number,
                     onSaved: (value) {
-                      date = value ?? '';
+                      amountController.text = value ?? '';
                     },
                   ),
                   CustomTextFormFeild(
-                    initialValue: widget.operation.title,
+                    controller: personController,
                     hintText: 'اسم العامل/المشروع',
                     keyboardType: TextInputType.text,
                     onSaved: (value) {
-                      person = value ?? '';
+                      personController.text = value ?? '';
                     },
                   ),
                   CustomTextFormFeild(
-                    initialValue: widget.operation.details,
+                    controller: detailsController,
                     hintText: 'البيان',
                     keyboardType: TextInputType.text,
                     onSaved: (value) {
-                      details = value ?? '';
+                      detailsController.text = value ?? '';
                     },
                   ),
                   PrimaryButton(
@@ -122,7 +138,7 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                         autovalidateMode = AutovalidateMode.disabled;
                         setState(() {});
                         log(
-                          '$operationType - $date - $amount - $person - $details',
+                          '${operationTypeController.text} - ${dateController.text} - ${amountController.text} - ${personController.text} - ${detailsController.text}',
                         );
                       } else {
                         autovalidateMode = AutovalidateMode.always;

@@ -18,11 +18,32 @@ class EditRestrictionForm extends StatefulWidget {
 class _EditRestrictionFormState extends State<EditRestrictionForm> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String fromPerson = '';
-  String toPerson = '';
-  String amount = '';
-  String date = '';
-  String description = '';
+  TextEditingController dateController = TextEditingController();
+  TextEditingController fromPersonController = TextEditingController();
+  TextEditingController toPersonController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
+  TextEditingController descriptionController = TextEditingController();
+
+  @override
+  void initState() {
+    dateController.text = widget.restriction.date;
+    fromPersonController.text = widget.restriction.fromPerson;
+    toPersonController.text = widget.restriction.toPerson;
+    amountController.text = widget.restriction.amount.toString();
+    descriptionController.text = widget.restriction.description;
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    dateController.dispose();
+    fromPersonController.dispose();
+    toPersonController.dispose();
+    amountController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -37,7 +58,7 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
           ),
           const SizedBox(height: 8),
           CustomTextFormFeild(
-            initialValue: widget.restriction.fromPerson,
+            controller: fromPersonController,
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
             readOnly: true,
@@ -49,7 +70,7 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
           ),
           const SizedBox(height: 8),
           CustomTextFormFeild(
-            initialValue: widget.restriction.toPerson,
+            controller: toPersonController,
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
             readOnly: true,
@@ -59,29 +80,27 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
             spacing: 38,
             children: [
               CustomTextFormFeild(
-                initialValue: widget.restriction.date,
+                controller: dateController,
+                isCalender: true,
                 hintText: 'التاريخ',
                 keyboardType: TextInputType.text,
                 suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
-                onChanged: (value) {
-                  date = value;
-                },
               ),
               CustomTextFormFeild(
-                initialValue: widget.restriction.amount.toString(),
+                controller: amountController,
                 hintText: 'المبلغ',
                 keyboardType: TextInputType.number,
                 suffixIcon: SvgPicture.asset(Assets.imagesDolarSign),
                 onChanged: (value) {
-                  amount = value.toString();
+                  amountController.text = value;
                 },
               ),
               CustomTextFormFeild(
-                initialValue: widget.restriction.description,
+                controller: descriptionController,
                 hintText: 'البيان',
                 keyboardType: TextInputType.text,
                 onChanged: (value) {
-                  description = value;
+                  descriptionController.text = value;
                 },
               ),
             ],
@@ -94,7 +113,9 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
                 formKey.currentState!.save();
                 autovalidateMode = AutovalidateMode.disabled;
                 setState(() {});
-                log('$fromPerson - $toPerson - $date - $amount - $description');
+                log(
+                  '${fromPersonController.text} - ${toPersonController.text} - ${dateController.text} - ${amountController.text} - ${descriptionController.text}',
+                );
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});

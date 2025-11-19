@@ -17,11 +17,23 @@ class AddRestrictionForm extends StatefulWidget {
 class _AddRestrictionFormState extends State<AddRestrictionForm> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  TextEditingController dateController = TextEditingController();
+  TextEditingController fromPersonController = TextEditingController();
+  TextEditingController toPersonController = TextEditingController();
   String fromPerson = '';
   String toPerson = '';
   String amount = '';
   String date = '';
   String description = '';
+
+  @override
+  void dispose() {
+    dateController.dispose();
+    fromPersonController.dispose();
+    toPersonController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -36,6 +48,7 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
           ),
           const SizedBox(height: 8),
           CustomTextFormFeild(
+            controller: fromPersonController,
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
             readOnly: true,
@@ -47,6 +60,7 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
           ),
           const SizedBox(height: 8),
           CustomTextFormFeild(
+            controller: toPersonController,
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
             readOnly: true,
@@ -56,11 +70,14 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
             spacing: 38,
             children: [
               CustomTextFormFeild(
+                isCalender: true,
+                controller: dateController,
+                readOnly: true,
                 hintText: 'التاريخ',
                 keyboardType: TextInputType.text,
                 suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
                 onChanged: (value) {
-                  date = value;
+                  date = dateController.text;
                 },
               ),
               CustomTextFormFeild(
