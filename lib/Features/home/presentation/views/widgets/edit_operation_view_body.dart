@@ -68,6 +68,7 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
             ),
             Form(
               key: formKey,
+              autovalidateMode: autovalidateMode,
               child: Column(
                 spacing: 30,
                 children: [

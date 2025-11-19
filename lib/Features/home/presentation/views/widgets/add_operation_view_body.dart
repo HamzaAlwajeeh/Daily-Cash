@@ -76,6 +76,7 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
             ),
             Form(
               key: formKey,
+              autovalidateMode: autovalidateMode,
               child: Column(
                 spacing: 30,
                 children: [
