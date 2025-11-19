@@ -46,6 +46,13 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
     amountController.text = widget.operation.amount.toString();
     detailsController.text = widget.operation.details;
     isIncome = widget.operation.type == 'income';
+
+    Future.microtask(() {
+      Provider.of<PersonsProvider>(
+        context,
+        listen: false,
+      ).clearSelectedPerson();
+    });
   }
 
   @override
@@ -53,7 +60,10 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
     operationTypeController.text = isIncome ? 'income' : 'outcome';
     return Consumer(
       builder: (context, PersonsProvider provider, child) {
-        personController.text = provider.selectedPerson?.name ?? '';
+        if (provider.selectedPerson != null &&
+            provider.selectedPerson!.name != personController.text) {
+          personController.text = provider.selectedPerson!.name;
+        }
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 50),
           child: SingleChildScrollView(
@@ -103,8 +113,9 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                         onSaved: (value) {},
                       ),
                       CustomTextFormFeild(
-                        initialValue: widget.operation.date,
+                        controller: dateController,
                         readOnly: true,
+                        isCalender: true,
                         suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
                         hintText: 'التاريخ',
                         keyboardType: TextInputType.text,
@@ -120,12 +131,12 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                         },
                       ),
                       CustomTextFormFeild(
+                        isPerson: true,
+                        readOnly: true,
                         controller: personController,
                         hintText: 'اسم العامل/المشروع',
                         keyboardType: TextInputType.text,
-                        onSaved: (value) {
-                          personController.text = value ?? '';
-                        },
+                        onSaved: (value) {},
                       ),
                       CustomTextFormFeild(
                         controller: detailsController,
@@ -145,6 +156,7 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                             log(
                               '${operationTypeController.text} - ${dateController.text} - ${amountController.text} - ${personController.text} - ${detailsController.text}',
                             );
+                            Navigator.pop(context);
                           } else {
                             autovalidateMode = AutovalidateMode.always;
                             setState(() {});

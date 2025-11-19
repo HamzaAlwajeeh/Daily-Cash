@@ -39,6 +39,17 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      Provider.of<PersonsProvider>(
+        context,
+        listen: false,
+      ).clearSelectedPerson();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     operationTypeController.text = isIncome ? 'income' : 'outcome';
     return Consumer(
