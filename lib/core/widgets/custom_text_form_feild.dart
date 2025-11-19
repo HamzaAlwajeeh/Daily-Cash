@@ -17,6 +17,7 @@ class CustomTextFormFeild extends StatefulWidget {
     this.prefixIcon,
     this.readOnly,
     this.isCalender,
+    this.fillColor,
   });
   final String hintText;
   final TextInputType keyboardType;
@@ -29,6 +30,7 @@ class CustomTextFormFeild extends StatefulWidget {
   final Widget? prefixIcon;
   final bool? readOnly;
   final bool? isCalender;
+  final Color? fillColor;
 
   @override
   State<CustomTextFormFeild> createState() => _CustomTextFormFeildState();
@@ -116,7 +118,7 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
         filled: true,
         hintText: widget.hintText,
         hintStyle: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
-        fillColor: AppColors.textFeilSecondaryColor,
+        fillColor: widget.fillColor ?? AppColors.textFeilSecondaryColor,
         border: buildBorder(),
         enabledBorder: buildBorder(),
         focusedBorder: buildBorder(),
