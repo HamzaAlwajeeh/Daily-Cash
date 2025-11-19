@@ -1,3 +1,4 @@
+import 'package:daily_cash/core/helper/get_data_function.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class CustomTextFormFeild extends StatefulWidget {
     this.suffixIcon,
     this.prefixIcon,
     this.enabled,
+    this.isCalender,
   });
   final String hintText;
   final TextInputType keyboardType;
@@ -26,6 +28,7 @@ class CustomTextFormFeild extends StatefulWidget {
   final Widget? suffixIcon;
   final Widget? prefixIcon;
   final bool? enabled;
+  final bool? isCalender;
 
   @override
   State<CustomTextFormFeild> createState() => _CustomTextFormFeildState();
@@ -37,7 +40,7 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      enabled: widget.enabled ?? true,
+      readOnly: widget.enabled ?? true,
       initialValue: widget.initialValue,
       onSaved: widget.onSaved,
       onChanged: widget.onChanged,
@@ -86,9 +89,20 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
                             ),
                   ),
                 )
-                : Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: widget.suffixIcon,
+                : GestureDetector(
+                  onTap:
+                      (widget.isCalender == true)
+                          ? () async {
+                            await getDate(context).then((value) {
+                              widget.controller?.text = value;
+                            });
+                            setState(() {});
+                          }
+                          : null,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: widget.suffixIcon,
+                  ),
                 ),
         filled: true,
         hintText: widget.hintText,

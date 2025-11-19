@@ -18,6 +18,7 @@ class AddOperationViewBody extends StatefulWidget {
 class _AddOperationViewBodyState extends State<AddOperationViewBody> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  TextEditingController dateController = TextEditingController();
   String operationType = '';
   String date = '';
   String amount = '';
@@ -65,12 +66,13 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
                     onSaved: (value) {},
                   ),
                   CustomTextFormFeild(
+                    controller: dateController,
                     enabled: false,
                     suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
                     hintText: 'التاريخ',
                     keyboardType: TextInputType.text,
                     onSaved: (value) {
-                      date = value ?? '';
+                      date = dateController.text;
                     },
                   ),
                   CustomTextFormFeild(
