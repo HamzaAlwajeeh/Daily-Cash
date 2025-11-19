@@ -40,7 +40,7 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
             initialValue: widget.restriction.fromPerson,
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
-            enabled: false,
+            readOnly: true,
           ),
           const SizedBox(height: 8),
           Padding(
@@ -52,7 +52,7 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
             initialValue: widget.restriction.toPerson,
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
-            enabled: false,
+            readOnly: true,
           ),
           const SizedBox(height: 38),
           Column(

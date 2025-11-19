@@ -60,16 +60,17 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
                 children: [
                   CustomTextFormFeild(
                     initialValue: operationType,
-                    enabled: false,
+                    readOnly: true,
                     hintText: 'نوع العملية',
                     keyboardType: TextInputType.text,
                     onSaved: (value) {},
                   ),
                   CustomTextFormFeild(
                     controller: dateController,
-                    enabled: false,
+                    readOnly: true,
                     suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
                     hintText: 'التاريخ',
+                    isCalender: true,
                     keyboardType: TextInputType.text,
                     onSaved: (value) {
                       date = dateController.text;
@@ -84,6 +85,7 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
                     },
                   ),
                   CustomTextFormFeild(
+                    readOnly: true,
                     hintText: 'اسم العامل/المشروع',
                     keyboardType: TextInputType.text,
                     onSaved: (value) {

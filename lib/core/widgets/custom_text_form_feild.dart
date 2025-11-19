@@ -15,7 +15,7 @@ class CustomTextFormFeild extends StatefulWidget {
     this.controller,
     this.suffixIcon,
     this.prefixIcon,
-    this.enabled,
+    this.readOnly,
     this.isCalender,
   });
   final String hintText;
@@ -27,7 +27,7 @@ class CustomTextFormFeild extends StatefulWidget {
   final TextEditingController? controller;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
-  final bool? enabled;
+  final bool? readOnly;
   final bool? isCalender;
 
   @override
@@ -40,7 +40,16 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      readOnly: widget.enabled ?? true,
+      onTap: () {
+        if (widget.isCalender == true) {
+          getDate(context).then((value) {
+            widget.controller?.text = value;
+          });
+          setState(() {});
+        }
+      },
+      readOnly: widget.readOnly ?? false,
+      controller: widget.controller,
       initialValue: widget.initialValue,
       onSaved: widget.onSaved,
       onChanged: widget.onChanged,

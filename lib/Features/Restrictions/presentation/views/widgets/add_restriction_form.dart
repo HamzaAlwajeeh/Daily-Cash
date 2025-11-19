@@ -38,7 +38,7 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
           CustomTextFormFeild(
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
-            enabled: false,
+            readOnly: true,
           ),
           const SizedBox(height: 8),
           Padding(
@@ -49,7 +49,7 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
           CustomTextFormFeild(
             hintText: 'اسم المشروع/العامل',
             keyboardType: TextInputType.text,
-            enabled: false,
+            readOnly: true,
           ),
           const SizedBox(height: 38),
           Column(

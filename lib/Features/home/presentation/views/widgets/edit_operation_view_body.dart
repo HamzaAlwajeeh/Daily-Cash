@@ -60,14 +60,14 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                 children: [
                   CustomTextFormFeild(
                     initialValue: widget.operation.type,
-                    enabled: false,
+                    readOnly: true,
                     hintText: 'نوع العملية',
                     keyboardType: TextInputType.text,
                     onSaved: (value) {},
                   ),
                   CustomTextFormFeild(
                     initialValue: widget.operation.date,
-                    enabled: false,
+                    readOnly: true,
                     suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
                     hintText: 'التاريخ',
                     keyboardType: TextInputType.text,
