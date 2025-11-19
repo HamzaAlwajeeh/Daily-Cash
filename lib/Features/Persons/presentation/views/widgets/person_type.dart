@@ -5,11 +5,25 @@ import 'package:daily_cash/core/widgets/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class PersonType extends StatelessWidget {
-  const PersonType({super.key, required this.title, required this.type});
+class PersonType extends StatefulWidget {
+  const PersonType({
+    super.key,
+    required this.title,
+    required this.type,
+    required this.isSelected,
+    this.onChanged,
+  });
 
   final String title;
   final String type;
+  final bool isSelected;
+  final ValueChanged<bool>? onChanged;
+
+  @override
+  State<PersonType> createState() => _PersonTypeState();
+}
+
+class _PersonTypeState extends State<PersonType> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -31,19 +45,24 @@ class PersonType extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: SvgPicture.asset(
-                  type == 'employee'
+                  widget.type == 'employee'
                       ? Assets.imagesEmployee
                       : Assets.imagesProject,
                 ),
               ),
               Text(
-                title,
+                widget.title,
                 style: TextStyles.bold16.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
               Spacer(),
-              SwhitchWidget(isSelected: true, onChanged: (state) {}),
+              SwhitchWidget(
+                isSelected: widget.isSelected,
+                onChanged: (state) {
+                  widget.onChanged!(state);
+                },
+              ),
             ],
           ),
         ),

@@ -19,8 +19,18 @@ class _AddPersonBottomSheetState extends State<AddPersonBottomSheet> {
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   TextEditingController personNameController = TextEditingController();
   TextEditingController personTypeController = TextEditingController();
+  bool isEmployee = true;
+
+  @override
+  void dispose() {
+    personNameController.dispose();
+    personTypeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    personTypeController.text = isEmployee ? 'employee' : 'project';
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.only(
@@ -37,9 +47,33 @@ class _AddPersonBottomSheetState extends State<AddPersonBottomSheet> {
             children: [
               Text('جديد', style: TextStyles.bold18),
               const SizedBox(height: 20),
-              PersonType(title: 'عامل', type: 'employee'),
+              PersonType(
+                title: 'عامل',
+                type: 'employee',
+                isSelected: isEmployee,
+                onChanged: (value) {
+                  if (value) {
+                    setState(() {
+                      personTypeController.text = 'employee';
+                      isEmployee = true;
+                    });
+                  }
+                },
+              ),
               const SizedBox(height: 10),
-              PersonType(title: 'مشروع', type: 'project'),
+              PersonType(
+                title: 'مشروع',
+                type: 'project',
+                isSelected: !isEmployee,
+                onChanged: (value) {
+                  if (value) {
+                    setState(() {
+                      personTypeController.text = 'project';
+                      isEmployee = false;
+                    });
+                  }
+                },
+              ),
               const SizedBox(height: 10),
               CustomTextFormFeild(
                 readOnly: true,
@@ -73,11 +107,11 @@ class _AddPersonBottomSheetState extends State<AddPersonBottomSheet> {
                     log(
                       'Person Name: ${personNameController.text} , Person Type: ${personTypeController.text}',
                     );
+                    Navigator.pop(context);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
                   }
-                  Navigator.pop(context);
                 },
               ),
               const SizedBox(height: 40),
