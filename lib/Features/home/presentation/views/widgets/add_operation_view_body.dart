@@ -109,6 +109,7 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
                     },
                   ),
                   CustomTextFormFeild(
+                    isPerson: true,
                     readOnly: true,
                     hintText: 'اسم العامل/المشروع',
                     keyboardType: TextInputType.text,

@@ -1,4 +1,5 @@
 import 'package:daily_cash/core/helper/get_data_function.dart';
+import 'package:daily_cash/core/helper/persons_bottom_sheet.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class CustomTextFormFeild extends StatefulWidget {
     this.readOnly,
     this.isCalender,
     this.fillColor,
+    this.isPerson,
   });
   final String hintText;
   final TextInputType keyboardType;
@@ -30,6 +32,7 @@ class CustomTextFormFeild extends StatefulWidget {
   final Widget? prefixIcon;
   final bool? readOnly;
   final bool? isCalender;
+  final bool? isPerson;
   final Color? fillColor;
 
   @override
@@ -48,6 +51,10 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
             widget.controller?.text = value;
           });
           setState(() {});
+        } else if (widget.isPerson == true) {
+          {
+            showPersonsBottomSheet(context);
+          }
         }
       },
       readOnly: widget.readOnly ?? false,
