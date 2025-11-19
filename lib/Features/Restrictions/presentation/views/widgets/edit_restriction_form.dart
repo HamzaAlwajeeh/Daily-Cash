@@ -116,6 +116,7 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
                 log(
                   '${fromPersonController.text} - ${toPersonController.text} - ${dateController.text} - ${amountController.text} - ${descriptionController.text}',
                 );
+                Navigator.pop(context);
               } else {
                 autovalidateMode = AutovalidateMode.always;
                 setState(() {});
