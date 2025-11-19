@@ -1,9 +1,9 @@
 import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
-import 'package:daily_cash/core/widgets/switch_widget.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
+import 'package:daily_cash/core/widgets/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -50,7 +50,10 @@ class PersonItem extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              Visibility(visible: hasSwitch ?? false, child: SwhitchWidget(onChanged: (state){},)),
+              Visibility(
+                visible: hasSwitch ?? false,
+                child: SwhitchWidget(isSelected: false, onChanged: (state) {}),
+              ),
             ],
           ),
         ),

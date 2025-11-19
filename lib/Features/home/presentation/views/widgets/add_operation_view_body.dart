@@ -18,14 +18,27 @@ class AddOperationViewBody extends StatefulWidget {
 class _AddOperationViewBodyState extends State<AddOperationViewBody> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  TextEditingController operationTypeController = TextEditingController();
   TextEditingController dateController = TextEditingController();
+  TextEditingController personController = TextEditingController();
   String operationType = '';
   String date = '';
   String amount = '';
   String person = '';
   String details = '';
+  bool isIncome = false;
+
+  @override
+  void dispose() {
+    operationTypeController.dispose();
+    dateController.dispose();
+    personController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    operationTypeController.text = isIncome ? 'income' : 'outcome';
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 50),
       child: SingleChildScrollView(
@@ -34,23 +47,31 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
           children: [
             CustomAppBar(title: 'إنشاء عملية'),
             GeneralSectionItem(
+              isSelected: isIncome,
               title: 'إيراد',
               icon: Assets.imagesIncome,
               hasSwitch: true,
               onChanged: (value) {
-                setState(() {
-                  operationType = 'income';
-                });
+                if (value) {
+                  setState(() {
+                    operationTypeController.text = 'income';
+                    isIncome = true;
+                  });
+                }
               },
             ),
             GeneralSectionItem(
+              isSelected: !isIncome,
               title: 'منصرف',
               icon: Assets.imagesOutcome,
               hasSwitch: true,
               onChanged: (value) {
-                setState(() {
-                  operationType = 'outcome';
-                });
+                if (value) {
+                  setState(() {
+                    operationTypeController.text = 'outcome';
+                    isIncome = false;
+                  });
+                }
               },
             ),
             Form(
@@ -59,11 +80,13 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
                 spacing: 30,
                 children: [
                   CustomTextFormFeild(
-                    initialValue: operationType,
+                    controller: operationTypeController,
                     readOnly: true,
                     hintText: 'نوع العملية',
                     keyboardType: TextInputType.text,
-                    onSaved: (value) {},
+                    onSaved: (value) {
+                      operationType = operationTypeController.text;
+                    },
                   ),
                   CustomTextFormFeild(
                     controller: dateController,
@@ -81,7 +104,7 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
                     hintText: 'المبلغ',
                     keyboardType: TextInputType.number,
                     onSaved: (value) {
-                      date = value ?? '';
+                      amount = value ?? '0';
                     },
                   ),
                   CustomTextFormFeild(

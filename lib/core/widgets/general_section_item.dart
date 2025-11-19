@@ -12,11 +12,14 @@ class GeneralSectionItem extends StatelessWidget {
     required this.title,
     required this.hasSwitch,
     this.onChanged,
+    required this.isSelected,
   });
   final String icon;
   final String title;
   final bool hasSwitch;
   final ValueChanged<bool>? onChanged;
+  final bool isSelected;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -48,6 +51,7 @@ class GeneralSectionItem extends StatelessWidget {
               Visibility(
                 visible: hasSwitch,
                 child: SwhitchWidget(
+                  isSelected: isSelected,
                   onChanged: (state) {
                     onChanged!(state);
                   },

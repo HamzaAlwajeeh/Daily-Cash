@@ -43,7 +43,7 @@ class PersonType extends StatelessWidget {
                 ),
               ),
               Spacer(),
-              SwhitchWidget(onChanged: (state) {}),
+              SwhitchWidget(isSelected: true, onChanged: (state) {}),
             ],
           ),
         ),

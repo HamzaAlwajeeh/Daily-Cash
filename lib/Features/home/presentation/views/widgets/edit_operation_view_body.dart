@@ -19,13 +19,18 @@ class EditOperationViewBody extends StatefulWidget {
 class _EditOperationViewBodyState extends State<EditOperationViewBody> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  TextEditingController operationTypeController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController personController = TextEditingController();
   String operationType = '';
   String date = '';
   String amount = '';
   String person = '';
   String details = '';
+  bool isIncome = false;
   @override
   Widget build(BuildContext context) {
+    operationTypeController.text = isIncome ? 'income' : 'outcome';
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 16, vertical: 50),
       child: SingleChildScrollView(
@@ -34,23 +39,31 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
           children: [
             CustomAppBar(title: 'تعديل العملية'),
             GeneralSectionItem(
+              isSelected: isIncome,
               title: 'إيراد',
               icon: Assets.imagesIncome,
               hasSwitch: true,
               onChanged: (value) {
-                setState(() {
-                  operationType = 'income';
-                });
+                if (value) {
+                  setState(() {
+                    operationTypeController.text = 'outcome';
+                    isIncome = true;
+                  });
+                }
               },
             ),
             GeneralSectionItem(
+              isSelected: isIncome == false,
               title: 'منصرف',
               icon: Assets.imagesOutcome,
               hasSwitch: true,
               onChanged: (value) {
-                setState(() {
-                  operationType = 'outcome';
-                });
+                if (value) {
+                  setState(() {
+                    operationTypeController.text = 'outcome';
+                    isIncome = false;
+                  });
+                }
               },
             ),
             Form(
@@ -59,7 +72,7 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                 spacing: 30,
                 children: [
                   CustomTextFormFeild(
-                    initialValue: widget.operation.type,
+                    controller: operationTypeController,
                     readOnly: true,
                     hintText: 'نوع العملية',
                     keyboardType: TextInputType.text,
