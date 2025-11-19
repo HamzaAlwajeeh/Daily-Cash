@@ -1,25 +1,41 @@
 import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
+import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:daily_cash/core/widgets/switch_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class PersonItem extends StatelessWidget {
-  const PersonItem({super.key, this.hasSwitch, required this.person});
+  const PersonItem({
+    super.key,
+    this.hasSwitch,
+    required this.person,
+    this.isBottomSheet,
+  });
+  final bool? isBottomSheet;
   final PersonModel person;
   final bool? hasSwitch;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(
-          context,
-          PersonDetailsView.routeName,
-          arguments: person,
-        );
+        if (isBottomSheet == true) {
+          Provider.of<PersonsProvider>(
+            context,
+            listen: false,
+          ).selectPerson(person);
+          Navigator.pop(context);
+        } else {
+          Navigator.pushNamed(
+            context,
+            PersonDetailsView.routeName,
+            arguments: person,
+          );
+        }
       },
       child: Container(
         width: double.infinity,

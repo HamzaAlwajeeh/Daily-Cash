@@ -30,7 +30,7 @@ class PersonsBottomSheet extends StatelessWidget {
             suffixIcon: Assets.imagesFilter,
             fillColor: AppColors.textFeilColor,
           ),
-          Expanded(child: PersonsListView()),
+          Expanded(child: PersonsListView(isBottomSheet: true)),
         ],
       ),
     );

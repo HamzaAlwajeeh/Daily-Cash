@@ -3,8 +3,8 @@ import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_it
 import 'package:flutter/material.dart';
 
 class PersonsListView extends StatefulWidget {
-  const PersonsListView({super.key});
-
+  const PersonsListView({super.key, this.isBottomSheet});
+  final bool? isBottomSheet;
   @override
   State<PersonsListView> createState() => _PersonsListViewState();
 }
@@ -27,7 +27,10 @@ class _PersonsListViewState extends State<PersonsListView> {
       itemBuilder: (context, index) {
         return Padding(
           padding: EdgeInsets.symmetric(vertical: 8),
-          child: PersonItem(person: persons[index]),
+          child: PersonItem(
+            person: persons[index],
+            isBottomSheet: widget.isBottomSheet,
+          ),
         );
       },
     );

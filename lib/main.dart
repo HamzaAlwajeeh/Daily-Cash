@@ -1,3 +1,4 @@
+import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/routers/on_generate_route.dart';
 import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
@@ -5,6 +6,7 @@ import 'package:daily_cash/core/widgets/base_view.dart';
 import 'package:daily_cash/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,29 +19,38 @@ class DailyCash extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      localizationsDelegates: [
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<PersonsProvider>(
+          create: (_) => PersonsProvider(),
+        ),
       ],
-      supportedLocales: S.delegate.supportedLocales,
-      locale: const Locale('ar'),
-      debugShowCheckedModeBanner: false,
-      title: 'Daily Cash',
-      theme: ThemeData.dark().copyWith(
-        scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
-        textTheme: ThemeData.dark().textTheme
-            .apply(fontFamily: 'NotoSansArabic')
-            .copyWith(
-              bodyLarge: const TextStyle(color: AppColors.textSecondaryColor),
-              bodyMedium: const TextStyle(color: AppColors.textSecondaryColor),
-              bodySmall: const TextStyle(color: AppColors.textSecondaryColor),
-            ),
+      child: MaterialApp(
+        localizationsDelegates: [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
+        locale: const Locale('ar'),
+        debugShowCheckedModeBanner: false,
+        title: 'Daily Cash',
+        theme: ThemeData.dark().copyWith(
+          scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
+          textTheme: ThemeData.dark().textTheme
+              .apply(fontFamily: 'NotoSansArabic')
+              .copyWith(
+                bodyLarge: const TextStyle(color: AppColors.textSecondaryColor),
+                bodyMedium: const TextStyle(
+                  color: AppColors.textSecondaryColor,
+                ),
+                bodySmall: const TextStyle(color: AppColors.textSecondaryColor),
+              ),
+        ),
+        onGenerateRoute: onGenerateRoute,
+        initialRoute: BaseView.routeName,
       ),
-      onGenerateRoute: onGenerateRoute,
-      initialRoute: BaseView.routeName,
     );
   }
 }
