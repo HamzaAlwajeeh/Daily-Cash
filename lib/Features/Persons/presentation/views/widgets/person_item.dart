@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-class PersonItem extends StatelessWidget {
+class PersonItem extends StatefulWidget {
   const PersonItem({
     super.key,
     this.hasSwitch,
@@ -19,21 +19,32 @@ class PersonItem extends StatelessWidget {
   final bool? isBottomSheet;
   final PersonModel person;
   final bool? hasSwitch;
+
+  @override
+  State<PersonItem> createState() => _PersonItemState();
+}
+
+class _PersonItemState extends State<PersonItem> {
+  int counter = 1;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if (isBottomSheet == true) {
+        if (widget.isBottomSheet == true) {
           Provider.of<PersonsProvider>(
             context,
             listen: false,
-          ).selectPerson(person);
+          ).selectPerson(widget.person);
+          Provider.of<PersonsProvider>(context, listen: false).count = counter;
+          setState(() {
+            counter++;
+          });
           Navigator.pop(context);
         } else {
           Navigator.pushNamed(
             context,
             PersonDetailsView.routeName,
-            arguments: person,
+            arguments: widget.person,
           );
         }
       },
@@ -54,20 +65,20 @@ class PersonItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: SvgPicture.asset(
-                  person.type == 'employee'
+                  widget.person.type == 'employee'
                       ? Assets.imagesEmployee
                       : Assets.imagesProject,
                 ),
               ),
               Text(
-                person.name,
+                widget.person.name,
                 style: TextStyles.bold16.copyWith(
                   color: AppColors.primaryColor,
                 ),
               ),
               Spacer(),
               Visibility(
-                visible: hasSwitch ?? false,
+                visible: widget.hasSwitch ?? false,
                 child: SwhitchWidget(isSelected: false, onChanged: (state) {}),
               ),
             ],

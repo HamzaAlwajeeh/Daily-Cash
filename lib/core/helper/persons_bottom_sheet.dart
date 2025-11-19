@@ -21,17 +21,20 @@ class PersonsBottomSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 40, right: 16, left: 16),
-      child: Column(
-        spacing: 16,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          CustomTextFeild(
-            hintText: 'البحث بالإسم...',
-            suffixIcon: Assets.imagesFilter,
-            fillColor: AppColors.textFeilColor,
-          ),
-          Expanded(child: PersonsListView(isBottomSheet: true)),
-        ],
+      child: SizedBox(
+        height: 500,
+        child: Column(
+          spacing: 16,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CustomTextFeild(
+              hintText: 'البحث بالإسم...',
+              suffixIcon: Assets.imagesFilter,
+              fillColor: AppColors.textFeilColor,
+            ),
+            Expanded(child: PersonsListView(isBottomSheet: true)),
+          ],
+        ),
       ),
     );
   }
