@@ -1,17 +1,9 @@
-import 'dart:developer';
-
-import 'package:daily_cash/Features/auth/data/models/user.dart';
-import 'package:daily_cash/Features/auth/data/repos/auth_repo_impl.dart';
-import 'package:daily_cash/core/errors/failuar.dart';
 import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/routers/on_generate_route.dart';
-import 'package:daily_cash/core/services/api_service.dart';
 import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/widgets/base_view.dart';
 import 'package:daily_cash/generated/l10n.dart';
-import 'package:dartz/dartz.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
@@ -21,16 +13,18 @@ void main() async {
   await Prefs.init();
   runApp(DailyCash());
 
-  AuthRepoImpl authRepoImpl = AuthRepoImpl(ApiService(Dio()));
-  Either<Failure, User> user = await authRepoImpl.register(
-    name: 'Hamza',
-    email: 'ha20mz@gmail.com',
-    password: '123456789',
-  );
-  user.fold(
-    (failure) => log('Error: ${failure.errorMessage}'),
-    (user) => log('Registered User: ${user.toString()}'),
-  );
+  //register testing => Done
+
+  // AuthRepoImpl authRepoImpl = AuthRepoImpl(ApiService(Dio()));
+  // Either<Failure, User> user = await authRepoImpl.register(
+  //   name: 'Hamza',
+  //   email: 'ha20mz10@gmail.com',
+  //   password: '12345678',
+  // );
+  // user.fold(
+  //   (failure) => log('Error: ${failure.errorMessage}'),
+  //   (user) => log('Registered User: ${user.toString()}'),
+  // );
 }
 
 class DailyCash extends StatelessWidget {
