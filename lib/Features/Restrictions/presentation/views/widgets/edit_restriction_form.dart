@@ -1,12 +1,14 @@
 import 'dart:developer';
 
 import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
+import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:daily_cash/core/widgets/custom_text_form_feild.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class EditRestrictionForm extends StatefulWidget {
   const EditRestrictionForm({super.key, required this.restriction});
@@ -31,6 +33,12 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
     toPersonController.text = widget.restriction.toPerson;
     amountController.text = widget.restriction.amount.toString();
     descriptionController.text = widget.restriction.description;
+    Future.microtask(() {
+      Provider.of<PersonsProvider>(
+        context,
+        listen: false,
+      ).clearSelectedPerson();
+    });
     super.initState();
   }
 
@@ -46,85 +54,101 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autovalidateMode,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text('من حساب', style: TextStyles.bold16),
-          ),
-          const SizedBox(height: 8),
-          CustomTextFormFeild(
-            controller: fromPersonController,
-            hintText: 'اسم المشروع/العامل',
-            keyboardType: TextInputType.text,
-            readOnly: true,
-          ),
-          const SizedBox(height: 8),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Text('الى حساب', style: TextStyles.bold16),
-          ),
-          const SizedBox(height: 8),
-          CustomTextFormFeild(
-            controller: toPersonController,
-            hintText: 'اسم المشروع/العامل',
-            keyboardType: TextInputType.text,
-            readOnly: true,
-          ),
-          const SizedBox(height: 38),
-          Column(
-            spacing: 38,
+    return Consumer(
+      builder: (context, PersonsProvider personsProvider, child) {
+        if (personsProvider.type == 'from' &&
+            personsProvider.fromPerson != null) {
+          fromPersonController.text = personsProvider.fromPerson!.name;
+        }
+
+        if (personsProvider.type == 'to' && personsProvider.toPerson != null) {
+          toPersonController.text = personsProvider.toPerson!.name;
+        }
+        return Form(
+          key: formKey,
+          autovalidateMode: autovalidateMode,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTextFormFeild(
-                controller: dateController,
-                isCalender: true,
-                hintText: 'التاريخ',
-                keyboardType: TextInputType.text,
-                suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Text('من حساب', style: TextStyles.bold16),
               ),
+              const SizedBox(height: 8),
               CustomTextFormFeild(
-                controller: amountController,
-                hintText: 'المبلغ',
-                keyboardType: TextInputType.number,
-                suffixIcon: SvgPicture.asset(Assets.imagesDolarSign),
-                onChanged: (value) {
-                  amountController.text = value;
-                },
-              ),
-              CustomTextFormFeild(
-                controller: descriptionController,
-                hintText: 'البيان',
+                isPerson: true,
+                type: 'from',
+                controller: fromPersonController,
+                hintText: 'اسم المشروع/العامل',
                 keyboardType: TextInputType.text,
-                onChanged: (value) {
-                  descriptionController.text = value;
+                readOnly: true,
+              ),
+              const SizedBox(height: 8),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Text('الى حساب', style: TextStyles.bold16),
+              ),
+              const SizedBox(height: 8),
+              CustomTextFormFeild(
+                isPerson: true,
+                type: 'to',
+                controller: toPersonController,
+                hintText: 'اسم المشروع/العامل',
+                keyboardType: TextInputType.text,
+                readOnly: true,
+              ),
+              const SizedBox(height: 38),
+              Column(
+                spacing: 38,
+                children: [
+                  CustomTextFormFeild(
+                    controller: dateController,
+                    isCalender: true,
+                    hintText: 'التاريخ',
+                    keyboardType: TextInputType.text,
+                    suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
+                  ),
+                  CustomTextFormFeild(
+                    controller: amountController,
+                    hintText: 'المبلغ',
+                    keyboardType: TextInputType.number,
+                    suffixIcon: SvgPicture.asset(Assets.imagesDolarSign),
+                    onChanged: (value) {
+                      amountController.text = value;
+                    },
+                  ),
+                  CustomTextFormFeild(
+                    controller: descriptionController,
+                    hintText: 'البيان',
+                    keyboardType: TextInputType.text,
+                    onChanged: (value) {
+                      descriptionController.text = value;
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 40),
+              PrimaryButton(
+                text: 'تعديل',
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    autovalidateMode = AutovalidateMode.disabled;
+                    setState(() {});
+                    log(
+                      '${fromPersonController.text} - ${toPersonController.text} - ${dateController.text} - ${amountController.text} - ${descriptionController.text}',
+                    );
+                    Navigator.pop(context);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
                 },
               ),
             ],
           ),
-          const SizedBox(height: 40),
-          PrimaryButton(
-            text: 'تعديل',
-            onPressed: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                autovalidateMode = AutovalidateMode.disabled;
-                setState(() {});
-                log(
-                  '${fromPersonController.text} - ${toPersonController.text} - ${dateController.text} - ${amountController.text} - ${descriptionController.text}',
-                );
-                Navigator.pop(context);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

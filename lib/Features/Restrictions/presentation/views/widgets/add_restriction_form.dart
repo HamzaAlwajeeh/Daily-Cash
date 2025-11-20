@@ -51,10 +51,11 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
     return Consumer(
       builder: (context, PersonsProvider personsProvider, child) {
         if (personsProvider.type == 'from' &&
-            personsProvider.selectedPerson!.name != fromPersonController.text) {
+            personsProvider.fromPerson != null) {
           fromPersonController.text = personsProvider.fromPerson!.name;
-        } else if (personsProvider.type == 'to' &&
-            personsProvider.selectedPerson!.name != toPersonController.text) {
+        }
+
+        if (personsProvider.type == 'to' && personsProvider.toPerson != null) {
           toPersonController.text = personsProvider.toPerson!.name;
         }
 
@@ -132,6 +133,7 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
                     log(
                       '${fromPersonController.text} - ${toPersonController.text} - ${dateController.text} - ${amountController.text} - ${descriptionController.text}',
                     );
+                    Navigator.pop(context);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});
