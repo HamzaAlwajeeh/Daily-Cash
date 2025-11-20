@@ -1,3 +1,5 @@
+import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
+import 'package:daily_cash/Features/Persons/data/test_person_data.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/persons_list_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
@@ -14,8 +16,21 @@ void showPersonsBottomSheet(context) => showModalBottomSheet(
   },
 );
 
-class PersonsBottomSheet extends StatelessWidget {
+class PersonsBottomSheet extends StatefulWidget {
   const PersonsBottomSheet({super.key});
+
+  @override
+  State<PersonsBottomSheet> createState() => _PersonsBottomSheetState();
+}
+
+class _PersonsBottomSheetState extends State<PersonsBottomSheet> {
+  List<PersonModel> persons = [];
+
+  @override
+  void initState() {
+    persons = getPersons();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +47,9 @@ class PersonsBottomSheet extends StatelessWidget {
               suffixIcon: Assets.imagesFilter,
               fillColor: AppColors.textFeilColor,
             ),
-            Expanded(child: PersonsListView(isBottomSheet: true)),
+            Expanded(
+              child: PersonsListView(isBottomSheet: true, persons: persons),
+            ),
           ],
         ),
       ),

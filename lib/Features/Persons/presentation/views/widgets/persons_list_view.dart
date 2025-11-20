@@ -1,22 +1,11 @@
-import 'package:daily_cash/Features/Persons/data/test_person_data.dart';
+import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_item.dart';
 import 'package:flutter/material.dart';
 
-class PersonsListView extends StatefulWidget {
-  const PersonsListView({super.key, this.isBottomSheet});
+class PersonsListView extends StatelessWidget {
+  const PersonsListView({super.key, this.isBottomSheet, required this.persons});
   final bool? isBottomSheet;
-  @override
-  State<PersonsListView> createState() => _PersonsListViewState();
-}
-
-class _PersonsListViewState extends State<PersonsListView> {
-  List persons = [];
-
-  @override
-  void initState() {
-    persons = getPersons();
-    super.initState();
-  }
+  final List<PersonModel> persons;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +18,7 @@ class _PersonsListViewState extends State<PersonsListView> {
           padding: EdgeInsets.symmetric(vertical: 8),
           child: PersonItem(
             person: persons[index],
-            isBottomSheet: widget.isBottomSheet,
+            isBottomSheet: isBottomSheet,
           ),
         );
       },
