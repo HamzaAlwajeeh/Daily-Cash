@@ -11,15 +11,19 @@ class HomeViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(right: 16, left: 16, top: 70),
-      child: Column(
-        spacing: 16,
+      child: ListView(
+        padding: EdgeInsets.zero,
+        physics: BouncingScrollPhysics(),
         children: [
           WelcomeMessageAndProfileInfo(
             title: 'حمزة الوجيه',
             subTitle: 'كيف حالك اليوم؟',
           ),
+          const SizedBox(height: 16),
           TotalAmount(totalAmount: 1750000),
+          const SizedBox(height: 16),
           TodaySummary(),
+          const SizedBox(height: 16),
           RecentOperations(),
         ],
       ),

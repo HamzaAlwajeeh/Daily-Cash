@@ -7,18 +7,17 @@ class RecentOperationsListView extends StatelessWidget {
   final List<OperationModel> operations;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: ListView.builder(
-        padding: EdgeInsets.zero,
-        physics: BouncingScrollPhysics(),
-        itemCount: operations.length,
-        itemBuilder: (context, index) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: OperationItem(operation: operations[index]),
-          );
-        },
-      ),
+    return ListView.builder(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      physics: NeverScrollableScrollPhysics(),
+      itemCount: operations.length,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: OperationItem(operation: operations[index]),
+        );
+      },
     );
   }
 }
