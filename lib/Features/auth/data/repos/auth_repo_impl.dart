@@ -10,24 +10,27 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl(this.apiService);
 
   @override
-  Future<Either<Failure, User>> login(String email, String password) {
+  Future<Either<Failure, User>> login({
+    required String email,
+    required String password,
+  }) {
     // TODO: implement login
     throw UnimplementedError();
   }
 
   @override
-  Future<Either<Failure, User>> register(
-    String name,
-    String email,
-    String password,
-  ) async {
+  Future<Either<Failure, User>> register({
+    required String name,
+    required String email,
+    required String password,
+  }) async {
     try {
       var data = await apiService.post(
         endPoint: 'register',
         body: {'name': name, 'email': email, 'password': password},
         token: null,
       );
-      User user = User.fromJson(data['user']);
+      User user = User.fromJson(data['User']);
       return Right(user);
     } catch (e) {
       if (e is DioException) {

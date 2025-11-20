@@ -19,7 +19,9 @@ class ApiService {
   }) async {
     Map<String, String> headers = {};
 
-    headers.addAll({'Content-Type': 'application/json'});
+    // headers.addAll({'Content-Type': 'application/json'});
+    headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
+    headers.addAll({'Accept': 'application/json'});
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
@@ -40,7 +42,8 @@ class ApiService {
   }) async {
     Map<String, String> headers = {};
 
-    headers.addAll({'Content-Type': 'application/json'});
+    headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
+    headers.addAll({'Accept': 'application/json'});
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
