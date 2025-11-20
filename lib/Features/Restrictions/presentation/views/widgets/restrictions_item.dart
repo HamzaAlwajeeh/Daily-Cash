@@ -5,6 +5,7 @@ import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 class RestrictionsItem extends StatelessWidget {
   const RestrictionsItem({super.key, required this.restriction});
@@ -90,7 +91,7 @@ class RestrictionsItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    restriction.amount.round().toString(),
+                    NumberFormat('#,###').format(restriction.amount.round()),
                     style: TextStyles.bold18,
                   ),
                 ),

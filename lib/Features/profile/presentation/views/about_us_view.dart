@@ -52,7 +52,7 @@ class AboutUsView extends StatelessWidget {
               title: 'https://github.com/HamzaAlwajeeh',
             ),
             const SizedBox(height: 10),
-            CustomSocialCard(image: Assets.imagesCall, title: '771 832 796'),
+            CustomSocialCard(image: Assets.imagesCall, title: "771-832-796"),
           ],
         ),
       ),

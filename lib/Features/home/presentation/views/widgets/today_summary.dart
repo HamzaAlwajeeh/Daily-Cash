@@ -23,9 +23,9 @@ class TodaySummary extends StatelessWidget {
           const SizedBox(height: 12),
           Row(
             children: [
-              SummaryItem(amount: '1,500,000', type: 'income'),
+              SummaryItem(amount: 1500000, type: 'income'),
               const SizedBox(width: 10),
-              SummaryItem(amount: '1,500,000', type: 'outcome'),
+              SummaryItem(amount: 1500000, type: 'outcome'),
             ],
           ),
         ],

@@ -4,10 +4,11 @@ import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 class TotalAmount extends StatelessWidget {
   const TotalAmount({super.key, required this.totalAmount});
-  final String totalAmount;
+  final double totalAmount;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -54,7 +55,10 @@ class TotalAmount extends StatelessWidget {
                         const SizedBox(height: 10),
                         Row(
                           children: [
-                            Text(totalAmount, style: TextStyles.bold24),
+                            Text(
+                              NumberFormat('#,###').format(totalAmount.round()),
+                              style: TextStyles.bold24,
+                            ),
                             SvgPicture.asset(Assets.imagesReal),
                           ],
                         ),

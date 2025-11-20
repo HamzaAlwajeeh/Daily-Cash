@@ -5,10 +5,11 @@ import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:intl/intl.dart';
 
 class SummaryItem extends StatelessWidget {
   const SummaryItem({super.key, required this.amount, required this.type});
-  final String amount;
+  final double amount;
   final String type;
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,10 @@ class SummaryItem extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(amount, style: TextStyles.bold22),
+                    Text(
+                      NumberFormat('#,###').format(amount.round()),
+                      style: TextStyles.bold22,
+                    ),
                     SvgPicture.asset(Assets.imagesReal),
                   ],
                 ),

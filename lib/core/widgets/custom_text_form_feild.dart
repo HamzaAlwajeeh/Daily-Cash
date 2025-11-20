@@ -1,8 +1,10 @@
 import 'package:daily_cash/core/helper/get_data_function.dart';
 import 'package:daily_cash/core/helper/persons_bottom_sheet.dart';
+import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomTextFormFeild extends StatefulWidget {
   const CustomTextFormFeild({
@@ -20,6 +22,7 @@ class CustomTextFormFeild extends StatefulWidget {
     this.isCalender,
     this.fillColor,
     this.isPerson,
+    this.type,
   });
   final String hintText;
   final TextInputType keyboardType;
@@ -34,6 +37,7 @@ class CustomTextFormFeild extends StatefulWidget {
   final bool? isCalender;
   final bool? isPerson;
   final Color? fillColor;
+  final String? type;
 
   @override
   State<CustomTextFormFeild> createState() => _CustomTextFormFeildState();
@@ -53,6 +57,12 @@ class _CustomTextFormFeildState extends State<CustomTextFormFeild> {
           setState(() {});
         } else if (widget.isPerson == true) {
           {
+            if (widget.type == 'from') {
+              Provider.of<PersonsProvider>(context, listen: false).type =
+                  'from';
+            } else if (widget.type == 'to') {
+              Provider.of<PersonsProvider>(context, listen: false).type = 'to';
+            }
             showPersonsBottomSheet(context);
           }
         }

@@ -1,6 +1,7 @@
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GeneralSummaryItem extends StatelessWidget {
   const GeneralSummaryItem({
@@ -39,7 +40,7 @@ class GeneralSummaryItem extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  count.toString(),
+                  NumberFormat('#,###').format(count.round()),
                   style: TextStyles.bold24.copyWith(color: Colors.white),
                 ),
               ),

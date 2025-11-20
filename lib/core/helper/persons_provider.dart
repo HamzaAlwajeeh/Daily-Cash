@@ -7,7 +7,7 @@ class PersonsProvider extends ChangeNotifier {
   PersonModel? _selectedPerson;
   PersonModel? _fromPerson;
   PersonModel? _toPerson;
-  int? count;
+  String? type;
 
   PersonModel? get selectedPerson => _selectedPerson;
 
@@ -17,8 +17,8 @@ class PersonsProvider extends ChangeNotifier {
 
   void selectPerson(PersonModel? person) {
     _selectedPerson = person;
-    count == 1 ? _fromPerson = person : _toPerson = person;
-    log(count.toString());
+    type == 'from' ? _fromPerson = person : _toPerson = person;
+    log(type.toString());
     notifyListeners();
   }
 

@@ -50,14 +50,12 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, PersonsProvider personsProvider, child) {
-        if (personsProvider.selectedPerson != null &&
-            fromPersonController.text.isEmpty &&
+        if (personsProvider.type == 'from' &&
             personsProvider.selectedPerson!.name != fromPersonController.text) {
-          fromPersonController.text = personsProvider.selectedPerson!.name;
-        } else if (personsProvider.selectedPerson != null &&
-            toPersonController.text.isEmpty &&
-            personsProvider.selectedPerson!.name != fromPersonController.text) {
-          toPersonController.text = personsProvider.selectedPerson!.name;
+          fromPersonController.text = personsProvider.fromPerson!.name;
+        } else if (personsProvider.type == 'to' &&
+            personsProvider.selectedPerson!.name != toPersonController.text) {
+          toPersonController.text = personsProvider.toPerson!.name;
         }
 
         return Form(
@@ -72,6 +70,7 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
               ),
               const SizedBox(height: 8),
               CustomTextFormFeild(
+                type: 'from',
                 isPerson: true,
                 controller: fromPersonController,
                 hintText: 'اسم المشروع/العامل',
@@ -85,6 +84,7 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
               ),
               const SizedBox(height: 8),
               CustomTextFormFeild(
+                type: 'to',
                 isPerson: true,
                 controller: toPersonController,
                 hintText: 'اسم المشروع/العامل',

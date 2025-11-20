@@ -5,6 +5,7 @@ import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
 
 class OperationItem extends StatelessWidget {
   const OperationItem({
@@ -79,7 +80,7 @@ class OperationItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    operation.amount.round().toString(),
+                    NumberFormat('#,###').format(operation.amount.round()),
                     style: TextStyles.bold16,
                   ),
                 ),

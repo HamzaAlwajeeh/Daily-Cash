@@ -18,7 +18,7 @@ class HomeViewBody extends StatelessWidget {
             title: 'حمزة الوجيه',
             subTitle: 'كيف حالك اليوم؟',
           ),
-          TotalAmount(totalAmount: '1,750,000'),
+          TotalAmount(totalAmount: 1750000),
           TodaySummary(),
           RecentOperations(),
         ],

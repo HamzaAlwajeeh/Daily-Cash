@@ -1,5 +1,5 @@
-import 'package:daily_cash/core/widgets/general_summary_item.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
+import 'package:daily_cash/core/widgets/general_summary_item.dart';
 import 'package:flutter/material.dart';
 
 class GeneralSummary extends StatelessWidget {
