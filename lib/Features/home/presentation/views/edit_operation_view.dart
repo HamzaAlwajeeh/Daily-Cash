@@ -8,8 +8,6 @@ class EditOperationView extends StatelessWidget {
   final OperationModel operation;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: EditOperationViewBody(operation: operation,),
-    );
+    return Scaffold(body: EditOperationViewBody(operation: operation));
   }
 }

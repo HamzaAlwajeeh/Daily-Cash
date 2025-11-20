@@ -12,6 +12,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
   runApp(DailyCash());
+
+  // HomeRepoImpl homeRepoImpl = HomeRepoImpl(ApiService(Dio()));
+  // User user = await homeRepoImpl.fetchUser();
+  // log(user.toString());
 }
 
 class DailyCash extends StatelessWidget {
