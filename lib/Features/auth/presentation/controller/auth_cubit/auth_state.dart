@@ -1,7 +1,6 @@
-part of 'auth_cubit.dart';
+import 'package:daily_cash/Features/auth/data/models/user.dart';
 
-@immutable
-sealed class AuthState {}
+abstract class AuthState {}
 
 final class AuthInitial extends AuthState {}
 

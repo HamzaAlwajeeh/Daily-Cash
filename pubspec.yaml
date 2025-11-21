@@ -35,6 +35,7 @@ dependencies:
   dots_indicator: ^4.0.1
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.2.1

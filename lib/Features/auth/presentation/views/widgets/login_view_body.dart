@@ -2,6 +2,7 @@ import 'package:daily_cash/Features/auth/presentation/views/sign_up_view.dart';
 import 'package:daily_cash/Features/auth/presentation/views/widgets/have_an_account.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
+import 'package:daily_cash/core/widgets/base_view.dart';
 import 'package:daily_cash/core/widgets/custom_text_form_feild.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
@@ -85,6 +86,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
       formKey.currentState!.save();
       autovalidateMode = AutovalidateMode.disabled;
       setState(() {});
+      Navigator.pushReplacementNamed(context, BaseView.routeName);
     } else {
       autovalidateMode = AutovalidateMode.always;
       setState(() {});

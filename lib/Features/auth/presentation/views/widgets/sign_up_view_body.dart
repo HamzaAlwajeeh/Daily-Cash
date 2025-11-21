@@ -17,9 +17,17 @@ class SignUpViewBody extends StatefulWidget {
 class _LoginViewBodyState extends State<SignUpViewBody> {
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  String userName = '';
-  String email = '';
-  String password = '';
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +50,7 @@ class _LoginViewBodyState extends State<SignUpViewBody> {
                     hintText: 'اسم المستخدم',
                     keyboardType: TextInputType.text,
                     onChanged: (value) {
-                      userName = value;
+                      nameController.text = value;
                     },
                   ),
                   const SizedBox(height: 20),
@@ -50,7 +58,7 @@ class _LoginViewBodyState extends State<SignUpViewBody> {
                     hintText: 'البريد الإلكتروني',
                     keyboardType: TextInputType.emailAddress,
                     onChanged: (value) {
-                      email = value;
+                      emailController.text = value;
                     },
                   ),
                   const SizedBox(height: 20),
@@ -59,7 +67,7 @@ class _LoginViewBodyState extends State<SignUpViewBody> {
                     keyboardType: TextInputType.visiblePassword,
                     isPassword: true,
                     onChanged: (value) {
-                      password = value;
+                      passwordController.text = value;
                     },
                   ),
                   const SizedBox(height: 20),
