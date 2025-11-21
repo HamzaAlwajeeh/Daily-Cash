@@ -13,9 +13,21 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, User>> login({
     required String email,
     required String password,
-  }) {
-    // TODO: implement login
-    throw UnimplementedError();
+  }) async {
+    try {
+      var data = await apiService.post(
+        endPoint: 'login',
+        body: {'email': email, 'password': password},
+        token: null,
+      );
+      User user = User.fromJson(data['User']);
+      return Right(user);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
