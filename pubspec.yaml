@@ -30,6 +30,7 @@ environment:
 dependencies:
   cupertino_icons: ^1.0.8
   dartz: ^0.10.1
+  delightful_toast: ^1.1.0
   dio: ^5.9.0
   dots_indicator: ^4.0.1
   flutter:
