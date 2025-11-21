@@ -1,6 +1,8 @@
+import 'package:bloc/bloc.dart';
 import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/routers/on_generate_route.dart';
 import 'package:daily_cash/core/services/shared_pref_singleton.dart';
+import 'package:daily_cash/core/services/simple_bloc_obsever.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/widgets/base_view.dart';
 import 'package:daily_cash/generated/l10n.dart';
@@ -12,6 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Prefs.init();
   runApp(DailyCash());
+  Bloc.observer = SimpleBlocObserver();
 
   //register testing => Done
 
