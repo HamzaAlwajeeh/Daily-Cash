@@ -1,22 +1,50 @@
 import 'package:daily_cash/Features/Persons/data/models/person.dart';
 import 'package:daily_cash/Features/Persons/data/repos/person_repo.dart';
 import 'package:daily_cash/core/errors/failuar.dart';
+import 'package:daily_cash/core/services/api_service.dart';
+import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 
 class PersonRepoImpl implements PersonRepo {
+  ApiService apiService;
+  PersonRepoImpl(this.apiService);
   @override
   Future<Either<Failure, String>> addPerson({
     required String name,
     required String type,
-  }) {
-    // TODO: implement addPerson
-    throw UnimplementedError();
+  }) async {
+    try {
+      await apiService.post(
+        endPoint: 'entities',
+        body: {'name': name, 'type': type},
+        token: Prefs.getString('token'),
+      );
+      return right('Person Added Successfully');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, Person>> getAllPersons() {
-    // TODO: implement getAllPersons
-    throw UnimplementedError();
+  Future<Either<Failure, Person>> getAllPersons() async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'entities',
+        body: null,
+        token: Prefs.getString('token'),
+      );
+      Person person = Person.fromJson(data);
+      return Right(person);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
