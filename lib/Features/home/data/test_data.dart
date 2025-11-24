@@ -11,7 +11,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 2,
-    type: 'outcome',
+    type: 'expense',
     title: 'بسام الوجيه',
     details: 'بيد بسام مناولة سلمان',
     amount: 50000,
@@ -43,7 +43,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 6,
-    type: 'outcome',
+    type: 'expense',
     title: 'عبدالله القباطي',
     details: 'مناولة نقدية لتغطية مصاريف الموقع',
     amount: 35000,
@@ -51,7 +51,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 7,
-    type: 'outcome',
+    type: 'expense',
     title: 'مؤسسة التميز',
     details: 'شراء معدات مكتبية جديدة',
     amount: 21000,
@@ -59,7 +59,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 8,
-    type: 'outcome',
+    type: 'expense',
     title: 'شركة الطيف',
     details: 'تسديد دفعة لمورد الكيابل',
     amount: 75000,
@@ -83,7 +83,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 11,
-    type: 'outcome',
+    type: 'expense',
     title: 'عبدالسلام العريقي',
     details: 'صرف رواتب شهر ديسمبر',
     amount: 98000,
@@ -91,7 +91,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 12,
-    type: 'outcome',
+    type: 'expense',
     title: 'سالم القادري',
     details: 'مصاريف تشغيلية لفرع إب',
     amount: 40000,
@@ -115,7 +115,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 15,
-    type: 'outcome',
+    type: 'expense',
     title: 'مؤسسة البناء الحديث',
     details: 'شراء مواد بناء للمشروع الجديد',
     amount: 110000,
@@ -123,7 +123,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 16,
-    type: 'outcome',
+    type: 'expense',
     title: 'بسام الوجيه',
     details: 'مناولة إضافية للموقع الميداني',
     amount: 60000,
@@ -147,7 +147,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 19,
-    type: 'outcome',
+    type: 'expense',
     title: 'أمين السامعي',
     details: 'دفع مستحقات نقل المواد',
     amount: 27000,
@@ -155,7 +155,7 @@ List<OperationModel> operationsData() => [
   ),
   OperationModel(
     id: 20,
-    type: 'outcome',
+    type: 'expense',
     title: 'شركة الأفق',
     details: 'تجديد اشتراك خدمات الإنترنت السنوي',
     amount: 18000,

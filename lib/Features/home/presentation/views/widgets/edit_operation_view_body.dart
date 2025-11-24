@@ -57,7 +57,7 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    operationTypeController.text = isIncome ? 'income' : 'outcome';
+    operationTypeController.text = isIncome ? 'income' : 'expense';
     return Consumer(
       builder: (context, PersonsProvider provider, child) {
         if (provider.selectedPerson != null &&
@@ -79,7 +79,7 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                   onChanged: (value) {
                     if (value) {
                       setState(() {
-                        operationTypeController.text = 'outcome';
+                        operationTypeController.text = 'expense';
                         isIncome = true;
                       });
                     }
@@ -93,7 +93,7 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                   onChanged: (value) {
                     if (value) {
                       setState(() {
-                        operationTypeController.text = 'outcome';
+                        operationTypeController.text = 'expense';
                         isIncome = false;
                       });
                     }
