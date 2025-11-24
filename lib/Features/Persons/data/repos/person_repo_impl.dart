@@ -46,10 +46,4 @@ class PersonRepoImpl implements PersonRepo {
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
-
-  @override
-  Future<Either<Failure, Person>> searchPerson({required String query}) {
-    // TODO: implement searchPerson
-    throw UnimplementedError();
-  }
 }
