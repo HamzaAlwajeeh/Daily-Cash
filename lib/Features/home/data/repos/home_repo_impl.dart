@@ -70,21 +70,73 @@ class HomeRepoImpl implements HomeRepo {
     }
   }
 
+  // revenues-expenses
   @override
-  Future<Either<Failure, List<Operation>>> getAllOperations() {
-    // TODO: implement getAllOperations
-    throw UnimplementedError();
+  Future<Either<Failure, List<Operation>>> getAllOperations() async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'revenues-expenses',
+        body: null,
+        token: Prefs.getString('token'),
+      );
+      List<Operation> operations = [];
+
+      for (var operationJson in data) {
+        operations.add(Operation.fromJson(operationJson));
+      }
+
+      return right(operations);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, List<Operation>>> getIncomeOperations() {
-    // TODO: implement getIncomeOperations
-    throw UnimplementedError();
+  Future<Either<Failure, List<Operation>>> getIncomeOperations() async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'get-incomes',
+        body: null,
+        token: Prefs.getString('token'),
+      );
+      List<Operation> operations = [];
+
+      for (var operationJson in data) {
+        operations.add(Operation.fromJson(operationJson));
+      }
+
+      return right(operations);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 
   @override
-  Future<Either<Failure, List<Operation>>> getOutcomeOperations() {
-    // TODO: implement getOutcomeOperations
-    throw UnimplementedError();
+  Future<Either<Failure, List<Operation>>> getOutcomeOperations() async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'get-expenses',
+        body: null,
+        token: Prefs.getString('token'),
+      );
+      List<Operation> operations = [];
+
+      for (var operationJson in data) {
+        operations.add(Operation.fromJson(operationJson));
+      }
+
+      return right(operations);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
   }
 }
