@@ -24,7 +24,7 @@ class Prefs {
   }
 
   static getString(String key) {
-    String? value = inistance.getString(key) ?? '';
+    String? value = inistance.getString(key);
     return value;
   }
 

@@ -1,8 +1,8 @@
 import 'package:daily_cash/Features/auth/data/models/user.dart';
 import 'package:daily_cash/Features/auth/data/repos/auth_repo.dart';
-import 'package:daily_cash/core/constants/constants.dart';
 import 'package:daily_cash/core/errors/failuar.dart';
 import 'package:daily_cash/core/services/api_service.dart';
+import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -55,7 +55,11 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<Either<Failure, String>> logOut() async {
     try {
-      await apiService.post(endPoint: 'logout', body: null, token: kUserToken);
+      await apiService.post(
+        endPoint: 'logout',
+        body: null,
+        token: Prefs.getString('token'),
+      );
       return right('Logged Out Successfully');
     } catch (e) {
       if (e is DioException) {

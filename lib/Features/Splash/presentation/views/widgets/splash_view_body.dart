@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:daily_cash/Features/auth/presentation/views/login_view.dart';
 import 'package:daily_cash/Features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:daily_cash/core/constants/constants.dart';
@@ -28,15 +30,15 @@ class _SplashViewBodyState extends State<SplashViewBody> {
   void navigatorToOnBoarding(BuildContext context) async {
     bool seenOnBoarding = Prefs.getBool(kSeenOnBoarding);
     String? token = Prefs.getString('token');
+    log('token in splash: $token');
+
     await Future.delayed(const Duration(seconds: 3));
-    if (seenOnBoarding) {
-      if (token != null && token.isNotEmpty) {
-        Navigator.pushReplacementNamed(context, BaseView.routeName);
-        return;
-      }
-      Navigator.pushReplacementNamed(context, LoginView.routeName);
-    } else {
-      Navigator.pushReplacementNamed(context, OnBoardingView.routeName);
-    }
+    final routeName =
+        !seenOnBoarding
+            ? OnBoardingView.routeName
+            : (token != null && token.isNotEmpty
+                ? BaseView.routeName
+                : LoginView.routeName);
+    Navigator.pushReplacementNamed(context, routeName);
   }
 }

@@ -106,7 +106,7 @@ class _LoginViewBodyState extends State<SignUpViewBody> {
                         CustomLoadingIndicator()
                       else
                         PrimaryButton(
-                          text: 'تسجيل الدخول',
+                          text: 'انشاء حساب',
                           onPressed: () {
                             onLoginButtonPressed();
                           },

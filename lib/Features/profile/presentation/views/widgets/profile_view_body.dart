@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:daily_cash/Features/auth/presentation/controller/auth_cubit/auth_cubit.dart';
 import 'package:daily_cash/Features/auth/presentation/controller/auth_cubit/auth_state.dart';
+import 'package:daily_cash/Features/auth/presentation/views/login_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/welcome_message_and_profile_info.dart';
 import 'package:daily_cash/Features/profile/presentation/views/widgets/general_section.dart';
 import 'package:daily_cash/Features/profile/presentation/views/widgets/general_summary.dart';
@@ -41,7 +40,9 @@ class ProfileViewBody extends StatelessWidget {
             textColor: AppColors.primaryColor,
           );
           Prefs.removeString('token');
-          exit(0);
+          Prefs.removeString('useName');
+          Prefs.removeString('email');
+          Navigator.pushReplacementNamed(context, LoginView.routeName);
         }
       },
       builder: (context, state) {
@@ -58,8 +59,8 @@ class ProfileViewBody extends StatelessWidget {
             children: [
               Text('الحساب الشخصي', style: TextStyles.bold18),
               WelcomeMessageAndProfileInfo(
-                title: 'حمزة الوجيه',
-                subTitle: 'ha20mza60@gmail.com',
+                title: Prefs.getString('userName') ?? 'مستخدم جديد',
+                subTitle: Prefs.getString('email') ?? '',
               ),
               GeneralSection(),
               Divider(color: AppColors.primaryColor),

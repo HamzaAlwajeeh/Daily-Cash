@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:daily_cash/Features/auth/presentation/controller/auth_cubit/auth_cubit.dart';
 import 'package:daily_cash/Features/auth/presentation/controller/auth_cubit/auth_state.dart';
 import 'package:daily_cash/Features/auth/presentation/views/sign_up_view.dart';
@@ -43,8 +41,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             textColor: AppColors.primaryColor,
           );
         } else if (state is LoginSuccess) {
-          log(state.user.toString());
+          debugPrint(state.user.toString());
           Prefs.setString('token', state.user.token);
+          Prefs.setString('userName', state.user.name);
+          Prefs.setString('email', state.user.email);
           Navigator.pushReplacementNamed(context, BaseView.routeName);
           customToastBar(
             context: context,

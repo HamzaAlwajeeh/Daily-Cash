@@ -2,6 +2,7 @@ import 'package:daily_cash/Features/home/presentation/views/widgets/recent_opera
 import 'package:daily_cash/Features/home/presentation/views/widgets/today_summary.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/total_amoungt.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/welcome_message_and_profile_info.dart';
+import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:flutter/material.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -14,7 +15,7 @@ class HomeViewBody extends StatelessWidget {
       child: Column(
         children: [
           WelcomeMessageAndProfileInfo(
-            title: 'حمزة الوجيه',
+            title: Prefs.getString('userName') ?? 'مستخدم جديد',
             subTitle: 'كيف حالك اليوم؟',
           ),
           const SizedBox(height: 16),
