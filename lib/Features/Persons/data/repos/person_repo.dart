@@ -7,5 +7,5 @@ abstract class PersonRepo {
     required String name,
     required String type,
   });
-  Future<Either<Failure, Person>> getAllPersons();
+  Future<Either<Failure, List<Person>>> getAllPersons();
 }
