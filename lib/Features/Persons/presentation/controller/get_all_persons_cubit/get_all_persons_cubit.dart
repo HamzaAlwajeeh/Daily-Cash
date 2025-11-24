@@ -22,14 +22,15 @@ class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
     );
   }
 
-  // searchedNotes(String query) {
-  //   var notesBox = Hive.box<NoteModel>(kNotesBox);
-  //   notes =
-  //       notesBox.values
-  //           .where(
-  //             (note) => note.title.toLowerCase().contains(query.toLowerCase()),
-  //           )
-  //           .toList();
-  //   emit(NotesSuccess());
-  // }
+  searchPerson(String query) {
+    var persons =
+        personsList
+            .where(
+              (person) => person.name.toLowerCase().contains(
+                query.toLowerCase(),
+              ), // Replace 'correctPropertyName' with the actual property name
+            )
+            .toList();
+    emit(GetAllPersonsSuccess(persons: persons));
+  }
 }

@@ -38,6 +38,11 @@ class _PersonsHomeViewBodyState extends State<PersonsHomeViewBody> {
             children: [
               Text('المشاريع والعمال', style: TextStyles.bold20),
               CustomTextFeild(
+                onChanged: (value) {
+                  BlocProvider.of<GetAllPersonsCubit>(
+                    context,
+                  ).searchPerson(value);
+                },
                 hintText: 'البحث بالإسم...',
                 suffixIcon: Assets.imagesFilter,
               ),
