@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
+import 'package:daily_cash/Features/Persons/data/models/person.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_details_list_view.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_details_summary.dart';
 import 'package:daily_cash/Features/home/data/models/operation_model.dart';
@@ -12,7 +12,7 @@ import 'package:flutter_svg/svg.dart';
 
 class PersonDetailsBody extends StatefulWidget {
   const PersonDetailsBody({super.key, required this.person});
-  final PersonModel person;
+  final Person person;
 
   @override
   State<PersonDetailsBody> createState() => _PersonDetailsBodyState();

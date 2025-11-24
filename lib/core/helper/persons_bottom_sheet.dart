@@ -1,10 +1,11 @@
-import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
-import 'package:daily_cash/Features/Persons/data/test_person_data.dart';
+import 'package:daily_cash/Features/Persons/data/models/person.dart';
+import 'package:daily_cash/Features/Persons/presentation/controller/get_all_persons_cubit/get_all_persons_cubit.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/persons_list_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/widgets/custom_text_feild.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void showPersonsBottomSheet(context) => showModalBottomSheet(
   backgroundColor: AppColors.textFeilSecondaryColor,
@@ -24,11 +25,11 @@ class PersonsBottomSheet extends StatefulWidget {
 }
 
 class _PersonsBottomSheetState extends State<PersonsBottomSheet> {
-  List<PersonModel> persons = [];
+  List<Person> persons = [];
 
   @override
   void initState() {
-    persons = getPersons();
+    persons = BlocProvider.of<GetAllPersonsCubit>(context).personsList;
     super.initState();
   }
 

@@ -37,10 +37,13 @@ class PersonRepoImpl implements PersonRepo {
         body: null,
         token: Prefs.getString('token'),
       );
+
       List<Person> persons = [];
-      for (var personJson in data['data']) {
+
+      for (var personJson in data) {
         persons.add(Person.fromJson(personJson));
       }
+
       return Right(persons);
     } catch (e) {
       if (e is DioException) {

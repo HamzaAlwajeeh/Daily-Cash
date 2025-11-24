@@ -45,7 +45,7 @@ class _PersonTypeState extends State<PersonType> {
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: SvgPicture.asset(
-                  widget.type == 'employee'
+                  widget.type == 'worker'
                       ? Assets.imagesEmployee
                       : Assets.imagesProject,
                 ),

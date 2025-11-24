@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
   PersonRepo personRepo;
-  List<Person> persons = [];
+  List<Person> personsList = [];
   GetAllPersonsCubit(this.personRepo) : super(GetAllPersonsInitial());
 
   Future<void> getAllPersons() async {
@@ -15,10 +15,21 @@ class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
     result.fold(
       (failure) =>
           emit(GetAllPersonsFailure(errorMessage: failure.errorMessage)),
-      (person) {
-        persons = person;
+      (persons) {
+        personsList = persons;
         emit(GetAllPersonsSuccess(persons: persons));
       },
     );
   }
+
+  // searchedNotes(String query) {
+  //   var notesBox = Hive.box<NoteModel>(kNotesBox);
+  //   notes =
+  //       notesBox.values
+  //           .where(
+  //             (note) => note.title.toLowerCase().contains(query.toLowerCase()),
+  //           )
+  //           .toList();
+  //   emit(NotesSuccess());
+  // }
 }

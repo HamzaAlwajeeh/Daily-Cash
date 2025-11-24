@@ -1,3 +1,5 @@
+import 'package:daily_cash/Features/Persons/data/repos/person_repo_impl.dart';
+import 'package:daily_cash/Features/Persons/presentation/controller/get_all_persons_cubit/get_all_persons_cubit.dart';
 import 'package:daily_cash/Features/Splash/presentation/views/splash_view.dart';
 import 'package:daily_cash/Features/auth/data/repos/auth_repo_impl.dart';
 import 'package:daily_cash/Features/auth/presentation/controller/auth_cubit/auth_cubit.dart';
@@ -41,8 +43,12 @@ class DailyCash extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<AuthCubit>(
-          create: (_) => AuthCubit(getIt<AuthRepoImpl>()),
+        BlocProvider(create: (_) => AuthCubit(getIt<AuthRepoImpl>())),
+        BlocProvider(
+          lazy: false,
+          create:
+              (_) =>
+                  GetAllPersonsCubit(getIt<PersonRepoImpl>())..getAllPersons(),
         ),
       ],
       child: MultiProvider(

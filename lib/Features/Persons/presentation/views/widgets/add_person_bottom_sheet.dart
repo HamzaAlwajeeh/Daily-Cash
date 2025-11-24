@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:daily_cash/Features/Persons/presentation/controller/add_person_cubit/add_person_cubit.dart';
 import 'package:daily_cash/Features/Persons/presentation/controller/add_person_cubit/add_person_state.dart';
+import 'package:daily_cash/Features/Persons/presentation/controller/get_all_persons_cubit/get_all_persons_cubit.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_type.dart';
 import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
 import 'package:daily_cash/core/helper/custom_toast_bar.dart';
@@ -46,6 +47,7 @@ class _AddPersonBottomSheetState extends State<AddPersonBottomSheet> {
             backgroundColor: AppColors.textFeilSecondaryColor,
             textColor: AppColors.primaryColor,
           );
+          BlocProvider.of<GetAllPersonsCubit>(context).getAllPersons();
           Navigator.pop(context);
         } else if (state is AddPersonFailure) {
           customToastBar(

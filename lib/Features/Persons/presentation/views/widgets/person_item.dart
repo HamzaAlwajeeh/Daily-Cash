@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
+import 'package:daily_cash/Features/Persons/data/models/person.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
 import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
@@ -17,7 +17,7 @@ class PersonItem extends StatelessWidget {
     this.isBottomSheet,
   });
   final bool? isBottomSheet;
-  final PersonModel person;
+  final Person person;
   final bool? hasSwitch;
 
   @override
@@ -55,7 +55,7 @@ class PersonItem extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: SvgPicture.asset(
-                  person.type == 'employee'
+                  person.type == 'worker'
                       ? Assets.imagesEmployee
                       : Assets.imagesProject,
                 ),

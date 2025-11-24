@@ -7,21 +7,23 @@ class ApiService {
   final Dio dio;
   ApiService(this.dio);
 
-  Future<Map<String, dynamic>> get({
-    required endPoint,
+  Future<dynamic> get({
+    required String endPoint,
     @required dynamic body,
     @required String? token,
   }) async {
     Map<String, String> headers = {};
 
-    // headers.addAll({'Content-Type': 'application/json'});
-    // headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
     headers.addAll({'Accept': 'application/json'});
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
     }
 
-    var response = await dio.get('$_baseUrl/$endPoint');
+    var response = await dio.get(
+      '$_baseUrl/$endPoint',
+      options: Options(headers: headers),
+    );
+
     return response.data;
   }
 

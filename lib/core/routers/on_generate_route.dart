@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/Persons/data/models/person_model.dart';
+import 'package:daily_cash/Features/Persons/data/models/person.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/person_details_view.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/persons_home_view.dart';
 import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
@@ -70,7 +70,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case PersonsHomeView.routeName:
       return MaterialPageRoute(builder: (context) => const PersonsHomeView());
     case PersonDetailsView.routeName:
-      final person = settings.arguments as PersonModel;
+      final person = settings.arguments as Person;
       return MaterialPageRoute(
         builder: (context) => PersonDetailsView(person: person),
       );
