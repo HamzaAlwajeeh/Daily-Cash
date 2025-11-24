@@ -1,42 +1,33 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 class User {
+  int id;
   String name;
   String email;
-  DateTime? updatedAt;
-  DateTime? createdAt;
-  int id;
+  String token;
 
   User({
+    required this.id,
     required this.name,
     required this.email,
-    this.updatedAt,
-    this.createdAt,
-    required this.id,
+    required this.token,
   });
 
   @override
   String toString() {
-    return 'User(name: $name, email: $email, updatedAt: $updatedAt, createdAt: $createdAt, id: $id)';
+    return 'User(id: $id , name: $name, email: $email, token: $token)';
   }
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-    name: json['name'] as String,
-    email: json['email'] as String,
-    updatedAt:
-        json['updated_at'] == null
-            ? null
-            : DateTime.parse(json['updated_at'] as String),
-    createdAt:
-        json['created_at'] == null
-            ? null
-            : DateTime.parse(json['created_at'] as String),
-    id: json['id'] as int,
+    id: json['user_id'] as int,
+    name: json['user_name'] as String,
+    email: json['user_email'] as String,
+    token: json['access_token'] as String,
   );
 
   Map<String, dynamic> toJson() => {
+    'id': id,
     'name': name,
     'email': email,
-    'updated_at': updatedAt?.toIso8601String(),
-    'created_at': createdAt?.toIso8601String(),
-    'id': id,
+    'token': token,
   };
 }

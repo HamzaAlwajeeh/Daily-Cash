@@ -19,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
     );
     result.fold(
       (failure) => emit(SingUpFailure(errorMessage: failure.errorMessage)),
-      (user) => emit(SingUpSuccess(user: user)),
+      (user) => emit(SingUpSuccess()),
     );
   }
 
@@ -29,6 +29,15 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(LoginFailure(errorMessage: failure.errorMessage)),
       (user) => emit(LoginSuccess(user: user)),
+    );
+  }
+
+  Future<void> logout() async {
+    emit(LogoutLoading());
+    var result = await authRepo.logOut();
+    result.fold(
+      (failure) => emit(LogoutFailure(errorMessage: failure.errorMessage)),
+      (user) => emit(LogoutSuccess()),
     );
   }
 }

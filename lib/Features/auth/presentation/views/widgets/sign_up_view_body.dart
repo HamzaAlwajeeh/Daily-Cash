@@ -50,11 +50,11 @@ class _LoginViewBodyState extends State<SignUpViewBody> {
             textColor: AppColors.primaryColor,
           );
         } else if (state is SingUpSuccess) {
-          log(state.user.toString());
+          log('User Registered Successfully');
           Navigator.pushReplacementNamed(context, LoginView.routeName);
           customToastBar(
             context: context,
-            message: 'مرحباً ${state.user.name}, تم إنشاء حسابك بنجاح!',
+            message: 'مرحباً , تم إنشاء حسابك بنجاح! , قم بتسجيل الدخول',
             icon: Icons.check_rounded,
             backgroundColor: AppColors.textFeilSecondaryColor,
             textColor: AppColors.primaryColor,

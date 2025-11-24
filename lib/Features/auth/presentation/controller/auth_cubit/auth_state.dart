@@ -12,11 +12,7 @@ final class SingUpFailure extends AuthState {
   SingUpFailure({required this.errorMessage});
 }
 
-final class SingUpSuccess extends AuthState {
-  final User user;
-
-  SingUpSuccess({required this.user});
-}
+final class SingUpSuccess extends AuthState {}
 
 final class LoginLoading extends AuthState {}
 
@@ -31,3 +27,13 @@ final class LoginSuccess extends AuthState {
 
   LoginSuccess({required this.user});
 }
+
+final class LogoutLoading extends AuthState {}
+
+final class LogoutFailure extends AuthState {
+  final String errorMessage;
+
+  LogoutFailure({required this.errorMessage});
+}
+
+final class LogoutSuccess extends AuthState {}

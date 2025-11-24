@@ -1,5 +1,6 @@
 import 'package:daily_cash/Features/auth/data/models/user.dart';
 import 'package:daily_cash/Features/auth/data/repos/auth_repo.dart';
+import 'package:daily_cash/core/constants/constants.dart';
 import 'package:daily_cash/core/errors/failuar.dart';
 import 'package:daily_cash/core/services/api_service.dart';
 import 'package:dartz/dartz.dart';
@@ -20,7 +21,7 @@ class AuthRepoImpl implements AuthRepo {
         body: {'email': email, 'password': password},
         token: null,
       );
-      User user = User.fromJson(data['User']);
+      User user = User.fromJson(data);
       return Right(user);
     } catch (e) {
       if (e is DioException) {
@@ -31,19 +32,31 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, User>> register({
+  Future<Either<Failure, String>> register({
     required String name,
     required String email,
     required String password,
   }) async {
     try {
-      var data = await apiService.post(
+      await apiService.post(
         endPoint: 'register',
         body: {'name': name, 'email': email, 'password': password},
         token: null,
       );
-      User user = User.fromJson(data['User']);
-      return Right(user);
+      return right('User Created Successfully');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> logOut() async {
+    try {
+      await apiService.post(endPoint: 'logout', body: null, token: kUserToken);
+      return right('Logged Out Successfully');
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));

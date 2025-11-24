@@ -6,6 +6,7 @@ import 'package:daily_cash/Features/auth/presentation/views/sign_up_view.dart';
 import 'package:daily_cash/Features/auth/presentation/views/widgets/have_an_account.dart';
 import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
 import 'package:daily_cash/core/helper/custom_toast_bar.dart';
+import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -43,6 +44,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           );
         } else if (state is LoginSuccess) {
           log(state.user.toString());
+          Prefs.setString('token', state.user.token);
           Navigator.pushReplacementNamed(context, BaseView.routeName);
           customToastBar(
             context: context,

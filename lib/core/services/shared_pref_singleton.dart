@@ -24,7 +24,8 @@ class Prefs {
   }
 
   static getString(String key) {
-    return inistance.getString(key) ?? false;
+    String? value = inistance.getString(key) ?? '';
+    return value;
   }
 
   static removeString(String key) {
