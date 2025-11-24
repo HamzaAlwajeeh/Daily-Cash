@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:daily_cash/Features/home/data/repos/home_repo.dart';
-import 'package:daily_cash/Features/home/presentation/controller/edit_operation_cubit/add_operation_state.dart';
+import 'package:daily_cash/Features/home/presentation/controller/edit_operation_cubit/edit_operation_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EditOperationCubit extends Cubit<EditOperationState> {
