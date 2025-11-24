@@ -106,13 +106,6 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
                     spacing: 30,
                     children: [
                       CustomTextFormFeild(
-                        controller: operationTypeController,
-                        readOnly: true,
-                        hintText: 'نوع العملية',
-                        keyboardType: TextInputType.text,
-                        onSaved: (value) {},
-                      ),
-                      CustomTextFormFeild(
                         controller: dateController,
                         readOnly: true,
                         isCalender: true,

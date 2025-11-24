@@ -1,5 +1,6 @@
 import 'package:daily_cash/Features/Persons/data/models/person.dart';
 import 'package:daily_cash/Features/Persons/presentation/controller/get_all_persons_cubit/get_all_persons_cubit.dart';
+import 'package:daily_cash/Features/Persons/presentation/controller/get_all_persons_cubit/get_all_persons_state.dart';
 import 'package:daily_cash/Features/Persons/presentation/views/widgets/persons_list_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
@@ -29,31 +30,46 @@ class _PersonsBottomSheetState extends State<PersonsBottomSheet> {
 
   @override
   void initState() {
-    persons = BlocProvider.of<GetAllPersonsCubit>(context).personsList;
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40, right: 16, left: 16),
-      child: SizedBox(
-        height: 500,
-        child: Column(
-          spacing: 16,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            CustomTextFeild(
-              hintText: 'البحث بالإسم...',
-              suffixIcon: Assets.imagesFilter,
-              fillColor: AppColors.textFeilColor,
+    return BlocBuilder<GetAllPersonsCubit, GetAllPersonsState>(
+      builder: (context, state) {
+        List<Person> persons =
+            BlocProvider.of<GetAllPersonsCubit>(context).personsList;
+        return Padding(
+          padding: EdgeInsets.only(
+            top: 40,
+            right: 16,
+            left: 16,
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: SizedBox(
+            height: 500,
+            child: Column(
+              spacing: 16,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CustomTextFeild(
+                  hintText: 'البحث بالإسم...',
+                  suffixIcon: Assets.imagesFilter,
+                  fillColor: AppColors.textFeilColor,
+                  onChanged: (value) {
+                    BlocProvider.of<GetAllPersonsCubit>(
+                      context,
+                    ).searchPerson(value);
+                  },
+                ),
+                Expanded(
+                  child: PersonsListView(isBottomSheet: true, persons: persons),
+                ),
+              ],
             ),
-            Expanded(
-              child: PersonsListView(isBottomSheet: true, persons: persons),
-            ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

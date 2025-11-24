@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
   PersonRepo personRepo;
   List<Person> personsList = [];
+  List<Person> originalPersons = [];
+
   GetAllPersonsCubit(this.personRepo) : super(GetAllPersonsInitial());
 
   Future<void> getAllPersons() async {
@@ -16,21 +18,26 @@ class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
       (failure) =>
           emit(GetAllPersonsFailure(errorMessage: failure.errorMessage)),
       (persons) {
+        originalPersons = persons;
         personsList = persons;
         emit(GetAllPersonsSuccess(persons: persons));
       },
     );
   }
 
-  searchPerson(String query) {
-    var persons =
-        personsList
-            .where(
-              (person) => person.name.toLowerCase().contains(
-                query.toLowerCase(),
-              ), // Replace 'correctPropertyName' with the actual property name
-            )
-            .toList();
-    emit(GetAllPersonsSuccess(persons: persons));
+  void searchPerson(String query) {
+    if (query.isEmpty) {
+      personsList = originalPersons;
+    } else {
+      personsList =
+          originalPersons
+              .where(
+                (person) =>
+                    person.name.toLowerCase().contains(query.toLowerCase()),
+              )
+              .toList();
+    }
+
+    emit(GetAllPersonsSuccess(persons: personsList));
   }
 }
