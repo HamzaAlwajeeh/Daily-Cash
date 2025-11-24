@@ -30,15 +30,18 @@ class PersonRepoImpl implements PersonRepo {
   }
 
   @override
-  Future<Either<Failure, Person>> getAllPersons() async {
+  Future<Either<Failure, List<Person>>> getAllPersons() async {
     try {
       var data = await apiService.get(
         endPoint: 'entities',
         body: null,
         token: Prefs.getString('token'),
       );
-      Person person = Person.fromJson(data);
-      return Right(person);
+      List<Person> persons = [];
+      for (var personJson in data['data']) {
+        persons.add(Person.fromJson(personJson));
+      }
+      return Right(persons);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
