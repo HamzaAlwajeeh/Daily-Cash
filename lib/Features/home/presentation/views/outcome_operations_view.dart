@@ -19,7 +19,7 @@ class _OutcomeOperationsViewState extends State<OutcomeOperationsView> {
   void initState() {
     allOperations = operationsData();
     for (var operation in allOperations) {
-      if (operation.type == 'outcome') {
+      if (operation.type == 'expense') {
         outcomeOperations.add(operation);
       }
     }

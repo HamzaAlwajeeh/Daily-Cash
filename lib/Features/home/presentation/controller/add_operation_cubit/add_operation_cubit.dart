@@ -9,7 +9,7 @@ class AddOperationCubit extends Cubit<AddOperationState> {
 
   Future<void> addOperation({
     required String type,
-    required DateTime date,
+    required String date,
     required double amount,
     required String description,
     required int personId,

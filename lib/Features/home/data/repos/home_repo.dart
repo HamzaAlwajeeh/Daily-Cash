@@ -6,7 +6,7 @@ abstract class HomeRepo {
   Future<Either<Failure, List<Operation>>> getAllOperations();
   Future<Either<Failure, String>> addOperation({
     required String type,
-    required DateTime date,
+    required String date,
     required double amount,
     required String description,
     required int personId,

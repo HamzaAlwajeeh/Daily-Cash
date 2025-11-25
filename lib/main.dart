@@ -21,19 +21,6 @@ void main() async {
   await Prefs.init();
   runApp(DailyCash());
   Bloc.observer = SimpleBlocObserver();
-
-  //register testing => Done
-
-  // AuthRepoImpl authRepoImpl = AuthRepoImpl(ApiService(Dio()));
-  // Either<Failure, User> user = await authRepoImpl.register(
-  //   name: 'Hamza',
-  //   email: 'ha20mz10@gmail.com',
-  //   password: '12345678',
-  // );
-  // user.fold(
-  //   (failure) => log('Error: ${failure.errorMessage}'),
-  //   (user) => log('Registered User: ${user.toString()}'),
-  // );
 }
 
 class DailyCash extends StatelessWidget {
