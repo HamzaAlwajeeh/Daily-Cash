@@ -29,7 +29,7 @@ class OutcomeOperationsViewBody extends StatelessWidget {
           ),
           outcomeOperations.isEmpty
               ? NoRecentOperatiosWidget()
-              : OperationsListView(operations: outcomeOperations),
+              : OperationsListView(operations: []),
         ],
       ),
     );

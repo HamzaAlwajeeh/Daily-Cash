@@ -44,14 +44,14 @@ class HomeRepoImpl implements HomeRepo {
   Future<Either<Failure, String>> editOperation({
     required int id,
     required String type,
-    required DateTime date,
+    required String date,
     required double amount,
     required String description,
     required int personId,
   }) async {
     try {
-      await apiService.post(
-        endPoint: 'revenues-expenses/$id/',
+      await apiService.put(
+        endPoint: 'revenues-expenses/$id',
         body: {
           'type': type,
           'date': date,

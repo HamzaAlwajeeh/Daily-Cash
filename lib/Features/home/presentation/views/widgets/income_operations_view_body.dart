@@ -29,7 +29,7 @@ class IncomeOperationsViewBody extends StatelessWidget {
           ),
           incomeOperations.isEmpty
               ? NoRecentOperatiosWidget()
-              : OperationsListView(operations: incomeOperations),
+              : OperationsListView(operations: []),
         ],
       ),
     );

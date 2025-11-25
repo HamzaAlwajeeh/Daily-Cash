@@ -8,9 +8,7 @@ import 'package:daily_cash/Features/Restrictions/presentation/views/restrictions
 import 'package:daily_cash/Features/Splash/presentation/views/splash_view.dart';
 import 'package:daily_cash/Features/auth/presentation/views/login_view.dart';
 import 'package:daily_cash/Features/auth/presentation/views/sign_up_view.dart';
-import 'package:daily_cash/Features/home/data/models/operation_model.dart';
-import 'package:daily_cash/Features/home/data/repos/home_repo_impl.dart';
-import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
+import 'package:daily_cash/Features/home/data/models/operation.dart';
 import 'package:daily_cash/Features/home/presentation/views/add_operation_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/all_operations_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/edit_operation_view.dart';
@@ -20,10 +18,8 @@ import 'package:daily_cash/Features/home/presentation/views/outcome_operations_v
 import 'package:daily_cash/Features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:daily_cash/Features/profile/presentation/views/about_us_view.dart';
 import 'package:daily_cash/Features/profile/presentation/views/profile_view.dart';
-import 'package:daily_cash/core/services/service_locator.dart';
 import 'package:daily_cash/core/widgets/base_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -41,17 +37,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
 
     //Base of all Screens
     case BaseView.routeName:
-      return MaterialPageRoute(
-        builder:
-            (context) => MultiBlocProvider(
-              providers: [
-                BlocProvider(
-                  create: (_) => GetAllOperationsCubit(getIt<HomeRepoImpl>()),
-                ),
-              ],
-              child: const BaseView(),
-            ),
-      );
+      return MaterialPageRoute(builder: (context) => const BaseView());
 
     // home routes
     case HomeView.routeName:
@@ -69,7 +55,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case AddOperationView.routeName:
       return MaterialPageRoute(builder: (context) => AddOperationView());
     case EditOperationView.routeName:
-      final operation = settings.arguments as OperationModel;
+      final operation = settings.arguments as Operation;
       return MaterialPageRoute(
         builder: (context) => EditOperationView(operation: operation),
       );

@@ -5,6 +5,7 @@ class Operation {
   String amount;
   String description;
   int entityId;
+  String entityName;
   int? createdBy;
   DateTime? createdAt;
   DateTime? updatedAt;
@@ -16,6 +17,7 @@ class Operation {
     required this.amount,
     required this.description,
     required this.entityId,
+    required this.entityName,
     this.createdBy,
     this.createdAt,
     this.updatedAt,
@@ -23,7 +25,7 @@ class Operation {
 
   @override
   String toString() {
-    return 'Operation(id: $id, type: $type, date: $date, amount: $amount, description: $description, entityId: $entityId, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Operation(id: $id, type: $type, date: $date, amount: $amount, description: $description, entityId: $entityId, createdBy: $createdBy, createdAt: $createdAt, updatedAt: $updatedAt , entityName: $entityName)';
   }
 
   factory Operation.fromJson(Map<String, dynamic> json) => Operation(
@@ -32,7 +34,8 @@ class Operation {
     date: json['date'] as String,
     amount: json['amount'] as String,
     description: json['description'] as String,
-    entityId: json['entity_id'] as int,
+    entityId: json['entity']['id'] as int,
+    entityName: json['entity']['name'] as String,
     createdBy: json['created_by'] as int?,
     createdAt:
         json['created_at'] == null

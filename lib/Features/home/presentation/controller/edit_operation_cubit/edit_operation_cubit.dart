@@ -10,7 +10,7 @@ class EditOperationCubit extends Cubit<EditOperationState> {
   Future<void> editOperation({
     required int id,
     required String type,
-    required DateTime date,
+    required String date,
     required double amount,
     required String description,
     required int personId,

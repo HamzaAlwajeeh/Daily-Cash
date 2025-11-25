@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/home/data/models/operation_model.dart';
+import 'package:daily_cash/Features/home/data/models/operation.dart';
 import 'package:daily_cash/Features/home/presentation/views/edit_operation_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
@@ -13,10 +13,11 @@ class OperationItem extends StatelessWidget {
     required this.operation,
     this.backgroundColor,
   });
-  final OperationModel operation;
+  final Operation operation;
   final Color? backgroundColor;
   @override
   Widget build(BuildContext context) {
+    double amount = double.parse(operation.amount.toString());
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(
@@ -48,13 +49,13 @@ class OperationItem extends StatelessWidget {
                   spacing: 2,
                   children: [
                     Text(
-                      operation.title,
+                      operation.entityName,
                       style: TextStyles.bold16.copyWith(
                         color: AppColors.primaryColor,
                       ),
                     ),
                     Text(
-                      operation.details,
+                      operation.description,
                       style: TextStyles.regular14,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -80,7 +81,7 @@ class OperationItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    NumberFormat('#,###').format(operation.amount.round()),
+                    NumberFormat('#,###').format(amount),
                     style: TextStyles.bold16,
                   ),
                 ),

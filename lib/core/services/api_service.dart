@@ -57,7 +57,7 @@ class ApiService {
   }) async {
     Map<String, String> headers = {};
 
-    headers.addAll({'Content-Type': 'application/x-www-form-urlencoded'});
+    headers.addAll({'Content-Type': 'application/json'});
     headers.addAll({'Accept': 'application/json'});
     if (token != null) {
       headers.addAll({'Authorization': 'Bearer $token'});
@@ -68,7 +68,6 @@ class ApiService {
       data: body,
       options: Options(headers: headers),
     );
-
     return response.data;
   }
 
