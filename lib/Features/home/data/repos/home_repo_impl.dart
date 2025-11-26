@@ -139,4 +139,21 @@ class HomeRepoImpl implements HomeRepo {
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deleteOperation({required int id}) async {
+    try {
+      await apiService.delete(
+        endPoint: 'revenues-expenses/$id',
+        token: Prefs.getString('token'),
+      );
+
+      return right('Operation Deleted Successfully');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
 }

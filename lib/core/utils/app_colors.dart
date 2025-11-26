@@ -10,4 +10,5 @@ abstract class AppColors {
   static const Color buttonsThirdColor = Color(0xffFFB2C4);
   static const Color green = Color(0xffACF2B0);
   static const Color customRed = Color(0xffFDC3C4);
+  static const Color red = Color(0xFFFF9D9E);
 }

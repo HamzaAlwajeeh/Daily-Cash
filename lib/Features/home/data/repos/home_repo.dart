@@ -21,4 +21,5 @@ abstract class HomeRepo {
   });
   Future<Either<Failure, List<Operation>>> getIncomeOperations();
   Future<Either<Failure, List<Operation>>> getOutcomeOperations();
+  Future<Either<Failure, String>> deleteOperation({required int id});
 }
