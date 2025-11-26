@@ -2,6 +2,8 @@ import 'package:daily_cash/Features/home/data/models/operation.dart';
 import 'package:daily_cash/Features/home/presentation/controller/edit_operation_cubit/edit_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/edit_operation_cubit/edit_operation_state.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit%20copy/get_outcom_operations_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
 import 'package:daily_cash/core/helper/custom_toast_bar.dart';
@@ -78,6 +80,8 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
             textColor: AppColors.primaryColor,
           );
           context.read<GetAllOperationsCubit>().getAllOperationss();
+          context.read<GetIncomOperationsCubit>().getIncomOperationss();
+          context.read<GetOutcomOperationsCubit>().getOutcomOperationss();
           Navigator.pop(context);
         } else if (state is EditOperationFailure) {
           customToastBar(

@@ -1,7 +1,7 @@
-import 'package:daily_cash/Features/home/data/models/operation_model.dart';
-import 'package:daily_cash/Features/home/data/test_data.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/income_operations_view_body.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class IncomeOperationsView extends StatefulWidget {
   const IncomeOperationsView({super.key});
@@ -12,24 +12,14 @@ class IncomeOperationsView extends StatefulWidget {
 }
 
 class _IncomeOperationsViewState extends State<IncomeOperationsView> {
-  List<OperationModel> incomeOperations = [];
-  List<OperationModel> allOperations = [];
-
   @override
   void initState() {
-    allOperations = operationsData();
-    for (var operation in allOperations) {
-      if (operation.type == 'income') {
-        incomeOperations.add(operation);
-      }
-    }
+    BlocProvider.of<GetIncomOperationsCubit>(context).getIncomOperationss();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: IncomeOperationsViewBody(incomeOperations: incomeOperations),
-    );
+    return Scaffold(body: IncomeOperationsViewBody());
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +25,11 @@ class ApiService {
       '$_baseUrl/$endPoint',
       options: Options(headers: headers),
     );
-
+    log('''
+========================================
+    ${response.data}
+========================================
+    ''');
     return response.data;
   }
 
