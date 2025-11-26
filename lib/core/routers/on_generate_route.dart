@@ -16,6 +16,7 @@ import 'package:daily_cash/Features/home/presentation/views/home_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/income_operations_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/outcome_operations_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/today_income_operations_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/today_outcome_operations_view.dart';
 import 'package:daily_cash/Features/onBoarding/presentation/views/on_boarding_view.dart';
 import 'package:daily_cash/Features/profile/presentation/views/about_us_view.dart';
 import 'package:daily_cash/Features/profile/presentation/views/profile_view.dart';
@@ -56,6 +57,10 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case OutcomeOperationsView.routeName:
       return MaterialPageRoute(
         builder: (context) => const OutcomeOperationsView(),
+      );
+    case TodayOutcomeOperationsView.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const TodayOutcomeOperationsView(),
       );
     case AddOperationView.routeName:
       return MaterialPageRoute(builder: (context) => AddOperationView());

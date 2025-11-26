@@ -29,6 +29,7 @@ class GetIncomOperationsCubit extends Cubit<GetIncomOperationsState> {
 
   void getTodayIncomeOperations() {
     todayOperations.clear();
+    searchTodayOperations.clear();
     String today = DateTime.now().toIso8601String().split('T').first;
 
     for (var item in operations) {
@@ -43,23 +44,6 @@ class GetIncomOperationsCubit extends Cubit<GetIncomOperationsState> {
 
   void searchOperation(String query) {
     if (query.isEmpty) {
-      searchTodayOperations = todayOperations;
-    } else {
-      searchTodayOperations =
-          todayOperations
-              .where(
-                (person) => person.entityName.toLowerCase().contains(
-                  query.toLowerCase(),
-                ),
-              )
-              .toList();
-    }
-
-    emit(GetIncomOperationsSuccess(operations: searchList));
-  }
-
-  void searchTodayIncomeOperation(String query) {
-    if (query.isEmpty) {
       searchList = operations;
     } else {
       searchList =
@@ -73,5 +57,22 @@ class GetIncomOperationsCubit extends Cubit<GetIncomOperationsState> {
     }
 
     emit(GetIncomOperationsSuccess(operations: searchList));
+  }
+
+  void searchTodayIncomeOperation(String query) {
+    if (query.isEmpty) {
+      searchTodayOperations = todayOperations;
+    } else {
+      searchTodayOperations =
+          todayOperations
+              .where(
+                (person) => person.entityName.toLowerCase().contains(
+                  query.toLowerCase(),
+                ),
+              )
+              .toList();
+    }
+
+    emit(GetIncomOperationsSuccess(operations: searchTodayOperations));
   }
 }

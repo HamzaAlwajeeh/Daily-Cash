@@ -8,6 +8,8 @@ class GetOutcomOperationsCubit extends Cubit<GetOutcomOperationsState> {
   HomeRepo homeRepo;
   List<Operation> operations = [];
   List<Operation> searchList = [];
+  List<Operation> todayOperations = [];
+  List<Operation> searchTodayOperations = [];
   GetOutcomOperationsCubit(this.homeRepo) : super(GetOutcomOperationsInitial());
 
   Future<void> getOutcomOperationss() async {
@@ -19,9 +21,25 @@ class GetOutcomOperationsCubit extends Cubit<GetOutcomOperationsState> {
       (operations) {
         this.operations = operations;
         searchList = operations;
+        getTodayOutcomeOperations();
         emit(GetOutcomOperationsSuccess(operations: operations));
       },
     );
+  }
+
+  void getTodayOutcomeOperations() {
+    todayOperations.clear();
+    searchTodayOperations.clear();
+    String today = DateTime.now().toIso8601String().split('T').first;
+
+    for (var item in operations) {
+      String createdDate = item.createdAt.split('T').first;
+
+      if (createdDate == today) {
+        todayOperations.add(item);
+        searchTodayOperations.add(item);
+      }
+    }
   }
 
   void searchOperation(String query) {
@@ -39,5 +57,22 @@ class GetOutcomOperationsCubit extends Cubit<GetOutcomOperationsState> {
     }
 
     emit(GetOutcomOperationsSuccess(operations: searchList));
+  }
+
+  void searchTodayOutcomeOperation(String query) {
+    if (query.isEmpty) {
+      searchTodayOperations = todayOperations;
+    } else {
+      searchTodayOperations =
+          todayOperations
+              .where(
+                (person) => person.entityName.toLowerCase().contains(
+                  query.toLowerCase(),
+                ),
+              )
+              .toList();
+    }
+
+    emit(GetOutcomOperationsSuccess(operations: searchTodayOperations));
   }
 }

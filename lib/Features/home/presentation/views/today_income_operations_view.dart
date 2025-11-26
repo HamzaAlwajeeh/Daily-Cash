@@ -1,5 +1,5 @@
 import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_cubit.dart';
-import 'package:daily_cash/Features/home/presentation/views/widgets/todat_income_operations.body.dart';
+import 'package:daily_cash/Features/home/presentation/views/widgets/todat_income_operations_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
