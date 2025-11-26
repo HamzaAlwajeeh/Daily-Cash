@@ -1,3 +1,4 @@
+import 'package:daily_cash/Features/home/data/models/cash_box.dart';
 import 'package:daily_cash/Features/home/data/models/operation.dart';
 import 'package:daily_cash/core/errors/failuar.dart';
 import 'package:dartz/dartz.dart';
@@ -22,4 +23,5 @@ abstract class HomeRepo {
   Future<Either<Failure, List<Operation>>> getIncomeOperations();
   Future<Either<Failure, List<Operation>>> getOutcomeOperations();
   Future<Either<Failure, String>> deleteOperation({required int id});
+  Future<Either<Failure, CashBox>> getCashBox();
 }

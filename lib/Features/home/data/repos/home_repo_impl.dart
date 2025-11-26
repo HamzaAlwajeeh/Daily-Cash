@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:daily_cash/Features/home/data/models/cash_box.dart';
 import 'package:daily_cash/Features/home/data/models/operation.dart';
 import 'package:daily_cash/Features/home/data/repos/home_repo.dart';
 import 'package:daily_cash/core/errors/failuar.dart';
@@ -149,6 +150,26 @@ class HomeRepoImpl implements HomeRepo {
       );
 
       return right('Operation Deleted Successfully');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, CashBox>> getCashBox() async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'cashbox',
+        body: null,
+        token: Prefs.getString('token'),
+      );
+
+      CashBox cashBox = CashBox.fromJson(data);
+
+      return right(cashBox);
     } catch (e) {
       if (e is DioException) {
         return left(ServerFailure.fromDioException(e));
