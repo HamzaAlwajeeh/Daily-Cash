@@ -19,7 +19,7 @@ class AllOperationsViewBody extends StatelessWidget {
     return BlocBuilder<GetAllOperationsCubit, GetAllOperationsState>(
       builder: (context, state) {
         List<Operation> operations =
-            BlocProvider.of<GetAllOperationsCubit>(context).operations;
+            BlocProvider.of<GetAllOperationsCubit>(context).searchList;
         return Padding(
           padding: EdgeInsets.only(left: 16, right: 16, top: 40),
           child: Column(
@@ -30,18 +30,23 @@ class AllOperationsViewBody extends StatelessWidget {
               CustomTextFeild(
                 hintText: 'البحث عن ...',
                 suffixIcon: Assets.imagesFilter,
+                onChanged: (value) {
+                  BlocProvider.of<GetAllOperationsCubit>(
+                    context,
+                  ).searchOperation(value);
+                },
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: Text('كل العمليات', style: TextStyles.bold16),
               ),
-              state is GetAllOperationsLoading
-                  ? CustomLoadingIndicator()
-                  : state is GetAllOperationsFailure
-                  ? Center(child: Text(state.errorMessage))
-                  : operations.isEmpty
-                  ? NoRecentOperatiosWidget()
-                  : OperationsListView(operations: operations),
+              if (state is GetAllOperationsLoading) CustomLoadingIndicator(),
+              if (state is GetAllOperationsFailure)
+                Center(child: Text(state.errorMessage)),
+              if (state is GetAllOperationsSuccess)
+                operations.isEmpty
+                    ? NoRecentOperatiosWidget()
+                    : OperationsListView(operations: operations),
             ],
           ),
         );

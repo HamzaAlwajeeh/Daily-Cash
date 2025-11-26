@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class GetAllOperationsCubit extends Cubit<GetAllOperationsState> {
   HomeRepo homeRepo;
   List<Operation> operations = [];
+  List<Operation> searchList = [];
   GetAllOperationsCubit(this.homeRepo) : super(GetAllOperationsInitial());
 
   Future<void> getAllOperationss() async {
@@ -17,8 +18,26 @@ class GetAllOperationsCubit extends Cubit<GetAllOperationsState> {
           emit(GetAllOperationsFailure(errorMessage: failure.errorMessage)),
       (operations) {
         this.operations = operations;
+        searchList = operations;
         emit(GetAllOperationsSuccess(operations: operations));
       },
     );
+  }
+
+  void searchOperation(String query) {
+    if (query.isEmpty) {
+      searchList = operations;
+    } else {
+      searchList =
+          operations
+              .where(
+                (person) => person.entityName.toLowerCase().contains(
+                  query.toLowerCase(),
+                ),
+              )
+              .toList();
+    }
+
+    emit(GetAllOperationsSuccess(operations: searchList));
   }
 }
