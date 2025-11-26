@@ -8,6 +8,8 @@ class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
   PersonRepo personRepo;
   List<Person> personsList = [];
   List<Person> originalPersons = [];
+  int employeesCount = 0;
+  int projectsCount = 0;
 
   GetAllPersonsCubit(this.personRepo) : super(GetAllPersonsInitial());
 
@@ -20,6 +22,7 @@ class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
       (persons) {
         originalPersons = persons;
         personsList = persons;
+        getCounts();
         emit(GetAllPersonsSuccess(persons: persons));
       },
     );
@@ -39,5 +42,12 @@ class GetAllPersonsCubit extends Cubit<GetAllPersonsState> {
     }
 
     emit(GetAllPersonsSuccess(persons: personsList));
+  }
+
+  void getCounts() {
+    employeesCount =
+        personsList.where((person) => person.type == 'worker').length;
+    projectsCount =
+        personsList.where((person) => person.type == 'project').length;
   }
 }
