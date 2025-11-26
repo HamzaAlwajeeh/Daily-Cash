@@ -1,4 +1,5 @@
 import 'package:daily_cash/Features/Persons/data/repos/person_repo_impl.dart';
+import 'package:daily_cash/Features/Restrictions/data/repos/restriction_repo_impl.dart';
 import 'package:daily_cash/Features/auth/data/repos/auth_repo_impl.dart';
 import 'package:daily_cash/Features/home/data/repos/home_repo_impl.dart';
 import 'package:daily_cash/core/services/api_service.dart';
@@ -12,5 +13,8 @@ void setUpServiceLocator() {
   getIt.registerSingleton<AuthRepoImpl>(AuthRepoImpl(getIt<ApiService>()));
   getIt.registerSingleton<PersonRepoImpl>(PersonRepoImpl(getIt<ApiService>()));
   getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(getIt<ApiService>()));
+  getIt.registerSingleton<RestrictionRepoImpl>(
+    RestrictionRepoImpl(getIt<ApiService>()),
+  );
   // getIt.registerSingleton<SearchRepoImpl>(SearchRepoImpl(getIt<ApiService>()));
 }

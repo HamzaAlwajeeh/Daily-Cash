@@ -1,11 +1,11 @@
-import 'dart:developer';
-
+import 'package:daily_cash/Features/Restrictions/presentation/views/controller/add_restriction_cubit/add_restriction_cubit.dart';
 import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:daily_cash/core/widgets/custom_text_form_feild.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +24,8 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
   TextEditingController toPersonController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  int debitEntityId = 0;
+  int creditEntityId = 0;
 
   @override
   void dispose() {
@@ -53,10 +55,12 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
         if (personsProvider.type == 'from' &&
             personsProvider.fromPerson != null) {
           fromPersonController.text = personsProvider.fromPerson!.name;
+          debitEntityId = personsProvider.fromPerson!.id;
         }
 
         if (personsProvider.type == 'to' && personsProvider.toPerson != null) {
           toPersonController.text = personsProvider.toPerson!.name;
+          creditEntityId = personsProvider.toPerson!.id;
         }
 
         return Form(
@@ -130,10 +134,16 @@ class _AddRestrictionFormState extends State<AddRestrictionForm> {
                     formKey.currentState!.save();
                     autovalidateMode = AutovalidateMode.disabled;
                     setState(() {});
-                    log(
-                      '${fromPersonController.text} - ${toPersonController.text} - ${dateController.text} - ${amountController.text} - ${descriptionController.text}',
+
+                    BlocProvider.of<AddRestrictionCubit>(
+                      context,
+                    ).addRestriction(
+                      date: dateController.text,
+                      amount: double.parse(amountController.text),
+                      description: descriptionController.text,
+                      debitEntityId: debitEntityId,
+                      creditEntityId: creditEntityId,
                     );
-                    Navigator.pop(context);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});

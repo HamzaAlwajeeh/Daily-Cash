@@ -1,23 +1,10 @@
-import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
-import 'package:daily_cash/Features/Restrictions/data/restrictions_data.dart';
+import 'package:daily_cash/Features/Restrictions/data/models/restriction/restriction.dart';
 import 'package:daily_cash/Features/Restrictions/presentation/views/widgets/restrictions_item.dart';
 import 'package:flutter/material.dart';
 
-class RestrictionsListView extends StatefulWidget {
-  const RestrictionsListView({super.key});
-
-  @override
-  State<RestrictionsListView> createState() => _RestrictionsListViewState();
-}
-
-class _RestrictionsListViewState extends State<RestrictionsListView> {
-  List<RestrictionsModel> restrictions = [];
-  @override
-  void initState() {
-    restrictions = getRestrictions();
-    super.initState();
-  }
-
+class RestrictionsListView extends StatelessWidget {
+  const RestrictionsListView({super.key, required this.restrictions});
+  final List<Restriction> restrictions;
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

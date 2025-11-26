@@ -7,7 +7,7 @@ class AddRestrictionCubit extends Cubit<AddRestrictionState> {
   RestrictionRepo restrictionRepo;
   AddRestrictionCubit(this.restrictionRepo) : super(AddRestrictionInitial());
 
-  Future<void> getAllRestrictions({
+  Future<void> addRestriction({
     required String date,
     required double amount,
     required String description,

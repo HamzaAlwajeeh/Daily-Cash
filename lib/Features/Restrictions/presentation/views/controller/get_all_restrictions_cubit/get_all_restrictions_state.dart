@@ -7,8 +7,8 @@ final class GetAllRestrictionsInitial extends GetAllRestrictionsState {}
 final class GetAllRestrictionsLoading extends GetAllRestrictionsState {}
 
 final class GetAllRestrictionsFailure extends GetAllRestrictionsState {
-  final String message;
-  GetAllRestrictionsFailure(this.message);
+  final String errorMessage;
+  GetAllRestrictionsFailure(this.errorMessage);
 }
 
 final class GetAllRestrictionsSuccess extends GetAllRestrictionsState {

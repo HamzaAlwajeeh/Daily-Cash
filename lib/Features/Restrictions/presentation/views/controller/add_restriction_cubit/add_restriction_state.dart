@@ -5,8 +5,8 @@ final class AddRestrictionInitial extends AddRestrictionState {}
 final class AddRestrictionLoading extends AddRestrictionState {}
 
 final class AddRestrictionFailure extends AddRestrictionState {
-  final String message;
-  AddRestrictionFailure(this.message);
+  final String errorMessage;
+  AddRestrictionFailure(this.errorMessage);
 }
 
 final class AddRestrictionSuccess extends AddRestrictionState {}

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
+import 'package:daily_cash/Features/Restrictions/data/models/restriction/restriction.dart';
 import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class EditRestrictionForm extends StatefulWidget {
   const EditRestrictionForm({super.key, required this.restriction});
-  final RestrictionsModel restriction;
+  final Restriction restriction;
   @override
   State<EditRestrictionForm> createState() => _EditRestrictionFormState();
 }
@@ -25,12 +25,14 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
   TextEditingController toPersonController = TextEditingController();
   TextEditingController amountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  int debitEntityId = 0;
+  int creditEntityId = 0;
 
   @override
   void initState() {
     dateController.text = widget.restriction.date;
-    fromPersonController.text = widget.restriction.fromPerson;
-    toPersonController.text = widget.restriction.toPerson;
+    fromPersonController.text = widget.restriction.debitEntity.name;
+    toPersonController.text = widget.restriction.creditEntity.name;
     amountController.text = widget.restriction.amount.toString();
     descriptionController.text = widget.restriction.description;
     Future.microtask(() {
@@ -59,10 +61,12 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
         if (personsProvider.type == 'from' &&
             personsProvider.fromPerson != null) {
           fromPersonController.text = personsProvider.fromPerson!.name;
+          debitEntityId = personsProvider.fromPerson!.id;
         }
 
         if (personsProvider.type == 'to' && personsProvider.toPerson != null) {
           toPersonController.text = personsProvider.toPerson!.name;
+          creditEntityId = personsProvider.toPerson!.id;
         }
         return Form(
           key: formKey,

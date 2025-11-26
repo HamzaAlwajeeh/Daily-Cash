@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/Restrictions/data/models/restrictions_model.dart';
+import 'package:daily_cash/Features/Restrictions/data/models/restriction/restriction.dart';
 import 'package:daily_cash/Features/Restrictions/presentation/views/edit_restriction_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
@@ -9,7 +9,7 @@ import 'package:intl/intl.dart';
 
 class RestrictionsItem extends StatelessWidget {
   const RestrictionsItem({super.key, required this.restriction});
-  final RestrictionsModel restriction;
+  final Restriction restriction;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -44,7 +44,7 @@ class RestrictionsItem extends StatelessWidget {
                       text: 'من حساب ',
                       children: [
                         TextSpan(
-                          text: restriction.fromPerson,
+                          text: restriction.debitEntity.name,
                           style: TextStyles.bold16.copyWith(
                             color: AppColors.customRed,
                           ),
@@ -59,7 +59,7 @@ class RestrictionsItem extends StatelessWidget {
                       text: 'الى حساب ',
                       children: [
                         TextSpan(
-                          text: restriction.toPerson,
+                          text: restriction.creditEntity.name,
                           style: TextStyles.bold16.copyWith(
                             color: AppColors.green,
                           ),
@@ -91,7 +91,9 @@ class RestrictionsItem extends StatelessWidget {
                 ),
                 child: Center(
                   child: Text(
-                    NumberFormat('#,###').format(restriction.amount.round()),
+                    NumberFormat(
+                      '#,###',
+                    ).format(double.parse(restriction.amount).round()),
                     style: TextStyles.bold18,
                   ),
                 ),
