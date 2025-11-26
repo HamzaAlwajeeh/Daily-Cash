@@ -8,7 +8,7 @@ class DeleteOperationCubit extends Cubit<DeleteOperationState> {
 
   DeleteOperationCubit(this.homeRepo) : super(DeleteOperationInitial());
 
-  Future<void> getAllOperationss({required int id}) async {
+  Future<void> deleteOperation({required int id}) async {
     emit(DeleteOperationLoading());
     var result = await homeRepo.deleteOperation(id: id);
     result.fold(

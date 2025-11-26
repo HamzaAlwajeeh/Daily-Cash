@@ -9,10 +9,12 @@ class NoRecentOperatiosWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         spacing: 5,
         children: [
-          Image.asset(Assets.imagesNotFountYet, width: 150, height: 150),
-          Text('لا توجد عمليات بعد', style: TextStyles.bold16),
+          Image.asset(Assets.imagesNotFountYet, width: 250, height: 200),
+          Text('لا توجد عمليات بعد', style: TextStyles.bold18),
         ],
       ),
     );

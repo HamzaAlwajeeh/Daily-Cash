@@ -1,4 +1,6 @@
 import 'package:daily_cash/Features/home/data/models/operation.dart';
+import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_state.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_state.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
@@ -16,42 +18,51 @@ class IncomeOperationsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<GetIncomOperationsCubit, GetIncomOperationsState>(
+    return BlocConsumer<DeleteOperationCubit, DeleteOperationState>(
+      listener: (context, state) {
+        if (state is DeleteOperationSuccess) {
+          context.read<GetIncomOperationsCubit>().getIncomOperationss();
+        }
+      },
       builder: (context, state) {
-        List<Operation> incomeOperations =
-            BlocProvider.of<GetIncomOperationsCubit>(context).searchList;
-        return Padding(
-          padding: EdgeInsets.only(left: 16, right: 16, top: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppBar(title: 'الوارد'),
-              SizedBox(height: 10),
-              CustomTextFeild(
-                hintText: 'البحث عن ...',
-                suffixIcon: Assets.imagesFilter,
-                onChanged: (value) {
-                  BlocProvider.of<GetIncomOperationsCubit>(
-                    context,
-                  ).searchOperation(value);
-                },
+        return BlocBuilder<GetIncomOperationsCubit, GetIncomOperationsState>(
+          builder: (context, state) {
+            List<Operation> incomeOperations =
+                BlocProvider.of<GetIncomOperationsCubit>(context).searchList;
+            return Padding(
+              padding: EdgeInsets.only(left: 16, right: 16, top: 40),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomAppBar(title: 'الوارد'),
+                  SizedBox(height: 10),
+                  CustomTextFeild(
+                    hintText: 'البحث عن ...',
+                    suffixIcon: Assets.imagesFilter,
+                    onChanged: (value) {
+                      BlocProvider.of<GetIncomOperationsCubit>(
+                        context,
+                      ).searchOperation(value);
+                    },
+                  ),
+                  SizedBox(height: 10),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('كل الوارد', style: TextStyles.bold16),
+                  ),
+                  SizedBox(height: 10),
+                  if (state is GetIncomOperationsFailure)
+                    Center(child: Text(state.errorMessage))
+                  else if (state is GetIncomOperationsLoading)
+                    Expanded(child: CustomLoadingIndicator())
+                  else if (incomeOperations.isEmpty)
+                    Expanded(child: NoRecentOperatiosWidget())
+                  else
+                    OperationsListView(operations: incomeOperations),
+                ],
               ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text('كل الوارد', style: TextStyles.bold16),
-              ),
-              SizedBox(height: 10),
-              if (state is GetIncomOperationsFailure)
-                Center(child: Text(state.errorMessage))
-              else if (state is GetIncomOperationsLoading)
-                CustomLoadingIndicator()
-              else if (incomeOperations.isEmpty)
-                NoRecentOperatiosWidget()
-              else
-                OperationsListView(operations: incomeOperations),
-            ],
-          ),
+            );
+          },
         );
       },
     );

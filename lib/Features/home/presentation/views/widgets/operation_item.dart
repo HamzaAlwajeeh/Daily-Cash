@@ -1,7 +1,6 @@
 import 'package:daily_cash/Features/home/data/models/operation.dart';
-import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/views/edit_operation_view.dart';
-import 'package:daily_cash/core/helper/custom_toast_bar.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -28,17 +27,9 @@ class OperationItem extends StatelessWidget {
         children: [
           CustomSlidableAction(
             onPressed: (context) {
-              // note.delete();
-              BlocProvider.of<GetAllOperationsCubit>(
+              BlocProvider.of<DeleteOperationCubit>(
                 context,
-              ).getAllOperationss();
-              customToastBar(
-                context: context,
-                message: 'تم حذف العملية بنجاح',
-                icon: Icons.check,
-                backgroundColor: AppColors.textFeilSecondaryColor,
-                textColor: AppColors.primaryColor,
-              );
+              ).deleteOperation(id: operation.id);
             },
             backgroundColor: AppColors.red,
             borderRadius: BorderRadius.circular(16),

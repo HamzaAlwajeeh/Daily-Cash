@@ -4,6 +4,7 @@ import 'package:daily_cash/Features/Splash/presentation/views/splash_view.dart';
 import 'package:daily_cash/Features/auth/data/repos/auth_repo_impl.dart';
 import 'package:daily_cash/Features/auth/presentation/controller/auth_cubit/auth_cubit.dart';
 import 'package:daily_cash/Features/home/data/repos/home_repo_impl.dart';
+import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit%20copy/get_outcom_operations_cubit.dart';
@@ -46,6 +47,9 @@ class DailyCash extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => GetOutcomOperationsCubit(getIt<HomeRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (_) => DeleteOperationCubit(getIt<HomeRepoImpl>()),
         ),
       ],
       child: MultiProvider(

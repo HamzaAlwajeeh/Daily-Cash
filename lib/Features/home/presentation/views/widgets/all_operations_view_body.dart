@@ -1,4 +1,6 @@
 import 'package:daily_cash/Features/home/data/models/operation.dart';
+import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_state.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_state.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
@@ -16,39 +18,49 @@ class AllOperationsViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<GetAllOperationsCubit>(context).getAllOperationss();
-    return BlocBuilder<GetAllOperationsCubit, GetAllOperationsState>(
+    return BlocConsumer<DeleteOperationCubit, DeleteOperationState>(
+      listener: (context, state) {
+        if (state is DeleteOperationSuccess) {
+          context.read<GetAllOperationsCubit>().getAllOperationss();
+        }
+      },
       builder: (context, state) {
-        List<Operation> operations =
-            BlocProvider.of<GetAllOperationsCubit>(context).searchList;
-        return Padding(
-          padding: EdgeInsets.only(left: 16, right: 16, top: 40),
-          child: Column(
-            spacing: 10,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomAppBar(title: 'كل العمليات'),
-              CustomTextFeild(
-                hintText: 'البحث عن ...',
-                suffixIcon: Assets.imagesFilter,
-                onChanged: (value) {
-                  BlocProvider.of<GetAllOperationsCubit>(
-                    context,
-                  ).searchOperation(value);
-                },
+        return BlocBuilder<GetAllOperationsCubit, GetAllOperationsState>(
+          builder: (context, state) {
+            List<Operation> operations =
+                BlocProvider.of<GetAllOperationsCubit>(context).searchList;
+            return Padding(
+              padding: EdgeInsets.only(left: 16, right: 16, top: 40),
+              child: Column(
+                spacing: 10,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomAppBar(title: 'كل العمليات'),
+                  CustomTextFeild(
+                    hintText: 'البحث عن ...',
+                    suffixIcon: Assets.imagesFilter,
+                    onChanged: (value) {
+                      BlocProvider.of<GetAllOperationsCubit>(
+                        context,
+                      ).searchOperation(value);
+                    },
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('كل العمليات', style: TextStyles.bold16),
+                  ),
+                  if (state is GetAllOperationsLoading)
+                    Expanded(child: CustomLoadingIndicator()),
+                  if (state is GetAllOperationsFailure)
+                    Center(child: Text(state.errorMessage)),
+                  if (state is GetAllOperationsSuccess)
+                    operations.isEmpty
+                        ? Expanded(child: NoRecentOperatiosWidget())
+                        : OperationsListView(operations: operations),
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Text('كل العمليات', style: TextStyles.bold16),
-              ),
-              if (state is GetAllOperationsLoading) CustomLoadingIndicator(),
-              if (state is GetAllOperationsFailure)
-                Center(child: Text(state.errorMessage)),
-              if (state is GetAllOperationsSuccess)
-                operations.isEmpty
-                    ? NoRecentOperatiosWidget()
-                    : OperationsListView(operations: operations),
-            ],
-          ),
+            );
+          },
         );
       },
     );
