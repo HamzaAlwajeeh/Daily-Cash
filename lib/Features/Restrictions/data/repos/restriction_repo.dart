@@ -3,7 +3,7 @@ import 'package:daily_cash/core/errors/failuar.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class RestrictionRepo {
-  Future<Either<Failure, List<Restriction>>> getRestrictions();
+  Future<Either<Failure, List<Restriction>>> getAllRestrictions();
 
   Future<Either<Failure, String>> addRestriction({
     required String date,
@@ -13,6 +13,7 @@ abstract class RestrictionRepo {
     required int creditEntityId,
   });
   Future<Either<Failure, String>> editRestriction({
+    required int id,
     required String date,
     required double amount,
     required String description,
@@ -20,7 +21,5 @@ abstract class RestrictionRepo {
     required int creditEntityId,
   });
 
-  Future<Either<Failure, List<Restriction>>> deleteRestriction({
-    required int id,
-  });
+  Future<Either<Failure, String>> deleteRestriction({required int id});
 }
