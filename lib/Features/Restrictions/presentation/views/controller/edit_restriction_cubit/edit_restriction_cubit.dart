@@ -7,7 +7,7 @@ class EditRestrictionCubit extends Cubit<EditRestrictionState> {
   RestrictionRepo restrictionRepo;
   EditRestrictionCubit(this.restrictionRepo) : super(EditRestrictionInitial());
 
-  Future<void> getAllRestrictions({
+  Future<void> editRestriction({
     required int id,
     required String date,
     required double amount,

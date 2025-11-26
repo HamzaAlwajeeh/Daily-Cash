@@ -1,12 +1,17 @@
-import 'dart:developer';
-
 import 'package:daily_cash/Features/Restrictions/data/models/restriction/restriction.dart';
+import 'package:daily_cash/Features/Restrictions/presentation/views/controller/edit_restriction_cubit/edit_restriction_cubit.dart';
+import 'package:daily_cash/Features/Restrictions/presentation/views/controller/edit_restriction_cubit/edit_restriction_state.dart';
+import 'package:daily_cash/Features/Restrictions/presentation/views/controller/get_all_restrictions_cubit/get_all_restrictions_cubit.dart';
+import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
+import 'package:daily_cash/core/helper/custom_toast_bar.dart';
 import 'package:daily_cash/core/helper/persons_provider.dart';
+import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:daily_cash/core/widgets/custom_text_form_feild.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -35,6 +40,8 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
     toPersonController.text = widget.restriction.creditEntity.name;
     amountController.text = widget.restriction.amount.toString();
     descriptionController.text = widget.restriction.description;
+    debitEntityId = widget.restriction.debitEntityId;
+    creditEntityId = widget.restriction.creditEntityId;
     Future.microtask(() {
       Provider.of<PersonsProvider>(
         context,
@@ -56,101 +63,135 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, PersonsProvider personsProvider, child) {
-        if (personsProvider.type == 'from' &&
-            personsProvider.fromPerson != null) {
-          fromPersonController.text = personsProvider.fromPerson!.name;
-          debitEntityId = personsProvider.fromPerson!.id;
+    return BlocConsumer<EditRestrictionCubit, EditRestrictionState>(
+      listener: (context, state) {
+        if (state is EditRestrictionSuccess) {
+          customToastBar(
+            context: context,
+            message: 'تم تعدل القيد بنجاح',
+            icon: Icons.check,
+            backgroundColor: AppColors.textFeilSecondaryColor,
+            textColor: AppColors.primaryColor,
+          );
+          context.read<GetAllRestrictionsCubit>().getAllRestrictions();
+          Navigator.pop(context);
+        } else if (state is EditRestrictionFailure) {
+          customToastBar(
+            context: context,
+            message: state.errorMessage,
+            icon: Icons.close_rounded,
+            backgroundColor: AppColors.textFeilSecondaryColor,
+            textColor: AppColors.primaryColor,
+          );
         }
+      },
+      builder: (context, state) {
+        return Consumer(
+          builder: (context, PersonsProvider personsProvider, child) {
+            if (personsProvider.type == 'from' &&
+                personsProvider.fromPerson != null) {
+              fromPersonController.text = personsProvider.fromPerson!.name;
+              debitEntityId = personsProvider.fromPerson!.id;
+            }
 
-        if (personsProvider.type == 'to' && personsProvider.toPerson != null) {
-          toPersonController.text = personsProvider.toPerson!.name;
-          creditEntityId = personsProvider.toPerson!.id;
-        }
-        return Form(
-          key: formKey,
-          autovalidateMode: autovalidateMode,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text('من حساب', style: TextStyles.bold16),
-              ),
-              const SizedBox(height: 8),
-              CustomTextFormFeild(
-                isPerson: true,
-                type: 'from',
-                controller: fromPersonController,
-                hintText: 'اسم المشروع/العامل',
-                keyboardType: TextInputType.text,
-                readOnly: true,
-              ),
-              const SizedBox(height: 8),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Text('الى حساب', style: TextStyles.bold16),
-              ),
-              const SizedBox(height: 8),
-              CustomTextFormFeild(
-                isPerson: true,
-                type: 'to',
-                controller: toPersonController,
-                hintText: 'اسم المشروع/العامل',
-                keyboardType: TextInputType.text,
-                readOnly: true,
-              ),
-              const SizedBox(height: 38),
-              Column(
-                spacing: 38,
+            if (personsProvider.type == 'to' &&
+                personsProvider.toPerson != null) {
+              toPersonController.text = personsProvider.toPerson!.name;
+              creditEntityId = personsProvider.toPerson!.id;
+            }
+            return Form(
+              key: formKey,
+              autovalidateMode: autovalidateMode,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('من حساب', style: TextStyles.bold16),
+                  ),
+                  const SizedBox(height: 8),
                   CustomTextFormFeild(
-                    controller: dateController,
-                    isCalender: true,
-                    hintText: 'التاريخ',
+                    isPerson: true,
+                    type: 'from',
+                    controller: fromPersonController,
+                    hintText: 'اسم المشروع/العامل',
                     keyboardType: TextInputType.text,
-                    suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
+                    readOnly: true,
                   ),
-                  CustomTextFormFeild(
-                    controller: amountController,
-                    hintText: 'المبلغ',
-                    keyboardType: TextInputType.number,
-                    suffixIcon: SvgPicture.asset(Assets.imagesDolarSign),
-                    onChanged: (value) {
-                      amountController.text = value;
-                    },
+                  const SizedBox(height: 8),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    child: Text('الى حساب', style: TextStyles.bold16),
                   ),
+                  const SizedBox(height: 8),
                   CustomTextFormFeild(
-                    controller: descriptionController,
-                    hintText: 'البيان',
+                    isPerson: true,
+                    type: 'to',
+                    controller: toPersonController,
+                    hintText: 'اسم المشروع/العامل',
                     keyboardType: TextInputType.text,
-                    onChanged: (value) {
-                      descriptionController.text = value;
-                    },
+                    readOnly: true,
                   ),
+                  const SizedBox(height: 38),
+                  Column(
+                    spacing: 38,
+                    children: [
+                      CustomTextFormFeild(
+                        controller: dateController,
+                        isCalender: true,
+                        hintText: 'التاريخ',
+                        keyboardType: TextInputType.text,
+                        suffixIcon: SvgPicture.asset(Assets.imagesCalendar),
+                      ),
+                      CustomTextFormFeild(
+                        controller: amountController,
+                        hintText: 'المبلغ',
+                        keyboardType: TextInputType.number,
+                        suffixIcon: SvgPicture.asset(Assets.imagesDolarSign),
+                        onChanged: (value) {
+                          amountController.text = value;
+                        },
+                      ),
+                      CustomTextFormFeild(
+                        controller: descriptionController,
+                        hintText: 'البيان',
+                        keyboardType: TextInputType.text,
+                        onChanged: (value) {
+                          descriptionController.text = value;
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 40),
+                  state is EditRestrictionLoading
+                      ? CustomLoadingIndicator()
+                      : PrimaryButton(
+                        text: 'تعديل',
+                        onPressed: () {
+                          if (formKey.currentState!.validate()) {
+                            formKey.currentState!.save();
+                            autovalidateMode = AutovalidateMode.disabled;
+                            setState(() {});
+                            BlocProvider.of<EditRestrictionCubit>(
+                              context,
+                            ).editRestriction(
+                              id: widget.restriction.id,
+                              date: dateController.text,
+                              amount: double.parse(amountController.text),
+                              description: descriptionController.text,
+                              debitEntityId: debitEntityId,
+                              creditEntityId: creditEntityId,
+                            );
+                          } else {
+                            autovalidateMode = AutovalidateMode.always;
+                            setState(() {});
+                          }
+                        },
+                      ),
                 ],
               ),
-              const SizedBox(height: 40),
-              PrimaryButton(
-                text: 'تعديل',
-                onPressed: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    autovalidateMode = AutovalidateMode.disabled;
-                    setState(() {});
-                    log(
-                      '${fromPersonController.text} - ${toPersonController.text} - ${dateController.text} - ${amountController.text} - ${descriptionController.text}',
-                    );
-                    Navigator.pop(context);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                },
-              ),
-            ],
-          ),
+            );
+          },
         );
       },
     );
