@@ -8,6 +8,7 @@ class GetAllOperationsCubit extends Cubit<GetAllOperationsState> {
   HomeRepo homeRepo;
   List<Operation> operations = [];
   List<Operation> searchList = [];
+
   double totalIncome = 0.0;
   double totalExpense = 0.0;
   GetAllOperationsCubit(this.homeRepo) : super(GetAllOperationsInitial());

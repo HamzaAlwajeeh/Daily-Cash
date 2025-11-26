@@ -48,11 +48,13 @@ class TodaySummary extends StatelessWidget {
               Row(
                 children: [
                   SummaryItem(
+                    isToday: type == 'today',
                     type: 'income',
                     amount: NumberFormat('#,###').format(income.round()),
                   ),
                   const SizedBox(width: 10),
                   SummaryItem(
+                    isToday: type == 'today',
                     type: 'expense',
                     amount: NumberFormat('#,###').format(outcome.round()),
                   ),

@@ -8,6 +8,8 @@ class GetIncomOperationsCubit extends Cubit<GetIncomOperationsState> {
   HomeRepo homeRepo;
   List<Operation> operations = [];
   List<Operation> searchList = [];
+  List<Operation> todayOperations = [];
+  List<Operation> searchTodayOperations = [];
   GetIncomOperationsCubit(this.homeRepo) : super(GetIncomOperationsInitial());
 
   Future<void> getIncomOperationss() async {
@@ -19,12 +21,44 @@ class GetIncomOperationsCubit extends Cubit<GetIncomOperationsState> {
       (operations) {
         this.operations = operations;
         searchList = operations;
+        getTodayIncomeOperations();
         emit(GetIncomOperationsSuccess(operations: operations));
       },
     );
   }
 
+  void getTodayIncomeOperations() {
+    todayOperations.clear();
+    String today = DateTime.now().toIso8601String().split('T').first;
+
+    for (var item in operations) {
+      String createdDate = item.createdAt.split('T').first;
+
+      if (createdDate == today) {
+        todayOperations.add(item);
+        searchTodayOperations.add(item);
+      }
+    }
+  }
+
   void searchOperation(String query) {
+    if (query.isEmpty) {
+      searchTodayOperations = todayOperations;
+    } else {
+      searchTodayOperations =
+          todayOperations
+              .where(
+                (person) => person.entityName.toLowerCase().contains(
+                  query.toLowerCase(),
+                ),
+              )
+              .toList();
+    }
+
+    emit(GetIncomOperationsSuccess(operations: searchList));
+  }
+
+  void searchTodayIncomeOperation(String query) {
     if (query.isEmpty) {
       searchList = operations;
     } else {

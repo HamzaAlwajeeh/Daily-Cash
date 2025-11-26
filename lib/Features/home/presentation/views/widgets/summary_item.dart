@@ -1,5 +1,6 @@
 import 'package:daily_cash/Features/home/presentation/views/income_operations_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/outcome_operations_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/today_income_operations_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -7,17 +8,32 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SummaryItem extends StatelessWidget {
-  const SummaryItem({super.key, required this.type, required this.amount});
+  const SummaryItem({
+    super.key,
+    required this.type,
+    required this.amount,
+    required this.isToday,
+  });
   final String type;
   final String amount;
+  final bool isToday;
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: GestureDetector(
         onTap: () {
-          type == 'income'
-              ? Navigator.pushNamed(context, IncomeOperationsView.routeName)
-              : Navigator.pushNamed(context, OutcomeOperationsView.routeName);
+          if (isToday) {
+            type == 'income'
+                ? Navigator.pushNamed(
+                  context,
+                  TodayIncomeOperationsView.routeName,
+                )
+                : Navigator.pushNamed(context, OutcomeOperationsView.routeName);
+          } else {
+            type == 'income'
+                ? Navigator.pushNamed(context, IncomeOperationsView.routeName)
+                : Navigator.pushNamed(context, OutcomeOperationsView.routeName);
+          }
         },
         child: Container(
           height: 150,
