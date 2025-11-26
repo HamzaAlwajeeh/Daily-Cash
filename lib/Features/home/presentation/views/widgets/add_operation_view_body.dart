@@ -1,6 +1,7 @@
 import 'package:daily_cash/Features/home/presentation/controller/add_operation_cubit/add_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/add_operation_cubit/add_operation_state.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_cash_box_cubit/get_cash_box_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
 import 'package:daily_cash/core/helper/custom_toast_bar.dart';
@@ -69,6 +70,7 @@ class _AddOperationViewBodyState extends State<AddOperationViewBody> {
             textColor: AppColors.primaryColor,
           );
           context.read<GetAllOperationsCubit>().getAllOperationss();
+          context.read<GetCashBoxCubit>().getCashBox();
           Navigator.pop(context);
         } else if (state is AddOperationFailure) {
           customToastBar(

@@ -15,6 +15,7 @@ class _OperationsListViewState extends State<OperationsListView> {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
+        padding: EdgeInsets.zero,
         physics: BouncingScrollPhysics(),
         itemCount: widget.operations.length,
         itemBuilder: (context, index) {

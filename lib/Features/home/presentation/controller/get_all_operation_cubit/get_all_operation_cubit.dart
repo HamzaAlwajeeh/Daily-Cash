@@ -8,6 +8,8 @@ class GetAllOperationsCubit extends Cubit<GetAllOperationsState> {
   HomeRepo homeRepo;
   List<Operation> operations = [];
   List<Operation> searchList = [];
+  double totalIncome = 0.0;
+  double totalExpense = 0.0;
   GetAllOperationsCubit(this.homeRepo) : super(GetAllOperationsInitial());
 
   Future<void> getAllOperationss() async {
@@ -19,6 +21,7 @@ class GetAllOperationsCubit extends Cubit<GetAllOperationsState> {
       (operations) {
         this.operations = operations;
         searchList = operations;
+        getSummary();
         emit(GetAllOperationsSuccess(operations: operations));
       },
     );
@@ -39,5 +42,25 @@ class GetAllOperationsCubit extends Cubit<GetAllOperationsState> {
     }
 
     emit(GetAllOperationsSuccess(operations: searchList));
+  }
+
+  void getSummary() {
+    totalExpense = 0;
+    totalIncome = 0;
+    String today = DateTime.now().toIso8601String().split('T').first;
+
+    for (var item in operations) {
+      String createdDate = item.createdAt.split('T').first;
+
+      if (createdDate == today) {
+        double amount = double.tryParse(item.amount.toString()) ?? 0.0;
+
+        if (item.type == "income") {
+          totalIncome += amount;
+        } else if (item.type == "expense") {
+          totalExpense += amount;
+        }
+      }
+    }
   }
 }

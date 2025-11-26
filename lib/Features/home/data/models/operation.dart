@@ -7,8 +7,8 @@ class Operation {
   int entityId;
   String entityName;
   int? createdBy;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  String createdAt;
+  String updatedAt;
 
   Operation({
     required this.id,
@@ -19,8 +19,8 @@ class Operation {
     required this.entityId,
     required this.entityName,
     this.createdBy,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   @override
@@ -37,14 +37,8 @@ class Operation {
     entityId: json['entity']['id'] as int,
     entityName: json['entity']['name'] as String,
     createdBy: json['created_by'] as int?,
-    createdAt:
-        json['created_at'] == null
-            ? null
-            : DateTime.parse(json['created_at'] as String),
-    updatedAt:
-        json['updated_at'] == null
-            ? null
-            : DateTime.parse(json['updated_at'] as String),
+    createdAt: json['created_at'] as String,
+    updatedAt: json['updated_at'] as String,
   );
 
   Map<String, dynamic> toJson() => {
@@ -55,7 +49,7 @@ class Operation {
     'description': description,
     'entity_id': entityId,
     'created_by': createdBy,
-    'created_at': createdAt?.toIso8601String(),
-    'updated_at': updatedAt?.toIso8601String(),
+    'created_at': createdAt,
+    'updated_at': updatedAt,
   };
 }

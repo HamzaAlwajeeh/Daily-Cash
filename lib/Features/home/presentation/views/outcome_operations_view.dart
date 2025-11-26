@@ -1,4 +1,4 @@
-import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit%20copy/get_outcom_operations_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit/get_outcom_operations_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/outcome_operations_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

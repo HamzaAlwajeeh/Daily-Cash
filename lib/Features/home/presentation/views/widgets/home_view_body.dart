@@ -27,7 +27,7 @@ class HomeViewBody extends StatelessWidget {
                 const SizedBox(height: 16),
                 TotalAmount(totalAmount: 1750000),
                 const SizedBox(height: 16),
-                TodaySummary(),
+                TodaySummary(type: 'today', title: 'ملخص اليوم'),
                 const SizedBox(height: 16),
                 RecentOperations(),
               ],

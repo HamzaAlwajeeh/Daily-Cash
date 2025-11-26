@@ -6,8 +6,9 @@ import 'package:daily_cash/Features/auth/presentation/controller/auth_cubit/auth
 import 'package:daily_cash/Features/home/data/repos/home_repo_impl.dart';
 import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_cash_box_cubit/get_cash_box_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_cubit.dart';
-import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit%20copy/get_outcom_operations_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit/get_outcom_operations_cubit.dart';
 import 'package:daily_cash/core/helper/persons_provider.dart';
 import 'package:daily_cash/core/routers/on_generate_route.dart';
 import 'package:daily_cash/core/services/service_locator.dart';
@@ -60,6 +61,7 @@ class DailyCash extends StatelessWidget {
           BlocProvider(
             create: (_) => GetAllOperationsCubit(getIt<HomeRepoImpl>()),
           ),
+          BlocProvider(create: (_) => GetCashBoxCubit(getIt<HomeRepoImpl>())),
         ],
         child: MaterialApp(
           localizationsDelegates: [

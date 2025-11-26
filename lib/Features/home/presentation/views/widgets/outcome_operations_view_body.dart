@@ -1,8 +1,8 @@
 import 'package:daily_cash/Features/home/data/models/operation.dart';
 import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_state.dart';
-import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit%20copy/get_outcom_operations_cubit.dart';
-import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit%20copy/get_outcom_operations_state.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit/get_outcom_operations_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit/get_outcom_operations_state.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/no_recent_operatios_widget.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/operations_list_view.dart';

@@ -6,6 +6,7 @@ import 'package:daily_cash/Features/home/presentation/controller/get_all_operati
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/no_recent_operatios_widget.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/operations_list_view.dart';
+import 'package:daily_cash/Features/home/presentation/views/widgets/today_summary.dart';
 import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
@@ -45,6 +46,8 @@ class AllOperationsViewBody extends StatelessWidget {
                       ).searchOperation(value);
                     },
                   ),
+
+                  TodaySummary(type: 'all', title: 'تفصيل العمليات'),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Text('كل العمليات', style: TextStyles.bold16),

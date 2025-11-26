@@ -4,8 +4,8 @@ class CashBox {
   String totalIncome;
   String totalExpense;
   String balance;
-  DateTime? createdAt;
-  DateTime? updatedAt;
+  DateTime createdAt;
+  DateTime updatedAt;
 
   CashBox({
     required this.id,
@@ -13,8 +13,8 @@ class CashBox {
     required this.totalIncome,
     required this.totalExpense,
     required this.balance,
-    this.createdAt,
-    this.updatedAt,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
   @override
@@ -29,13 +29,9 @@ class CashBox {
     totalExpense: json['total_expense'] as String,
     balance: json['balance'] as String,
     createdAt:
-        json['created_at'] == null
-            ? null
-            : DateTime.parse(json['created_at'] as String),
+        json['created_at'] = DateTime.parse(json['created_at'] as String),
     updatedAt:
-        json['updated_at'] == null
-            ? null
-            : DateTime.parse(json['updated_at'] as String),
+        json['updated_at'] = DateTime.parse(json['updated_at'] as String),
   );
 
   Map<String, dynamic> toJson() => {
@@ -44,7 +40,7 @@ class CashBox {
     'total_income': totalIncome,
     'total_expense': totalExpense,
     'balance': balance,
-    'created_at': createdAt?.toIso8601String(),
-    'updated_at': updatedAt?.toIso8601String(),
+    'created_at': createdAt.toIso8601String(),
+    'updated_at': updatedAt.toIso8601String(),
   };
 }
