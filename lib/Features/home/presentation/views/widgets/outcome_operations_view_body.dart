@@ -19,7 +19,7 @@ class OutcomeOperationsViewBody extends StatelessWidget {
     return BlocBuilder<GetOutcomOperationsCubit, GetOutcomOperationsState>(
       builder: (context, state) {
         List<Operation> outcomeOperations =
-            BlocProvider.of<GetOutcomOperationsCubit>(context).operations;
+            BlocProvider.of<GetOutcomOperationsCubit>(context).searchList;
         return Padding(
           padding: EdgeInsets.only(left: 16, right: 16, top: 40),
           child: Column(
@@ -30,6 +30,11 @@ class OutcomeOperationsViewBody extends StatelessWidget {
               CustomTextFeild(
                 hintText: 'البحث عن ...',
                 suffixIcon: Assets.imagesFilter,
+                onChanged: (value) {
+                  BlocProvider.of<GetOutcomOperationsCubit>(
+                    context,
+                  ).searchOperation(value);
+                },
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),

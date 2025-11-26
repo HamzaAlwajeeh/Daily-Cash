@@ -19,7 +19,7 @@ class IncomeOperationsViewBody extends StatelessWidget {
     return BlocBuilder<GetIncomOperationsCubit, GetIncomOperationsState>(
       builder: (context, state) {
         List<Operation> incomeOperations =
-            BlocProvider.of<GetIncomOperationsCubit>(context).operations;
+            BlocProvider.of<GetIncomOperationsCubit>(context).searchList;
         return Padding(
           padding: EdgeInsets.only(left: 16, right: 16, top: 40),
           child: Column(
@@ -30,6 +30,11 @@ class IncomeOperationsViewBody extends StatelessWidget {
               CustomTextFeild(
                 hintText: 'البحث عن ...',
                 suffixIcon: Assets.imagesFilter,
+                onChanged: (value) {
+                  BlocProvider.of<GetIncomOperationsCubit>(
+                    context,
+                  ).searchOperation(value);
+                },
               ),
               SizedBox(height: 10),
               Padding(
