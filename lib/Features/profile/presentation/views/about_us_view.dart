@@ -8,6 +8,7 @@ import 'package:flutter_svg/svg.dart';
 class AboutUsView extends StatelessWidget {
   const AboutUsView({super.key});
   static const String routeName = '/about_us';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,41 +18,40 @@ class AboutUsView extends StatelessWidget {
           children: [
             CustomAppBar(title: 'نبذه عنا'),
             const SizedBox(height: 30),
+
+            /// النص الأساسي كما هو
             Text.rich(
               textAlign: TextAlign.center,
               style: TextStyles.bold16,
-              TextSpan(
-                text: 'تم تطوير هذا التطبيق بواسطة',
-                children: [
-                  TextSpan(
-                    text: ' م/حمزة الوجيه ',
-                    style: TextStyles.bold16.copyWith(
-                      color: AppColors.primaryColor,
-                    ),
-                  ),
-                  TextSpan(
-                    text:
-                        '''، مطوّر برمجيات يهتم بتصميم وتطوير الأنظمة والتطبيقات التي تسهّل حياة المستخدم وتدعم التحول الرقمي في المجالات الإدارية والمحاسبية,وتطبيقات الموبايل بشكل عام.
-''',
-                  ),
-                ],
-              ),
-            ),
-            Text(
-              '''
-يتميز عمله بالتركيز على تبسيط العمليات المعقّدة وتحويلها إلى تجارب استخدام سهلة وواضحة، مع الاهتمام بالجودة والدقة في التفاصيل التقنية والتصميمية
 
+              TextSpan(
+                text: '''
 يهدف هذا التطبيق إلى مساعدة الأفراد وأصحاب المشاريع على إدارة حساباتهم ومتابعة مصاريفهم وأجور العمال بكل سلاسة، من خلال بيئة عمل ذكية تمكّن المستخدم من تتبع كل عملية مالية، إنشاء تقارير فورية، وتحميل كشوفات تفصيلية في أي وقت.
 ''',
-              textAlign: TextAlign.center,
-              style: TextStyles.bold16,
+              ),
             ),
+
+            const SizedBox(height: 20),
+
+            /// فقرة فريق العمل
+            Text(
+              'فريق العمل :\n'
+              'حمزة يحيى الوجيه\n'
+              'محمد فايز باشامخه\n'
+              'عمار محسن غزي\n'
+              'عمر سالم بوعيران',
+              textAlign: TextAlign.center,
+              style: TextStyles.bold16.copyWith(color: AppColors.primaryColor),
+            ),
+
             const SizedBox(height: 30),
+
+            /// بطاقات التواصل
             CustomSocialCard(
               image: Assets.imagesGithub,
               title: 'https://github.com/HamzaAlwajeeh',
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             CustomSocialCard(image: Assets.imagesCall, title: "771-832-796"),
           ],
         ),
@@ -64,6 +64,7 @@ class CustomSocialCard extends StatelessWidget {
   const CustomSocialCard({super.key, required this.image, required this.title});
   final String image;
   final String title;
+
   @override
   Widget build(BuildContext context) {
     return Container(

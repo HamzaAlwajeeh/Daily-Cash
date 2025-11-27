@@ -8,4 +8,5 @@ abstract class PersonRepo {
     required String type,
   });
   Future<Either<Failure, List<Person>>> getAllPersons();
+  Future<Either<Failure, String>> deletePerson({required int id});
 }

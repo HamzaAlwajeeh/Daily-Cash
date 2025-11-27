@@ -6,6 +6,8 @@ import 'package:daily_cash/Features/Restrictions/presentation/views/controller/g
 import 'package:daily_cash/Features/Restrictions/presentation/views/widgets/restrictions_list_view.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/no_recent_operatios_widget.dart';
 import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
+import 'package:daily_cash/core/helper/custom_toast_bar.dart';
+import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/utils/app_text_style.dart';
 import 'package:daily_cash/core/widgets/custom_text_feild.dart';
@@ -22,13 +24,22 @@ class RestrictionsViewBody extends StatelessWidget {
       listener: (context, state) {
         if (state is DeleteRestrictionSuccess) {
           context.read<GetAllRestrictionsCubit>().getAllRestrictions();
+          customToastBar(
+            context: context,
+            message: 'تم حذف القيد بنجاح',
+            icon: Icons.check,
+            backgroundColor: AppColors.textFeilSecondaryColor,
+            textColor: AppColors.primaryColor,
+          );
         }
       },
       builder: (context, state) {
         return BlocBuilder<GetAllRestrictionsCubit, GetAllRestrictionsState>(
           builder: (context, state) {
             List<Restriction> restrictions =
-                BlocProvider.of<GetAllRestrictionsCubit>(context).restrictions;
+                BlocProvider.of<GetAllRestrictionsCubit>(
+                  context,
+                ).searchRestrictions;
             return Padding(
               padding: EdgeInsets.only(right: 16, left: 16, top: 50),
               child: Column(
@@ -38,6 +49,11 @@ class RestrictionsViewBody extends StatelessWidget {
                   CustomTextFeild(
                     hintText: 'البحث بالإسم...',
                     suffixIcon: Assets.imagesFilter,
+                    onChanged: (value) {
+                      BlocProvider.of<GetAllRestrictionsCubit>(
+                        context,
+                      ).searchRestriction(value);
+                    },
                   ),
                   if (state is GetAllRestrictionsLoading)
                     Expanded(child: CustomLoadingIndicator()),

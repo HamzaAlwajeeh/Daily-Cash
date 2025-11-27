@@ -52,4 +52,21 @@ class PersonRepoImpl implements PersonRepo {
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, String>> deletePerson({required int id}) async {
+    try {
+      await apiService.delete(
+        endPoint: 'entities/$id',
+        token: Prefs.getString('token'),
+      );
+
+      return right('Person Deleted Successfully');
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
 }

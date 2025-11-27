@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class GetAllRestrictionsCubit extends Cubit<GetAllRestrictionsState> {
   RestrictionRepo restrictionRepo;
   List<Restriction> restrictions = [];
+  List<Restriction> searchRestrictions = [];
   GetAllRestrictionsCubit(this.restrictionRepo)
     : super(GetAllRestrictionsInitial());
 
@@ -19,8 +20,30 @@ class GetAllRestrictionsCubit extends Cubit<GetAllRestrictionsState> {
       },
       (restrictions) {
         this.restrictions = restrictions;
+        searchRestrictions = restrictions;
         emit(GetAllRestrictionsSuccess(restrictions));
       },
     );
+  }
+
+  void searchRestriction(String query) {
+    if (query.isEmpty) {
+      searchRestrictions = restrictions;
+    } else {
+      searchRestrictions =
+          restrictions
+              .where(
+                (person) =>
+                    person.debitEntity.name.toLowerCase().contains(
+                      query.toLowerCase(),
+                    ) ||
+                    person.creditEntity.name.toLowerCase().contains(
+                      query.toLowerCase(),
+                    ),
+              )
+              .toList();
+    }
+
+    emit(GetAllRestrictionsSuccess(searchRestrictions));
   }
 }
