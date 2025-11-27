@@ -1,4 +1,5 @@
 import 'package:daily_cash/Features/Persons/data/repos/person_repo_impl.dart';
+import 'package:daily_cash/Features/Persons/presentation/controller/delete_person_cubit/delete_person_cubit.dart';
 import 'package:daily_cash/Features/Persons/presentation/controller/get_all_persons_cubit/get_all_persons_cubit.dart';
 import 'package:daily_cash/Features/Restrictions/data/repos/restriction_repo_impl.dart';
 import 'package:daily_cash/Features/Restrictions/presentation/views/controller/delete_restriction_cubit/delete_restriction_cubit.dart';
@@ -46,6 +47,7 @@ class DailyCash extends StatelessWidget {
               (_) =>
                   GetAllPersonsCubit(getIt<PersonRepoImpl>())..getAllPersons(),
         ),
+        BlocProvider(create: (_) => DeletePersonCubit(getIt<PersonRepoImpl>())),
         BlocProvider(
           create: (_) => GetIncomOperationsCubit(getIt<HomeRepoImpl>()),
         ),

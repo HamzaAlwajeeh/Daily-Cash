@@ -14,7 +14,7 @@ class DeletePersonCubit extends Cubit<DeletePersonState> {
     result.fold(
       (failure) =>
           emit(DeletePersonFailure(errorMessage: failure.errorMessage)),
-      (user) => emit(DeletePersonSuccess()),
+      (_) => emit(DeletePersonSuccess()),
     );
   }
 }
