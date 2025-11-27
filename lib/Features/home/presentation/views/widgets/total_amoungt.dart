@@ -68,7 +68,18 @@ class TotalAmount extends StatelessWidget {
                                       cashBox?.balance ?? '0',
                                     ).round(),
                                   ),
-                                  style: TextStyles.bold24,
+                                  style: TextStyles.bold24.copyWith(
+                                    color:
+                                        ((cashBox?.balance != null
+                                                        ? double.tryParse(
+                                                          cashBox!.balance,
+                                                        )
+                                                        : 0) ??
+                                                    0) >
+                                                0
+                                            ? AppColors.green
+                                            : AppColors.red,
+                                  ),
                                 ),
                                 SvgPicture.asset(Assets.imagesReal),
                               ],

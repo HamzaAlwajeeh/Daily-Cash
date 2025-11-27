@@ -71,6 +71,7 @@ class RestrictionsItem extends StatelessWidget {
                     Text.rich(
                       textAlign: TextAlign.center,
                       style: TextStyles.bold16,
+                      overflow: TextOverflow.ellipsis,
                       TextSpan(
                         text: 'من حساب ',
                         children: [
@@ -78,6 +79,7 @@ class RestrictionsItem extends StatelessWidget {
                             text: restriction.debitEntity.name,
                             style: TextStyles.bold16.copyWith(
                               color: AppColors.customRed,
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],
@@ -86,6 +88,7 @@ class RestrictionsItem extends StatelessWidget {
                     Text.rich(
                       textAlign: TextAlign.center,
                       style: TextStyles.bold16,
+                      overflow: TextOverflow.ellipsis,
                       TextSpan(
                         text: 'الى حساب ',
                         children: [
