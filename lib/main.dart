@@ -1,6 +1,7 @@
 import 'package:daily_cash/Features/Persons/data/repos/person_repo_impl.dart';
 import 'package:daily_cash/Features/Persons/presentation/controller/delete_person_cubit/delete_person_cubit.dart';
 import 'package:daily_cash/Features/Persons/presentation/controller/get_all_persons_cubit/get_all_persons_cubit.dart';
+import 'package:daily_cash/Features/Persons/presentation/controller/get_person_pdf_cubit/get_person_pdf_cubit.dart';
 import 'package:daily_cash/Features/Restrictions/data/repos/restriction_repo_impl.dart';
 import 'package:daily_cash/Features/Restrictions/presentation/views/controller/delete_restriction_cubit/delete_restriction_cubit.dart';
 import 'package:daily_cash/Features/Restrictions/presentation/views/controller/get_all_restrictions_cubit/get_all_restrictions_cubit.dart';
@@ -20,9 +21,12 @@ import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/services/simple_bloc_obsever.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/generated/l10n.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -30,6 +34,7 @@ void main() async {
   setUpServiceLocator();
   await Prefs.init();
   runApp(DailyCash());
+
   Bloc.observer = SimpleBlocObserver();
 }
 
@@ -63,6 +68,7 @@ class DailyCash extends StatelessWidget {
         BlocProvider(
           create: (_) => DeleteRestrictionCubit(getIt<RestrictionRepoImpl>()),
         ),
+        BlocProvider(create: (_) => GetPersonPdfCubit(getIt<PersonRepoImpl>())),
       ],
       child: MultiProvider(
         providers: [
@@ -106,5 +112,39 @@ class DailyCash extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+Future<void> downloadPdfWithDio(int id) async {
+  try {
+    final dio = Dio();
+
+    // رابط API
+    final url = "http://192.168.105.89:8000/api/entity-statment/$id";
+
+    // مكان الحفظ
+    final dir = await getApplicationDocumentsDirectory();
+    final filePath = "${dir.path}/statement-$id.pdf";
+
+    // التحميل
+    await dio.download(
+      url,
+      filePath,
+      onReceiveProgress: (received, total) {
+        if (total != -1) {
+          print("Progress: ${(received / total * 100).toStringAsFixed(0)}%");
+        }
+      },
+      options: Options(
+        responseType: ResponseType.bytes, // مهم جداً لملفات PDF
+      ),
+    );
+
+    print("PDF Saved to: $filePath");
+
+    // فتح الملف مباشرة
+    await OpenFile.open(filePath);
+  } catch (e) {
+    print("Error downloading PDF: $e");
   }
 }

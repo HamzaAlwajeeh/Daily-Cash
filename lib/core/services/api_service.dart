@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class ApiService {
-  final _baseUrl = 'http://192.168.74.89:8000/api';
+  final _baseUrl = 'http://192.168.105.89:8000/api';
 
   final Dio dio;
   ApiService(this.dio);

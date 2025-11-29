@@ -1,12 +1,13 @@
 import 'package:daily_cash/Features/Persons/data/models/person.dart';
-import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_details_list_view.dart';
-import 'package:daily_cash/Features/Persons/presentation/views/widgets/person_details_summary.dart';
-import 'package:daily_cash/Features/home/data/models/operation.dart';
+import 'package:daily_cash/Features/Persons/presentation/controller/get_person_pdf_cubit/get_person_pdf_cubit.dart';
+import 'package:daily_cash/Features/Persons/presentation/views/pdf_viewer.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/widgets/dialog_message.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
+import 'package:daily_cash/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class PersonDetailsBody extends StatefulWidget {
@@ -18,11 +19,11 @@ class PersonDetailsBody extends StatefulWidget {
 }
 
 class _PersonDetailsBodyState extends State<PersonDetailsBody> {
-  List<Operation> operations = [];
-
   @override
   void initState() {
-    operations = [];
+    BlocProvider.of<GetPersonPdfCubit>(
+      context,
+    ).getPersonPdf(id: widget.person.id);
     super.initState();
   }
 
@@ -34,12 +35,17 @@ class _PersonDetailsBodyState extends State<PersonDetailsBody> {
         spacing: 16,
         children: [
           CustomAppBar(title: widget.person.name),
-          Expanded(child: PersonDetailsListView(operations: operations)),
-          PersonDetailsSummary(),
+          Expanded(
+            child: PdfViewer(
+              pdfUrl: BlocProvider.of<GetPersonPdfCubit>(context).personUrl,
+            ),
+          ),
+          // PersonDetailsSummary(),
           PrimaryButton(
             text: 'كشف حساب',
             hasIcon: true,
-            onPressed: () {
+            onPressed: () async {
+              await downloadPdfWithDio(2);
               dialogMessage(
                 context: context,
                 message: 'تم التحميل بنجاح',

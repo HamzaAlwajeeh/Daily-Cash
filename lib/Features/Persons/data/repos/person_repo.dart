@@ -9,4 +9,5 @@ abstract class PersonRepo {
   });
   Future<Either<Failure, List<Person>>> getAllPersons();
   Future<Either<Failure, String>> deletePerson({required int id});
+  Future<Either<Failure, dynamic>> getPersonPDF({required int id});
 }

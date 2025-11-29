@@ -69,4 +69,22 @@ class PersonRepoImpl implements PersonRepo {
       return left(ServerFailure(errorMessage: e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, dynamic>> getPersonPDF({required int id}) async {
+    try {
+      var data = await apiService.get(
+        endPoint: 'entity-statment/$id',
+        body: null,
+        token: Prefs.getString('token'),
+      );
+      String url = data['url'];
+      return right(url);
+    } catch (e) {
+      if (e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      return left(ServerFailure(errorMessage: e.toString()));
+    }
+  }
 }
