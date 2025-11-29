@@ -5,7 +5,6 @@ import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_b
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/widgets/dialog_message.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
-import 'package:daily_cash/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -42,10 +41,10 @@ class _PersonDetailsBodyState extends State<PersonDetailsBody> {
           ),
           // PersonDetailsSummary(),
           PrimaryButton(
-            text: 'كشف حساب',
+            text: 'تحميل كشف الحساب',
             hasIcon: true,
             onPressed: () async {
-              await downloadPdfWithDio(2);
+              // await downloadPdfWithDio(2);
               dialogMessage(
                 context: context,
                 message: 'تم التحميل بنجاح',

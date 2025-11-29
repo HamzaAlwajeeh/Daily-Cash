@@ -11,7 +11,7 @@ class PdfViewer extends StatelessWidget {
       autoSpacing: true,
       // swipeHorizontal: true,
       // pageFling: true,
-    ).cachedFromUrl(
+    ).fromUrl(
       pdfUrl,
       placeholder:
           (progress) =>
