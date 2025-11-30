@@ -1,5 +1,9 @@
 import 'package:daily_cash/Features/home/data/models/operation.dart';
 import 'package:daily_cash/Features/home/presentation/controller/delete_operation_cubit/delete_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_all_operation_cubit/get_all_operation_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_cash_box_cubit/get_cash_box_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_incom_operations_cubit/get_incom_operations_cubit.dart';
+import 'package:daily_cash/Features/home/presentation/controller/get_outcom_operations_cubit/get_outcom_operations_cubit.dart';
 import 'package:daily_cash/Features/home/presentation/views/edit_operation_view.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
@@ -30,6 +34,10 @@ class OperationItem extends StatelessWidget {
               BlocProvider.of<DeleteOperationCubit>(
                 context,
               ).deleteOperation(id: operation.id);
+              context.read<GetAllOperationsCubit>().getAllOperationss();
+              context.read<GetIncomOperationsCubit>().getIncomOperationss();
+              context.read<GetOutcomOperationsCubit>().getOutcomOperationss();
+              context.read<GetCashBoxCubit>().getCashBox();
             },
             backgroundColor: AppColors.red,
             borderRadius: BorderRadius.circular(16),

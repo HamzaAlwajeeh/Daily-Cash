@@ -53,7 +53,8 @@ class _EditOperationViewBodyState extends State<EditOperationViewBody> {
     operationTypeController.text = widget.operation.type;
     dateController.text = widget.operation.date;
     personController.text = widget.operation.entityName;
-    amountController.text = widget.operation.amount.toString();
+    amountController.text =
+        double.parse(widget.operation.amount).round().toString();
     detailsController.text = widget.operation.description;
     isIncome = widget.operation.type == 'income';
     personId = widget.operation.entityId;

@@ -38,7 +38,8 @@ class _EditRestrictionFormState extends State<EditRestrictionForm> {
     dateController.text = widget.restriction.date;
     fromPersonController.text = widget.restriction.debitEntity.name;
     toPersonController.text = widget.restriction.creditEntity.name;
-    amountController.text = widget.restriction.amount.toString();
+    amountController.text =
+        double.parse(widget.restriction.amount).round().toString();
     descriptionController.text = widget.restriction.description;
     debitEntityId = widget.restriction.debitEntityId;
     creditEntityId = widget.restriction.creditEntityId;
