@@ -52,9 +52,8 @@ class _PersonDetailsBodyState extends State<PersonDetailsBody> {
               PrimaryButton(
                 text: 'تحميل الملف',
                 hasIcon: true,
-                onPressed: () {
-                  downloadAnyFile(url: url);
-                  // await downloadPdfWithDio(2);
+                onPressed: () async {
+                  await downloadAnyFile(url: url);
                   dialogMessage(
                     context: context,
                     message: 'تم التحميل بنجاح',
