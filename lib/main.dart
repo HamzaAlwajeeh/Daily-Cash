@@ -21,12 +21,9 @@ import 'package:daily_cash/core/services/shared_pref_singleton.dart';
 import 'package:daily_cash/core/services/simple_bloc_obsever.dart';
 import 'package:daily_cash/core/utils/app_colors.dart';
 import 'package:daily_cash/generated/l10n.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -112,39 +109,5 @@ class DailyCash extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-Future<void> downloadPdfWithDio(int id) async {
-  try {
-    final dio = Dio();
-
-    // رابط API
-    final url = "http://192.168.105.89:8000/api/entity-statment/$id";
-
-    // مكان الحفظ
-    final dir = await getApplicationDocumentsDirectory();
-    final filePath = "${dir.path}/statement-$id.pdf";
-
-    // التحميل
-    await dio.download(
-      url,
-      filePath,
-      onReceiveProgress: (received, total) {
-        if (total != -1) {
-          print("Progress: ${(received / total * 100).toStringAsFixed(0)}%");
-        }
-      },
-      options: Options(
-        responseType: ResponseType.bytes, // مهم جداً لملفات PDF
-      ),
-    );
-
-    print("PDF Saved to: $filePath");
-
-    // فتح الملف مباشرة
-    await OpenFile.open(filePath);
-  } catch (e) {
-    print("Error downloading PDF: $e");
   }
 }

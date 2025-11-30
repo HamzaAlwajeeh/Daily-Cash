@@ -4,6 +4,7 @@ import 'package:daily_cash/Features/Persons/presentation/controller/get_person_p
 import 'package:daily_cash/Features/Persons/presentation/views/pdf_viewer.dart';
 import 'package:daily_cash/Features/home/presentation/views/widgets/custom_app_bar.dart';
 import 'package:daily_cash/core/helper/custom_loading_indicator.dart';
+import 'package:daily_cash/core/helper/download_files.dart';
 import 'package:daily_cash/core/utils/app_images.dart';
 import 'package:daily_cash/core/widgets/dialog_message.dart';
 import 'package:daily_cash/core/widgets/primary_button.dart';
@@ -51,7 +52,8 @@ class _PersonDetailsBodyState extends State<PersonDetailsBody> {
               PrimaryButton(
                 text: 'تحميل الملف',
                 hasIcon: true,
-                onPressed: () async {
+                onPressed: () {
+                  downloadAnyFile(url: url);
                   // await downloadPdfWithDio(2);
                   dialogMessage(
                     context: context,

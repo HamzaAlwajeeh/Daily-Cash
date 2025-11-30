@@ -86,8 +86,3 @@ flutter run
 flutter analyze
 dart format .
 ```
-
-## ملاحظات للمطورين
-
-- اعتمادًا على بيئة التطوير، تأكد من ضبط ملف `lib/core/services/api_service.dart` لقاعدة الـURL وتهيئة `local.properties` إن لزم.
-- وحدات الحالة (`Cubit`) تبقى ضمن مجلد `presentation/controller/` لكل ميزة لتسهيل الصيانة.
