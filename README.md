@@ -7,6 +7,7 @@
 ## الميزات الرئيسية
 
 - إضافة عملية (إيراد/منصرف) مع تاريخ، مبلغ، جهة/عامل، وبيان.
+
 # Daily Cash — إدارة النقد اليومي
 
 تطبيق Flutter لإدارة العمليات المالية اليومية (إيرادات ومصاريف)، يتوافق مع احتياجات المشاريع الصغيرة وأصحاب العمال. يوفّر واجهة لإضافة وتعديل وحذف العمليات، إدارة الأشخاص/المشاريع، عرض تقارير وملفات PDF، وقوائم ملخّصة لإجمالي الإيرادات والمصاريف.
@@ -98,27 +99,53 @@ dart format .
 
 ## لقطات الشاشة
 
-أدناه مجموعة من لقطات الشاشة المأخوذة من التطبيق. إذا أردت أحجامًا أو ترتيبًا مختلفًا أخبرني وسأعدّلها.
-
-<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start">
-  <img src="./screen_shots/Splash View.svg" alt="Splash View" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/On Boarding 1.svg" alt="On Boarding 1" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/On Boarding 2.svg" alt="On Boarding 2" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/On Boarding 3.svg" alt="On Boarding 3" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/Login.svg" alt="Login" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/Sign up.svg" alt="Sign up" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/Home View.svg" alt="Home View" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/all operations.svg" alt="All Operations" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/Add Project.svg" alt="Add Project" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/Employees.svg" alt="Employees" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/persons.svg" alt="Persons" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/account.svg" alt="Account" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/add.svg" alt="Add" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/select.svg" alt="Select" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/Screenshot_20251130-111658 1.svg" alt="Screenshot 1" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
-  <img src="./screen_shots/Screenshot_20251130_111719 1.svg" alt="Screenshot 2" style="max-width:320px;border:1px solid #eee;padding:6px;background:#fff" />
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start">
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Splash View.svg" alt="Splash View" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/On Boarding 1.svg" alt="On Boarding 1" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/On Boarding 2.svg" alt="On Boarding 2" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/On Boarding 3.svg" alt="On Boarding 3" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Login.svg" alt="Login" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Sign up.svg" alt="Sign up" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Home View.svg" alt="Home View" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/all operations.svg" alt="All Operations" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Add Project.svg" alt="Add Project" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Employees.svg" alt="Employees" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/persons.svg" alt="Persons" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/account.svg" alt="Account" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/add.svg" alt="Add" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/select.svg" alt="Select" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Screenshot_20251130-111658 1.svg" alt="Screenshot 1" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
+  <div style="max-width:420px;padding:6px;background:#fff;border:1px solid #eee;box-shadow:0 1px 4px rgba(0,0,0,0.04)">
+    <img src="./screen_shots/Screenshot_20251130_111719 1.svg" alt="Screenshot 2" style="width:100%;height:auto;object-fit:contain;display:block" />
+  </div>
 </div>
-
----
-
-إذا رغبت أن أضع صورًا بعرض كامل أو أضيف وصفًا لكل لقطة (caption)، أستطيع ترتيبها في شبكة منظمة أو ملف GIF توضيحي.
